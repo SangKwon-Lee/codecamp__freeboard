@@ -37,7 +37,7 @@ export default function BoardWrithePage() {
 		<Container>
 			<BoardWrapper>
 				<TitleWrapper>
-					<Title>게시물 등록</Title>
+					<Title>게시물 등록aa</Title>
 				</TitleWrapper>
 
 				<NameAndPassword>
