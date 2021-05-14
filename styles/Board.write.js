@@ -3,18 +3,29 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
 	display: flex;
 	width: 100%;
-	height: 100%;
+	height: 2000px;
 	justify-content: center;
+	align-items: center;
+`;
+export const ShadowBox = styled.div`
+	display: flex;
+	justify-content: center;
+	max-width: 1200px;
+	width: 100%;
+	height: 1847px;
+	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);
 `;
 export const BoardWrapper = styled.div`
-	width: 996px;
+	max-width: 996px;
+	width: 100%;
 	height: 1687px;
 `;
 
 export const TitleWrapper = styled.div`
 	display: flex;
 	justify-content: center;
-	padding-bottom: 80px;
+	padding-bottom: 40px;
+	padding-top: 80px;
 `;
 export const Title = styled.div`
 	font-weight: 700;
@@ -31,13 +42,14 @@ export const NameWrapper = styled.div`
 	display: flex;
 	width: 486px;
 	flex-direction: column;
-	height: 92px;
 	justify-content: space-between;
 `;
 
-export const Name = styled.div`
+export const SubTitle = styled.div`
 	font-weight: 500;
 	font-size: 16px;
+	padding-top: 40px;
+	padding-bottom: 16px;
 `;
 
 export const Password = styled.div`
@@ -49,7 +61,6 @@ export const PasswordWrapper = styled.div`
 	display: flex;
 	width: 486px;
 	flex-direction: column;
-	height: 92px;
 	justify-content: space-between;
 `;
 
@@ -117,7 +128,7 @@ export const AddressWrapper = styled.div`
 	justify-content: space-between;
 	padding-bottom: 16px;
 `;
-export const AddressNumber = styled.div`
+export const AddressNumber = styled.input`
 	width: 77px;
 	height: 52px;
 	padding: 16px 14px;
@@ -180,6 +191,15 @@ export const PhotoBtn = styled.button`
 	outline: none;
 	border: none;
 	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+`;
+
+export const PhotoPlus = styled.img`
+	padding-bottom: 8px;
 `;
 
 export const PhotoBtnWrapper = styled.div`
@@ -199,7 +219,14 @@ export const MainLabel = styled.label`
 	font-weight: 500;
 	font-size: 16px;
 `;
-export const MainBtn = styled.input``;
+export const MainBtn = styled.input`
+	&:checked {
+		background-color: red;
+		&::after {
+			background-color: red;
+		}
+	}
+`;
 
 export const MainWrapper = styled.div`
 	width: 159px;
