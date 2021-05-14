@@ -43,8 +43,8 @@ export default function BoardPageUI({ board }) {
 							</HeaderWriterWrapper>
 						</HeaderLeftWrapper>
 						<HeaderRightWrapper>
-							<HeaderLinkImg src="link.png"></HeaderLinkImg>
-							<HeaderNavImg src="nav.png"></HeaderNavImg>
+							<HeaderLinkImg src="/link.png"></HeaderLinkImg>
+							<HeaderNavImg src="/nav.png"></HeaderNavImg>
 						</HeaderRightWrapper>
 					</HeaderWrapper>
 					<DivideLine></DivideLine>

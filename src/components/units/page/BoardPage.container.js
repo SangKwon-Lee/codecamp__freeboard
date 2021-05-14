@@ -1,11 +1,17 @@
 import BoardPageUI from "./BoardPage.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS, FETCH_BOARD } from "./BoardPage.queries";
+import { FETCH_BOARD } from "./BoardPage.queries";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function BoardPage() {
-	// const { data } = useQuery(FETCH_BOARDS);
-	const { data } = useQuery(FETCH_BOARD);
+	const router = useRouter();
+	console.log(router.query.id);
+
+	const { data } = useQuery(FETCH_BOARD, {
+		variables: { boardId: router.query.id },
+	});
+	console.log(data);
 
 	const [board, setBoard] = useState();
 
