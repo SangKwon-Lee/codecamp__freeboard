@@ -9,7 +9,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Shadow = styled.div`
-	width: 1200px;
+	max-width: 1200px;
+	width: 100%;
 	height: 1000px;
 	display: flex;
 	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);

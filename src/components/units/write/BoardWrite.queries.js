@@ -5,6 +5,7 @@ export const CREATE_BOARD = gql`
 		createBoard(createBoardInput: $createBoardInput) {
 			title
 			writer
+			_id
 		}
 	}
 `;

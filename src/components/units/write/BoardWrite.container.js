@@ -2,8 +2,11 @@ import BoardUI from "./BoardWrite.presenter";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { CREATE_BOARD } from "./BoardWrite.queries";
+import { useRouter } from "next/router";
 
 function BoardWritePage() {
+	const router = useRouter();
+
 	const [input, setInput] = useState({
 		writer: "",
 		password: "",
@@ -22,7 +25,7 @@ function BoardWritePage() {
 
 	const handleClickCreateBoard = async () => {
 		try {
-			await createBoard({
+			const result = await createBoard({
 				variables: {
 					createBoardInput: {
 						writer: input.writer,
@@ -32,6 +35,9 @@ function BoardWritePage() {
 					},
 				},
 			});
+			console.log(result);
+			alert("게시글 등록 성공");
+			router.push(`/board/${result.data.createBoard._id}`);
 		} catch (error) {
 			console.log(error);
 		}
