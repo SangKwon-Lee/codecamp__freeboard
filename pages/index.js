@@ -1,3 +1,3 @@
 export default function Home() {
-	return <div>테테스스트트</div>;
+	return <div>코공의 코딩 연습</div>;
 }
