@@ -3,8 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/board/[id]": "pages/board/[id].js",
-  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
-  "/board": "pages/board.js",
-  "/": "pages/index.js",
   "/board/[id]/edit": "pages/board/[id]/edit.js"
 }
