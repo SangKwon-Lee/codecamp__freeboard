@@ -1,4 +1,4 @@
-import { Query } from "../../../../commons/types/generated/types";
+import { Query } from '../../../../commons/types/generated/types';
 import {
 	BestCardWrapper,
 	BestTitle,
@@ -27,7 +27,7 @@ import {
 	Title,
 	TableWrapper,
 	Table,
-} from "./Boards.style";
+} from './Boards.style';
 
 interface IProps {
 	data?: Query;

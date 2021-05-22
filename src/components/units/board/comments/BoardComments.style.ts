@@ -42,14 +42,48 @@ export const CommetnsTitle = styled.div`
 	font-weight: 500;
 `
 
+export const WriterStarWrapper = styled.div`
+	display:flex;
+	justify-content: space-between;
+	width: 528px;
+	align-items: center;
+	margin-bottom:20px;
+`
+export const WriterWrapper = styled.div`
+	display: flex;
+	width:384px;
+	justify-content: space-between;
+`
+
+export const WriterInput = styled.input`
+	width:180px;
+	height: 52px;
+	outline: none;
+	border:1px solid rgba(0,0,0,0.1);
+	padding:14px 20px;
+`
+
+export const PasswordInput = styled.input`
+	width:180px;
+	height: 52px;
+	outline: none;
+	border:1px solid rgba(0,0,0,0.1);
+	padding:14px 20px;
+`
+
+
 export const StarWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 120px;
-	padding-bottom: 20px;
+	align-items: center;
+	margin-left:14px;
+
 `
 
-export const StarImg = styled.img``
+export const StarImg = styled.img`
+
+`
 
 export const CommmentsBoxWrapper = styled.div`
 	display: flex;
@@ -65,7 +99,7 @@ export const CommentsInput = styled.textarea`
 	height: 108px;
 	padding: 20px;
 	border:none;
-
+	resize: none;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	outline: none;
 	::placeholder{
@@ -125,8 +159,6 @@ height:24px;
 
 export const CommentsWriterAndStar = styled.div`
 	display: flex;
-	width:181px;
-
 	justify-content: space-between;
 
 `
