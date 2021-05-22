@@ -19,3 +19,9 @@ export const FETCH_BOARDS = gql`
 		}
 	}
 `;
+
+
+// export const DELETE_BOARD = gql`
+
+
+// `

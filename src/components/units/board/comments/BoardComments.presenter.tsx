@@ -27,9 +27,19 @@ import {
 	CommentsDeleteImg,
 	CommentsText,
 	CommentsDate,
-} from "./BoardComments.style";
+	WriterWrapper,
+	WriterStarWrapper,
+	WriterInput,
+	PasswordInput,
+} from './BoardComments.style';
 
-export default function BoardCommentsUI() {
+export default function BoardCommentsUI({
+	handleInputChange,
+	data,
+	rating,
+	onSaveRating,
+	handleClickCreateComment,
+}: any) {
 	return (
 		<Wrapper>
 			{/* <DivideLine></DivideLine> */}
@@ -39,48 +49,75 @@ export default function BoardCommentsUI() {
 						<CommentsImg src="/commentsImg.png"></CommentsImg>
 						<CommetnsTitle>댓글</CommetnsTitle>
 					</CommentsImgAndTitle>
-					<StarWrapper>
-						<StarImg src="/star.png"></StarImg>
-						<StarImg src="/star.png"></StarImg>
-						<StarImg src="/star.png"></StarImg>
-						<StarImg src="/star.png"></StarImg>
-						<StarImg src="/star.png"></StarImg>
-					</StarWrapper>
+					<WriterStarWrapper>
+						<WriterWrapper>
+							<WriterInput
+								placeholder="작성자"
+								name="writer"
+								onChange={handleInputChange}
+							></WriterInput>
+							<PasswordInput
+								onChange={handleInputChange}
+								placeholder="비밀번호"
+								type="password"
+								name="password"
+							></PasswordInput>
+						</WriterWrapper>
+						<StarWrapper>
+							{['1', '2', '3', '4', '5'].map((idx) => (
+								<StarImg
+									onClick={onSaveRating}
+									id={idx}
+									src={rating >= idx ? '/StarColor.png' : '/star.png'}
+								></StarImg>
+							))}
+						</StarWrapper>
+					</WriterStarWrapper>
 					<CommmentsBoxWrapper>
-						<CommentsInput placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."></CommentsInput>
+						<CommentsInput
+							name="contents"
+							onChange={handleInputChange}
+							placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+						></CommentsInput>
 						<CommentsBoxBottom>
 							<CommentsCount>0/100</CommentsCount>
-							<CommentsBtn>등록하기</CommentsBtn>
+							<CommentsBtn onClick={handleClickCreateComment}>
+								등록하기
+							</CommentsBtn>
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-
-				<CommentsWrapper>
-					<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
-					<CommentsCenterWrapper>
-						<CommentsTopWrapper>
-							<CommentsWriterAndStar>
-								<CommentsWriter>노원두</CommentsWriter>
-								<StarWrapper>
-									<CommentsStar src="/star.png"></CommentsStar>
-									<CommentsStar src="/star.png"></CommentsStar>
-									<CommentsStar src="/star.png"></CommentsStar>
-									<CommentsStar src="/star.png"></CommentsStar>
-									<CommentsStar src="/star.png"></CommentsStar>
-								</StarWrapper>
-							</CommentsWriterAndStar>
-							<CommentsTopRightWrapper>
-								<CommentsUpdateImg src="/pencil.png"></CommentsUpdateImg>
-								<CommentsDeleteImg src="/X.png"></CommentsDeleteImg>
-							</CommentsTopRightWrapper>
-						</CommentsTopWrapper>
-						<CommentsText>
-							진짜 유익하고 정말 필요한 정보인 것 같아요~! 앞으로도 좋은 정보
-							부탁드립니다~!
-						</CommentsText>
-						<CommentsDate>2020.02.22</CommentsDate>
-					</CommentsCenterWrapper>
-				</CommentsWrapper>
+				{data?.fetchBoardComments
+					.map((data) => (
+						<CommentsWrapper>
+							<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
+							<CommentsCenterWrapper>
+								<CommentsTopWrapper>
+									<CommentsWriterAndStar>
+										<CommentsWriter>{data.writer}</CommentsWriter>
+										<StarWrapper>
+											{['1', '2', '3', '4', '5'].map((idx) => (
+												<StarImg
+													onClick={onSaveRating}
+													id={idx}
+													src={
+														data.rating >= idx ? '/StarColor.png' : '/star.png'
+													}
+												></StarImg>
+											))}
+										</StarWrapper>
+									</CommentsWriterAndStar>
+									<CommentsTopRightWrapper>
+										<CommentsUpdateImg src="/pencil.png"></CommentsUpdateImg>
+										<CommentsDeleteImg src="/X.png"></CommentsDeleteImg>
+									</CommentsTopRightWrapper>
+								</CommentsTopWrapper>
+								<CommentsText>{data.contents}</CommentsText>
+								<CommentsDate>{data.createdAt.slice(0, 10)}</CommentsDate>
+							</CommentsCenterWrapper>
+						</CommentsWrapper>
+					))
+					.reverse()}
 			</Body>
 		</Wrapper>
 	);

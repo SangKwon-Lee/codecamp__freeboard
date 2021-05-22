@@ -147,7 +147,7 @@ export const ListBtn = styled.button`
 	height: 52px;
 	font-weight: 500;
 	font-size: 16px;
-	border: 1px solid rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
@@ -159,8 +159,11 @@ export const UpdateBtn = styled.button`
 	height: 52px;
 	font-weight: 500;
 	font-size: 16px;
-	border: 1px solid rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
+	:hover{
+		background-color: #FFD600;
+	}
 `;

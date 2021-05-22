@@ -1,4 +1,4 @@
-import { IBoardWriterProps } from "./BoardWrite.types";
+import { IBoardWriterProps } from './BoardWrite.types';
 import {
 	Wrapper,
 	Title,
@@ -24,13 +24,14 @@ import {
 	ButtonWrapper,
 	Shadow,
 	Body,
-} from "./BoardWrite.style";
+} from './BoardWrite.style';
 
 export default function BoardWritePage({
 	handleChangeInput,
 	handleClickCreateBoard,
 	isTrue,
 	data,
+	handleClickUpdateBoard,
 }: IBoardWriterProps) {
 	return (
 		<Wrapper>
@@ -44,7 +45,7 @@ export default function BoardWritePage({
 								type="text"
 								placeholder="이름을 적어주세요."
 								name="writer"
-								defaultValue={data?.fetchBoard.writer || ""}
+								defaultValue={data?.fetchBoard.writer || ''}
 								onChange={handleChangeInput}
 							/>
 						</InputWrapper>
@@ -74,7 +75,7 @@ export default function BoardWritePage({
 							placeholder="내용을 작성해주세요."
 							name="contents"
 							defaultValue={data?.fetchBoard.contents}
-							onChange={(e: any) => handleChangeInput(e)}
+							onChange={handleChangeInput}
 						/>
 					</InputWrapper>
 					<InputWrapper>
@@ -123,7 +124,7 @@ export default function BoardWritePage({
 					<ButtonWrapper>
 						<CancelButton>취소하기</CancelButton>
 						{data ? (
-							<SubmitButton onClick={handleClickCreateBoard} disabled={isTrue}>
+							<SubmitButton onClick={handleClickUpdateBoard} disabled={isTrue}>
 								수정하기
 							</SubmitButton>
 						) : (

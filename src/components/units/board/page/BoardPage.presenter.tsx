@@ -1,7 +1,7 @@
 import {
 	Query,
 	QueryFetchBoardArgs,
-} from "../../../../commons/types/generated/types";
+} from '../../../../commons/types/generated/types';
 import {
 	Wrapper,
 	Shadow,
@@ -30,7 +30,7 @@ import {
 	UpdateBtn,
 	ListBtn,
 	BottomBtnWrapper,
-} from "./BoardPage.style";
+} from './BoardPage.style';
 
 interface IBoardPagePros {
 	data?: Query;
@@ -47,7 +47,9 @@ export default function BoardPageUI({ data, handleUpdate }: IBoardPagePros) {
 							<HeaderProfileImg src="/profileImg.png"></HeaderProfileImg>
 							<HeaderWriterWrapper>
 								<HeaderWriter>{data?.fetchBoard.writer}</HeaderWriter>
-								<HeaderDate>{data?.fetchBoard.createdAt}</HeaderDate>
+								<HeaderDate>
+									{data?.fetchBoard.createdAt.slice(0, 10)}
+								</HeaderDate>
 							</HeaderWriterWrapper>
 						</HeaderLeftWrapper>
 						<HeaderRightWrapper>
