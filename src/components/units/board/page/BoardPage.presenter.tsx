@@ -30,14 +30,26 @@ import {
 	UpdateBtn,
 	ListBtn,
 	BottomBtnWrapper,
+	ContentTop,
+	ContentBottom,
+	ContentWrapper,
 } from './BoardPage.style';
 
 interface IBoardPagePros {
 	data?: Query;
 	handleUpdate: () => void;
+	handleLike: () => void;
+	handleDisLike: () => void;
+	handleMoveBoards: () => void;
 }
 
-export default function BoardPageUI({ data, handleUpdate }: IBoardPagePros) {
+export default function BoardPageUI({
+	data,
+	handleUpdate,
+	handleLike,
+	handleDisLike,
+	handleMoveBoards,
+}: IBoardPagePros) {
 	return (
 		<Wrapper>
 			<Shadow>
@@ -48,7 +60,9 @@ export default function BoardPageUI({ data, handleUpdate }: IBoardPagePros) {
 							<HeaderWriterWrapper>
 								<HeaderWriter>{data?.fetchBoard.writer}</HeaderWriter>
 								<HeaderDate>
-									{data?.fetchBoard.createdAt.slice(0, 10)}
+									{data?.fetchBoard.updatedAt
+										? data?.fetchBoard.updatedAt.slice(0, 10)
+										: data?.fetchBoard.createdAt.slice(0, 10)}
 								</HeaderDate>
 							</HeaderWriterWrapper>
 						</HeaderLeftWrapper>
@@ -59,25 +73,34 @@ export default function BoardPageUI({ data, handleUpdate }: IBoardPagePros) {
 					</HeaderWrapper>
 					<DivideLine></DivideLine>
 					<ContentsWrapper>
-						<TitleWrapper>
-							<Title>{data?.fetchBoard.title}</Title>
-						</TitleWrapper>
-						<Content>{data?.fetchBoard.contents}</Content>
-						<LikeBtnWrapper>
-							<LikeWrapper>
-								<LikeImg src="/like.png"></LikeImg>
-								<LikeCount>1920</LikeCount>
-							</LikeWrapper>
-							<DisLikeWrapper>
-								<DisLikeImg src="/dislike.png"></DisLikeImg>
-								<DisLikeCount>1920</DisLikeCount>
-							</DisLikeWrapper>
-						</LikeBtnWrapper>
+						<ContentTop>
+							<TitleWrapper>
+								<Title>{data?.fetchBoard.title}</Title>
+							</TitleWrapper>
+							<ContentWrapper>
+								<Content>{data?.fetchBoard.contents}</Content>
+							</ContentWrapper>
+						</ContentTop>
+						<ContentBottom>
+							<LikeBtnWrapper>
+								<LikeWrapper>
+									<LikeImg onClick={handleLike} src="/like.png"></LikeImg>
+									<LikeCount>{data?.fetchBoard.likeCount}</LikeCount>
+								</LikeWrapper>
+								<DisLikeWrapper>
+									<DisLikeImg
+										onClick={handleDisLike}
+										src="/dislike.png"
+									></DisLikeImg>
+									<DisLikeCount>{data?.fetchBoard.dislikeCount}</DisLikeCount>
+								</DisLikeWrapper>
+							</LikeBtnWrapper>
+						</ContentBottom>
 					</ContentsWrapper>
 				</Body>
 			</Shadow>
 			<BottomBtnWrapper>
-				<ListBtn>목록으로</ListBtn>
+				<ListBtn onClick={handleMoveBoards}>목록으로</ListBtn>
 				<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
 			</BottomBtnWrapper>
 		</Wrapper>

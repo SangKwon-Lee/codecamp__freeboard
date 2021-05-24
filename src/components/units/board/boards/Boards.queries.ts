@@ -8,6 +8,19 @@ export const FETCH_BOARDS = gql`
 			title
 			contents
 			createdAt
+			_id
 		}
 	}
 `;
+
+export const FETCH_BEST_BOARDS = gql`
+query fetchBoardsOfTheBest{
+  fetchBoardsOfTheBest{
+    _id
+		writer
+    title
+    contents
+    likeCount
+    createdAt
+  }
+}`

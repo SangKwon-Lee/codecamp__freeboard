@@ -69,13 +69,15 @@ export const BestBottomWrapper = styled.div`
 
 export const BestProfileAndWriter = styled.div`
 	display: flex;
-	justify-content: space-between;
-	width: 55px;
+	
 	padding-bottom: 8px;
 `;
-export const BestCardProfileImg = styled.img``;
+export const BestCardProfileImg = styled.img`
+
+`;
 
 export const BestCardWriter = styled.div`
+margin-left:10px;
 	font-size: 16px;
 `;
 
@@ -114,8 +116,8 @@ export const Table = styled.div`
 	max-width: 1200px;
 	width: 100%;
 	margin-top: 40px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 1px solid rgba(0,0,0,0.5);
+	border-bottom: 1px solid rgba(0,0,0,0.5);
 `;
 export const RowWrapper = styled.div`
 	display: flex;
@@ -189,3 +191,28 @@ export const SearchBar = styled.input`
 export const DateBar = styled.input``;
 
 export const SearchBtn = styled.button``;
+
+export const RegisterBtnWrapper = styled.div`
+	width:100%;
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 40px;
+`
+export const ResgisterBtn = styled.button`
+	width:171px;
+	height: 52px;
+	border: 1px solid rgba(0,0,0,0.2);
+	background-color: transparent;
+	font-size: 16px;
+	font-weight: 500;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	outline: none;
+
+`
+export const RegisterImg = styled.img`
+	margin-right:8px;
+`
