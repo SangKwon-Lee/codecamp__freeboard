@@ -84,19 +84,29 @@ export const DivideLine = styled.hr`
 export const ContentsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	/* justify-content: center; */
+	justify-content: space-between;
 	align-items: center;
 	width: 100%;
+	padding-bottom: 80px;
+	height: 100%;
 `;
 
 export const TitleWrapper = styled.div`
 	width: 100%;
+	display: flex;
+
 `;
 export const Title = styled.div`
 	font-weight: 700;
 	font-size: 36px;
 `;
 
+export const ContentWrapper = styled.div`
+
+display: flex;
+justify-content: center;
+	width: 100%;
+`
 export const Content = styled.div`
 	padding-top: 40px;
 	padding-bottom: 160px;
@@ -113,9 +123,12 @@ export const LikeWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: 70px;
+	align-items: center;
 	justify-content: space-between;
 `;
-export const LikeImg = styled.img``;
+export const LikeImg = styled.img`
+	cursor: pointer;
+	`;
 export const LikeCount = styled.div`
 	font-size: 18px;
 	font-weight: 400;
@@ -123,12 +136,14 @@ export const LikeCount = styled.div`
 
 export const DisLikeWrapper = styled.div`
 	display: flex;
+	align-items: center;
 	flex-direction: column;
 	height: 70px;
 	justify-content: space-between;
 `;
 export const DisLikeImg = styled.img`
 	margin-top: 3px;
+	cursor: pointer;
 `;
 export const DisLikeCount = styled.div`
 	font-size: 18px;
@@ -151,6 +166,9 @@ export const ListBtn = styled.button`
 	outline: none;
 	background-color: transparent;
 	cursor: pointer;
+		:hover{
+		background-color: #FFD600;
+	}
 `;
 
 export const UpdateBtn = styled.button`
@@ -167,3 +185,12 @@ export const UpdateBtn = styled.button`
 		background-color: #FFD600;
 	}
 `;
+
+export const ContentTop = styled.div`
+width:100%;
+
+`
+
+export const ContentBottom = styled.div`
+
+`

@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 import {
 	FETCH_BOARD_COMMENTS,
 	CREATE_BOARD_COMMENT,
+	DELETE_BOARD_COMMENT,
 } from './BoardComments.queries';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	Mutation,
 	MutationCreateBoardCommentArgs,
+	MutationDeleteBoardCommentArgs,
 	Query,
 	QueryFetchBoardCommentsArgs,
 } from '../../../../commons/types/generated/types';
@@ -15,14 +17,26 @@ import { useRouter } from 'next/router';
 function BoardCommentsPage() {
 	const router = useRouter();
 
-	const [rating, setRating] = useState(5);
+	const [rating, setRating] = useState(0);
 
 	const [createBoardComment] = useMutation<
 		Mutation,
 		MutationCreateBoardCommentArgs
 	>(CREATE_BOARD_COMMENT);
 
+	const [deleteBoardComment] = useMutation<
+		Mutation,
+		MutationDeleteBoardCommentArgs
+	>(DELETE_BOARD_COMMENT);
+
 	const [input, setInput] = useState({
+		writer: '',
+		password: '',
+		contents: '',
+		rating: '',
+	});
+
+	const [updataInput, setUpdateInput] = useState({
 		writer: '',
 		password: '',
 		contents: '',
@@ -45,6 +59,15 @@ function BoardCommentsPage() {
 		console.log(newInput);
 	};
 
+	const handleUpdateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newInput = {
+			...input,
+			[e.target.name]: e.target.value,
+		};
+		setUpdateInput(newInput);
+		console.log(newInput);
+	};
+
 	const handleClickCreateComment = async () => {
 		try {
 			const result = await createBoardComment({
@@ -58,10 +81,31 @@ function BoardCommentsPage() {
 					boardId: String(router.query.id),
 				},
 			});
-			console.log('성공');
+			setInput({
+				writer: '',
+				password: '',
+				contents: '',
+				rating: '',
+			});
+			setRating(0);
 			refetch();
 		} catch (error) {
 			alert(error);
+		}
+	};
+
+	const handleDeleteComment = async (e) => {
+		try {
+			const result = await deleteBoardComment({
+				variables: {
+					password: input.password,
+					boardCommentId: String(e.target.id),
+				},
+			});
+
+			refetch();
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
@@ -76,11 +120,15 @@ function BoardCommentsPage() {
 
 	return (
 		<BoardCommentsUI
+			input={input}
 			handleInputChange={handleInputChange}
 			data={data}
 			rating={rating}
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
+			handleDeleteComment={handleDeleteComment}
+			handleUpdateInputChange={handleUpdateInputChange}
+			updataInput={updataInput}
 		></BoardCommentsUI>
 	);
 }

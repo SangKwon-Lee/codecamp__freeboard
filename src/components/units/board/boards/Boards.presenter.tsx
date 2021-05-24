@@ -27,23 +27,33 @@ import {
 	Title,
 	TableWrapper,
 	Table,
+	ResgisterBtn,
+	RegisterImg,
+	RegisterBtnWrapper,
 } from './Boards.style';
 
 interface IProps {
 	data?: Query;
+	BestDatas?: any;
+	handleMoveList: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+	handleMoveRegister: () => void;
 }
 
-export default function BoardsUI({ data }: IProps) {
-	console.log(data?.fetchBoards);
+export default function BoardsUI({
+	data,
+	BestDatas,
+	handleMoveList,
+	handleMoveRegister,
+}: IProps) {
 	return (
 		<Wrapper>
 			<Contents>
 				<BestWrapper>
 					<BestTitle>베스트 게시글</BestTitle>
 					<BestCardWrapper>
-						{data?.fetchBoards.slice(0, 4).map((data) => (
+						{BestDatas?.data?.fetchBoardsOfTheBest.map((data) => (
 							<>
-								<BestCard>
+								<BestCard key={data._id}>
 									<BestImg src="/bestImage.png"></BestImg>
 									<BestContentsWrapper>
 										<BestCardTitle>{data.title}</BestCardTitle>
@@ -59,7 +69,7 @@ export default function BoardsUI({ data }: IProps) {
 											</BestLeftWrapper>
 											<BestRightWrapper>
 												<BestLike src="/SMlike.png"></BestLike>
-												<BestLikeCount>356</BestLikeCount>
+												<BestLikeCount>{data.likeCount}</BestLikeCount>
 											</BestRightWrapper>
 										</BestBottomWrapper>
 									</BestContentsWrapper>
@@ -68,7 +78,6 @@ export default function BoardsUI({ data }: IProps) {
 						))}
 					</BestCardWrapper>
 				</BestWrapper>
-
 				<Table>
 					<TableWrapper>
 						<NumberWrapper>
@@ -85,12 +94,14 @@ export default function BoardsUI({ data }: IProps) {
 						</DateWrapper>
 					</TableWrapper>
 					{data?.fetchBoards.slice(0, 10).map((data) => (
-						<RowWrapper>
+						<RowWrapper key={data._id}>
 							<NumberWrapper>
 								<Title>10</Title>
 							</NumberWrapper>
 							<TitleWrapper>
-								<Title>{data.title}</Title>
+								<Title id={data._id} onClick={handleMoveList}>
+									{data.title}
+								</Title>
 							</TitleWrapper>
 							<WriterWrapper>
 								<Title>{data.writer}</Title>
@@ -101,6 +112,11 @@ export default function BoardsUI({ data }: IProps) {
 						</RowWrapper>
 					))}
 				</Table>
+				<RegisterBtnWrapper>
+					<ResgisterBtn onClick={handleMoveRegister}>
+						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기
+					</ResgisterBtn>
+				</RegisterBtnWrapper>
 			</Contents>
 		</Wrapper>
 	);

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
+	flex-direction: column;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -15,11 +16,11 @@ export const Body = styled.div`
 	flex-direction: column;
 `;
 
-export const DivideLine = styled.hr`
+export const DivideLine = styled.div`
+	max-width: 1200px;
 	width: 100%;
-	margin-top: 20px;
-	margin-bottom: 80px;
-	border-bottom: 1px solid rgba(0, 0, 0, 0);
+	margin-bottom: 40px;
+	border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
 `;
 
 export const CommentsInputWrapper = styled.div`
@@ -127,6 +128,7 @@ export const CommentsBtn = styled.button`
 	font-size:16px;
 	cursor: pointer;
 	border:none;
+
 `
 
 
@@ -194,6 +196,10 @@ export const CommentsTopRightWrapper = styled.div`
 	justify-content: space-between;
 `
 
-export const CommentsUpdateImg = styled.img``
+export const CommentsUpdateImg = styled.img`
+	cursor: pointer;
+`
 
-export const CommentsDeleteImg = styled.img``
+export const CommentsDeleteImg = styled.img`
+	cursor: pointer;
+`
