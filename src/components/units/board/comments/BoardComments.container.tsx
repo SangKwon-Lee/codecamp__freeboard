@@ -1,5 +1,5 @@
 import BoardCommentsUI from './BoardComments.presenter';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
 	FETCH_BOARD_COMMENTS,
 	CREATE_BOARD_COMMENT,
@@ -36,13 +36,6 @@ function BoardCommentsPage() {
 		rating: '',
 	});
 
-	const [updataInput, setUpdateInput] = useState({
-		writer: '',
-		password: '',
-		contents: '',
-		rating: '',
-	});
-
 	const { data, refetch } = useQuery<Query, QueryFetchBoardCommentsArgs>(
 		FETCH_BOARD_COMMENTS,
 		{
@@ -56,16 +49,7 @@ function BoardCommentsPage() {
 			[e.target.name]: e.target.value,
 		};
 		setInput(newInput);
-		console.log(newInput);
-	};
 
-	const handleUpdateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newInput = {
-			...input,
-			[e.target.name]: e.target.value,
-		};
-		setUpdateInput(newInput);
-		console.log(newInput);
 	};
 
 	const handleClickCreateComment = async () => {
@@ -102,7 +86,6 @@ function BoardCommentsPage() {
 					boardCommentId: String(e.target.id),
 				},
 			});
-
 			refetch();
 		} catch (error) {
 			console.log(error);
@@ -127,8 +110,6 @@ function BoardCommentsPage() {
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
 			handleDeleteComment={handleDeleteComment}
-			handleUpdateInputChange={handleUpdateInputChange}
-			updataInput={updataInput}
 		></BoardCommentsUI>
 	);
 }

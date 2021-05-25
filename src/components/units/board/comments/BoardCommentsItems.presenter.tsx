@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import {
+	Mutation,
+	MutationUpdateBoardCommentArgs,
+} from '../../../../commons/types/generated/types';
+import { UPDATE_BOARD_COMMENT } from './BoardComments.queries';
 import {
 	CommentsCenterWrapper,
 	CommentsDate,
@@ -27,17 +33,80 @@ import {
 	CommentsBtn,
 } from './BoardCommentsItems.style';
 
+import { IBoadrdCommentsItemsProps } from './BoardComments.types';
+
 export default function BoardCommentItemUI({
 	data,
 	onSaveRating,
 	handleDeleteComment,
-	handleUpdateInputChange,
-	updataInput,
-}) {
+}: IBoadrdCommentsItemsProps) {
 	const [Update, setUpdate] = useState(false);
+	const [UpdateRating, setUpdateRating] = useState(0);
+	const [updataInput, setUpdateInput] = useState({
+		writer: '',
+		password: '',
+		contents: '',
+		rating: '',
+	});
+	const [updateBoardComment] = useMutation<
+		Mutation,
+		MutationUpdateBoardCommentArgs
+	>(UPDATE_BOARD_COMMENT);
 
 	const commentUpdate = () => {
 		setUpdate((prev) => !prev);
+	};
+
+	useEffect(() => {
+		setUpdateInput({
+			writer: data.writer,
+			password: '',
+			contents: data.contents,
+			rating: data.rating,
+		});
+	}, [Update]);
+
+	const handleUpdateInputChange = (e: any) => {
+		const newInput = {
+			...updataInput,
+			[e.target.name]: e.target.value,
+		};
+		setUpdateInput(newInput);
+	};
+
+	const onSaveUpdateRating = (e) => {
+		const newInput = {
+			...updataInput,
+			rating: e.target.id,
+		};
+		setUpdateInput(newInput);
+		setUpdateRating(e.target.id);
+	};
+
+	const handleClickUpdateComment = async (e) => {
+		try {
+			const result = await updateBoardComment({
+				variables: {
+					updateBoardCommentInput: {
+						// writer: updataInput.writer,
+						rating: Number(updataInput.rating),
+						contents: updataInput.contents,
+					},
+					password: updataInput.password,
+					boardCommentId: String(e.target.id),
+				},
+			});
+			setUpdateInput({
+				writer: '',
+				password: '',
+				contents: '',
+				rating: '',
+			});
+			setUpdateRating(0);
+			setUpdate((prev) => !prev);
+		} catch (error) {
+			alert(error);
+		}
 	};
 
 	return (
@@ -50,6 +119,7 @@ export default function BoardCommentItemUI({
 								name="writer"
 								defaultValue={data.writer}
 								onChange={handleUpdateInputChange}
+								disabled={true}
 							></WriterInput>
 							<PasswordInput
 								name="password"
@@ -61,9 +131,11 @@ export default function BoardCommentItemUI({
 							{['1', '2', '3', '4', '5'].map((idx) => (
 								<StarImg
 									key={idx}
-									onClick={onSaveRating}
+									onClick={onSaveUpdateRating}
 									id={idx}
-									src={data.rating >= idx ? '/StarColor.png' : '/star.png'}
+									src={
+										updataInput.rating >= idx ? '/StarColor.png' : '/star.png'
+									}
 								></StarImg>
 							))}
 						</StarWrapper>
@@ -76,7 +148,9 @@ export default function BoardCommentItemUI({
 						></CommentsInput>
 						<CommentsBoxBottom>
 							<CommentsCount></CommentsCount>
-							<CommentsBtn>수정하기</CommentsBtn>
+							<CommentsBtn id={data._id} onClick={handleClickUpdateComment}>
+								수정하기
+							</CommentsBtn>
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsUpdatenputWrapper>

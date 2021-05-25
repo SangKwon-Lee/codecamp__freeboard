@@ -32,19 +32,13 @@ import {
 	RegisterBtnWrapper,
 } from './Boards.style';
 
-interface IProps {
-	data?: Query;
-	BestDatas?: any;
-	handleMoveList: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-	handleMoveRegister: () => void;
-}
-
+import { IBoardsProps } from './Boards.tpes';
 export default function BoardsUI({
 	data,
 	BestDatas,
 	handleMoveList,
 	handleMoveRegister,
-}: IProps) {
+}: IBoardsProps) {
 	return (
 		<Wrapper>
 			<Contents>
