@@ -11,9 +11,7 @@ export const FETCH_BOARD_COMMENTS = gql`
 			updatedAt
 		}
 	}
-  
 `;
-
 
 export const CREATE_BOARD_COMMENT = gql`
 	mutation createBoardComment($createBoardCommentInput:CreateBoardCommentInput!, $boardId: ID!){
@@ -33,3 +31,19 @@ mutation deleteBoardComment($password:String, $boardCommentId: ID!) {
 	deleteBoardComment(password:$password, boardCommentId: $boardCommentId)
 }
 `
+
+export const UPDATE_BOARD_COMMENT = gql`
+
+mutation updateBoardComment($updateBoardCommentInput:UpdateBoardCommentInput!, $password:String, $boardCommentId: ID!) {
+	updateBoardComment(updateBoardCommentInput: $updateBoardCommentInput, password:$password, boardCommentId: $boardCommentId){
+		writer
+		contents
+		_id
+		rating
+		updatedAt
+
+	}
+}
+`
+
+

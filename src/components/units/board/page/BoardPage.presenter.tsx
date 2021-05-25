@@ -35,13 +35,7 @@ import {
 	ContentWrapper,
 } from './BoardPage.style';
 
-interface IBoardPagePros {
-	data?: Query;
-	handleUpdate: () => void;
-	handleLike: () => void;
-	handleDisLike: () => void;
-	handleMoveBoards: () => void;
-}
+import { IBoardPagePros } from './BoardPage.types';
 
 export default function BoardPageUI({
 	data,

@@ -1,6 +1,5 @@
 // import { IBoardWriterProps } from "./BoardComments.types";
 
-import { Query } from '../../../../commons/types/generated/types';
 import BoardCommentItem from './BoardCommentsItems.presenter';
 import {
 	Wrapper,
@@ -22,28 +21,7 @@ import {
 	WriterInput,
 	PasswordInput,
 } from './BoardComments.style';
-
-interface IBoardCommentsProps {
-	input: {
-		writer: string;
-		password: string;
-		contents: string;
-		rating: string;
-	};
-	handleInputChange: (e: any) => void;
-	data?: any;
-	rating: any;
-	onSaveRating: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-	handleClickCreateComment: (e: any) => void;
-	handleDeleteComment: (e: any) => void;
-	handleUpdateInputChange: (e: any) => void;
-	updataInput: {
-		writer: string;
-		password: string;
-		contents: string;
-		rating: string;
-	};
-}
+import { IBoardCommentsProps } from './BoardComments.types';
 
 export default function BoardCommentsUI({
 	input,
@@ -53,8 +31,6 @@ export default function BoardCommentsUI({
 	onSaveRating,
 	handleClickCreateComment,
 	handleDeleteComment,
-	handleUpdateInputChange,
-	updataInput,
 }: IBoardCommentsProps) {
 	return (
 		<Wrapper>
@@ -110,8 +86,6 @@ export default function BoardCommentsUI({
 				{data?.fetchBoardComments.map((data) => (
 					<BoardCommentItem
 						key={data._id}
-						handleUpdateInputChange={handleUpdateInputChange}
-						updataInput={updataInput}
 						data={data}
 						onSaveRating={onSaveRating}
 						handleDeleteComment={handleDeleteComment}
