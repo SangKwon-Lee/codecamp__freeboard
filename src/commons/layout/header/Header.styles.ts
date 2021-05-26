@@ -41,6 +41,9 @@ export const Login = styled.button`
   outline:none;
   font-weight:500;
   font-size: 1rem;
+  :hover{
+  font-weight:700;
+  }
 `
 
 export const SignUp = styled.button`
@@ -52,7 +55,9 @@ export const SignUp = styled.button`
   border: none;
   outline:none;
   cursor: pointer;
-
+  :hover{
+  font-weight:700;
+  }
 `
 
 export const HeaderRightLoginWrapper = styled.button`

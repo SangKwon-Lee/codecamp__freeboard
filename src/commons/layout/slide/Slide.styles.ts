@@ -2,10 +2,8 @@ import styled from "@emotion/styled"
 
 export const SlideWrapper = styled.div`
   background-color:white;
-  position: relative;
-
   width: 100%;
-  top:6.25rem;
+  padding-top:6.25rem;
   justify-content: center;
   align-items:center;
   display:flex;

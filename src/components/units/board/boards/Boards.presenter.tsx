@@ -1,23 +1,14 @@
 import { Query } from '../../../../commons/types/generated/types';
 import {
-	BestCardWrapper,
-	BestTitle,
-	BestWrapper,
 	Contents,
 	Wrapper,
-	BestCard,
-	BestImg,
-	BestCardTitle,
-	BestProfileAndWriter,
-	BestCardProfileImg,
-	BestCardWriter,
-	BestDate,
-	BestLeftWrapper,
-	BestRightWrapper,
-	BestLike,
-	BestLikeCount,
-	BestContentsWrapper,
-	BestBottomWrapper,
+	SearchDateWrapper,
+	SearchBar,
+	SearchWrapper,
+	SearchBarWrapper,
+	SearchBtn,
+	SearchImg,
+	DateImg,
 	RowWrapper,
 	NumberWrapper,
 	TitleWrapper,
@@ -42,36 +33,18 @@ export default function BoardsUI({
 	return (
 		<Wrapper>
 			<Contents>
-				<BestWrapper>
-					<BestTitle>베스트 게시글</BestTitle>
-					<BestCardWrapper>
-						{BestDatas?.data?.fetchBoardsOfTheBest.map((data) => (
-							<>
-								<BestCard key={data._id}>
-									<BestImg src="/bestImage.png"></BestImg>
-									<BestContentsWrapper>
-										<BestCardTitle>{data.title}</BestCardTitle>
-										<BestBottomWrapper>
-											<BestLeftWrapper>
-												<BestProfileAndWriter>
-													<BestCardProfileImg src="/Smprofile.png"></BestCardProfileImg>
-													<BestCardWriter>{data.writer}</BestCardWriter>
-												</BestProfileAndWriter>
-												<BestDate>
-													Date : {data.createdAt.slice(0, 10)}
-												</BestDate>
-											</BestLeftWrapper>
-											<BestRightWrapper>
-												<BestLike src="/SMlike.png"></BestLike>
-												<BestLikeCount>{data.likeCount}</BestLikeCount>
-											</BestRightWrapper>
-										</BestBottomWrapper>
-									</BestContentsWrapper>
-								</BestCard>
-							</>
-						))}
-					</BestCardWrapper>
-				</BestWrapper>
+				<SearchWrapper>
+					<SearchBarWrapper>
+						<SearchBar placeholder="제목을 검색해주세요."></SearchBar>
+						<SearchDateWrapper>
+							<DateImg src="/dateImg.png" />
+							2020.02.12
+							<DateImg src="/dateImg.png" />
+							2020.02.12
+						</SearchDateWrapper>
+					</SearchBarWrapper>
+					<SearchBtn>검색하기</SearchBtn>
+				</SearchWrapper>
 				<Table>
 					<TableWrapper>
 						<NumberWrapper>

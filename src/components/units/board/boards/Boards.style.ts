@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
-	height: 2000px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -15,99 +14,6 @@ export const Contents = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-`;
-export const BestWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-
-export const BestTitle = styled.div`
-	font-size: 36px;
-	font-weight: 700;
-	padding-bottom: 40px;
-`;
-
-export const BestCardWrapper = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-`;
-
-export const BestCard = styled.div`
-	width: 282px;
-	height: 257px;
-	border-radius: 16px;
-	display: flex;
-	flex-direction: column;
-	box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.1);
-`;
-
-export const BestImg = styled.img`
-	border-top-left-radius: 16px;
-	border-top-right-radius: 16px;
-`;
-
-export const BestCardTitle = styled.div`
-	font-weight: 500;
-	font-size: 18px;
-`;
-
-export const BestContentsWrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	padding: 20px;
-`;
-export const BestBottomWrapper = styled.div`
-	display: flex;
-	padding-top: 20px;
-	width: 100%;
-	justify-content: space-between;
-`;
-
-export const BestProfileAndWriter = styled.div`
-	display: flex;
-	
-	padding-bottom: 8px;
-`;
-export const BestCardProfileImg = styled.img`
-
-`;
-
-export const BestCardWriter = styled.div`
-margin-left:10px;
-	font-size: 16px;
-`;
-
-export const BestDate = styled.div`
-	font-size: 12px;
-	color: #828282;
-`;
-
-export const BestLeftWrapper = styled.div`
-	display: flex;
-	height: 50px;
-	justify-content: space-between;
-	flex-direction: column;
-`;
-
-export const BestRightWrapper = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	height: 50px;
-`;
-
-export const BestLike = styled.img`
-	width: 20px;
-	height: 18px;
-`;
-
-export const BestLikeCount = styled.div`
-	font-size: 16px;
 `;
 
 //! 테이블 구역
@@ -156,6 +62,9 @@ export const TitleWrapper = styled.div`
 export const Title = styled.div`
 	font-size: 16px;
 	color: #4f4f4f;
+	:hover{
+		font-weight: 700;
+	}
 `;
 
 export const WriterWrapper = styled.div`
@@ -172,25 +81,7 @@ export const DateWrapper = styled.div`
 
 //! 써치바 구역
 
-export const SearchWrapper = styled.div`
-	width: 100%;
-	display: flex;
-`;
 
-export const SearchBar = styled.input`
-	max-width: 558px;
-	width: 100%;
-	outline: none;
-	border: none;
-	border-radius: 16px;
-	background-color: #f2f2f2;
-	height: 52px;
-	padding: 14px 16px;
-`;
-
-export const DateBar = styled.input``;
-
-export const SearchBtn = styled.button``;
 
 export const RegisterBtnWrapper = styled.div`
 	width:100%;
@@ -211,8 +102,65 @@ export const ResgisterBtn = styled.button`
 	justify-content: center;
 	cursor: pointer;
 	outline: none;
+	:hover{
+	background-color: #FFD600;
+	}
 
 `
 export const RegisterImg = styled.img`
 	margin-right:8px;
 `
+
+
+export const SearchWrapper = styled.div`
+max-width: 1200px;
+padding-top:80px;
+width: 100%;
+display: flex;
+justify-content: space-between;
+`
+
+export const SearchBarWrapper = styled.div`
+  max-width: 894px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+`
+
+export const SearchBar = styled.input`
+max-width: 588px;
+height: 52px;
+width: 100%;
+border:none;
+outline:none;
+background-color: #F2F2F2;
+padding:14px 16px;
+border-radius: 8px;
+`
+export const SearchDateWrapper = styled.div`
+  width: 282px;
+  height: 52px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border :1px solid rgba(0,0,0,0.2);
+  border-radius: 8px;
+`
+
+export const SearchBtn = styled.button`
+width: 94px;
+height: 52px;
+background-color: black;
+color: white;
+outline: none;
+  border-radius: 8px;
+border: none;
+cursor: pointer;
+`
+export const SearchImg = styled.img``
+
+
+
+export const DateImg =styled.img``
