@@ -19,11 +19,13 @@ export default function Boards() {
 	};
 
 	return (
-		<BoardsUI
-			data={data}
-			BestDatas={BestDatas}
-			handleMoveList={handleMoveList}
-			handleMoveRegister={handleMoveRegister}
-		></BoardsUI>
+		<>
+			<BoardsUI
+				data={data}
+				BestDatas={BestDatas}
+				handleMoveList={handleMoveList}
+				handleMoveRegister={handleMoveRegister}
+			></BoardsUI>
+		</>
 	);
 }
