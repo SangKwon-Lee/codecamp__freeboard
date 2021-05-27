@@ -10,7 +10,7 @@ export const SlideWrapper = styled.div`
 `
 
 export const SlideImg = styled.img`
-
+  width:100%;
 `
 
 export const SlideArrowWrapper = styled.div`

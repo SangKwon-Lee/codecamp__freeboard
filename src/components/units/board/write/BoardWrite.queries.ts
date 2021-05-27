@@ -18,6 +18,7 @@ export const FETCH_BOARD = gql`
 			writer
 			title
 			contents
+			youtubeUrl
 			createdAt
 		}
 	}
@@ -30,7 +31,8 @@ export const UPDATE_BOARD = gql`
     boardId:$boardId){
     _id
     writer
-    title
+		title
+		youtubeUrl
     contents
   }
 }
