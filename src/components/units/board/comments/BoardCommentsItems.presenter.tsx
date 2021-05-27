@@ -32,9 +32,8 @@ import {
 	CommentsCount,
 	CommentsBtn,
 } from './BoardCommentsItems.style';
-
+import { Modal, Button } from 'antd';
 import { IBoadrdCommentsItemsProps } from './BoardComments.types';
-
 export default function BoardCommentItemUI({
 	data,
 	onSaveRating,

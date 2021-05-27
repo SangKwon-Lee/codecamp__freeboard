@@ -21,6 +21,7 @@ function BoardWritePage() {
 		password: '',
 		title: '',
 		contents: '',
+		youtubeUrl: '',
 	});
 
 	const [createBoard] = useMutation<Mutation, MutationCreateBoardArgs>(
@@ -41,6 +42,7 @@ function BoardWritePage() {
 			password: '',
 			title: data?.fetchBoard.title ? data.fetchBoard.title : '',
 			contents: data?.fetchBoard.contents ? data.fetchBoard.contents : '',
+			youtubeUrl: data?.fetchBoard.youtubeUrl ? data.fetchBoard.youtubeUrl : '',
 		});
 	}, [data]);
 
@@ -72,6 +74,7 @@ function BoardWritePage() {
 						password: input.password,
 						title: input.title,
 						contents: input.contents,
+						youtubeUrl: input.youtubeUrl,
 					},
 				},
 			});
@@ -89,7 +92,7 @@ function BoardWritePage() {
 					updateBoardInput: {
 						title: input.title,
 						contents: input.contents,
-						youtubeUrl: '',
+						youtubeUrl: input.youtubeUrl,
 					},
 					password: input.password,
 					boardId: String(router.query.id),

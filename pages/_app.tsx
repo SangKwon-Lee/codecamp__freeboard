@@ -1,6 +1,7 @@
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import '../styles/globals.css';
 import Layout from '../src/commons/layout/index';
+import GlobalStyles from '../src/commons/styles/globalStyles';
 
 function MyApp({ Component, pageProps }) {
 	const clinet = new ApolloClient({
@@ -9,11 +10,12 @@ function MyApp({ Component, pageProps }) {
 	});
 
 	return (
-		<Layout>
-			<ApolloProvider client={clinet}>
+		<ApolloProvider client={clinet}>
+			<Layout>
+				<GlobalStyles />
 				<Component {...pageProps} />
-			</ApolloProvider>
-		</Layout>
+			</Layout>
+		</ApolloProvider>
 	);
 }
 

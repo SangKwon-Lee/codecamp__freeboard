@@ -2,6 +2,7 @@ import {
 	Query,
 	QueryFetchBoardArgs,
 } from '../../../../commons/types/generated/types';
+import ReactPlayer from 'react-player';
 import {
 	Wrapper,
 	Shadow,
@@ -73,6 +74,7 @@ export default function BoardPageUI({
 							</TitleWrapper>
 							<ContentWrapper>
 								<Content>{data?.fetchBoard.contents}</Content>
+								<ReactPlayer url={data?.fetchBoard.youtubeUrl}></ReactPlayer>
 							</ContentWrapper>
 						</ContentTop>
 						<ContentBottom>

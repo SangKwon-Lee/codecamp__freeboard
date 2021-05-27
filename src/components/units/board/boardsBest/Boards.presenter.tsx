@@ -32,29 +32,25 @@ export default function BoardsBestUI({
 					<BestTitle>베스트 게시글</BestTitle>
 					<BestCardWrapper>
 						{BestDatas?.data?.fetchBoardsOfTheBest.map((data) => (
-							<>
-								<BestCard key={data._id}>
-									<BestImg src="/bestImage.png"></BestImg>
-									<BestContentsWrapper>
-										<BestCardTitle>{data.title}</BestCardTitle>
-										<BestBottomWrapper>
-											<BestLeftWrapper>
-												<BestProfileAndWriter>
-													<BestCardProfileImg src="/Smprofile.png"></BestCardProfileImg>
-													<BestCardWriter>{data.writer}</BestCardWriter>
-												</BestProfileAndWriter>
-												<BestDate>
-													Date : {data.createdAt.slice(0, 10)}
-												</BestDate>
-											</BestLeftWrapper>
-											<BestRightWrapper>
-												<BestLike src="/SMlike.png"></BestLike>
-												<BestLikeCount>{data.likeCount}</BestLikeCount>
-											</BestRightWrapper>
-										</BestBottomWrapper>
-									</BestContentsWrapper>
-								</BestCard>
-							</>
+							<BestCard key={data._id}>
+								<BestImg src="/bestImage.png"></BestImg>
+								<BestContentsWrapper>
+									<BestCardTitle>{data.title}</BestCardTitle>
+									<BestBottomWrapper>
+										<BestLeftWrapper>
+											<BestProfileAndWriter>
+												<BestCardProfileImg src="/Smprofile.png"></BestCardProfileImg>
+												<BestCardWriter>{data.writer}</BestCardWriter>
+											</BestProfileAndWriter>
+											<BestDate>Date : {data.createdAt.slice(0, 10)}</BestDate>
+										</BestLeftWrapper>
+										<BestRightWrapper>
+											<BestLike src="/SMlike.png"></BestLike>
+											<BestLikeCount>{data.likeCount}</BestLikeCount>
+										</BestRightWrapper>
+									</BestBottomWrapper>
+								</BestContentsWrapper>
+							</BestCard>
 						))}
 					</BestCardWrapper>
 				</BestWrapper>

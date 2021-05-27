@@ -18,6 +18,7 @@ export default function BoardPage() {
 		variables: { boardId: String(router.query.id) },
 	});
 
+	console.log(data);
 	const handleUpdate = () => {
 		router.push(`/board/${router.query.id}/edit`);
 	};

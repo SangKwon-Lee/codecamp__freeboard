@@ -96,6 +96,7 @@ export default function BoardWritePage({
 						<Youtube
 							placeholder="링크를 복사해주세요."
 							name="youtubeUrl"
+							defaultValue={data?.fetchBoard.youtubeUrl}
 							onChange={handleChangeInput}
 						/>
 					</InputWrapper>

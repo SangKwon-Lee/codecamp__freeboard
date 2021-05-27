@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
+
 	height: 2000px;
 	display: flex;
 	align-items: center;
@@ -10,6 +11,7 @@ export const Wrapper = styled.div`
 
 export const Shadow = styled.div`
 	max-width: 1200px;
+	margin-top:100px;
 	width: 100%;
 	height: 1847px;
 	display: flex;

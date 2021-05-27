@@ -7,19 +7,23 @@ export const Wrapper = styled.div`
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
+	margin-top:100px;
 `;
 
 export const Shadow = styled.div`
-	width: 1200px;
-	height: 1000px;
+max-width: 1200px;
+	width: 100%;
 	display: flex;
 	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);
 	justify-content: center;
 `;
 
 export const Body = styled.div`
-	width: 996px;
+max-width: 996px;
+	width: 100%;
 	display: flex;
+	padding-left: 10px;
+	padding-right:10px;
 	flex-direction: column;
 	padding-top: 80px;
 	align-items: center;
@@ -102,14 +106,16 @@ export const Title = styled.div`
 `;
 
 export const ContentWrapper = styled.div`
-
 display: flex;
-justify-content: center;
-	width: 100%;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+width: 100%;
+padding-top: 40px;
+padding-bottom: 160px;
 `
 export const Content = styled.div`
-	padding-top: 40px;
-	padding-bottom: 160px;
+padding-bottom: 30px;
 `;
 
 export const LikeBtnWrapper = styled.div`
@@ -153,6 +159,7 @@ export const DisLikeCount = styled.div`
 export const BottomBtnWrapper = styled.div`
 width: 382px;
 	display: flex;
+	padding-bottom: 80px;
 	justify-content: space-between;
 `
 
