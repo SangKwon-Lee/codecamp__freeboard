@@ -21,14 +21,22 @@ import {
 	ResgisterBtn,
 	RegisterImg,
 	RegisterBtnWrapper,
+	Page,
+	PageWrapper,
+	PageLeft,
+	PageRight,
 } from './Boards.style';
-
 import { IBoardsProps } from './Boards.tpes';
 export default function BoardsUI({
 	data,
 	BestDatas,
 	handleMoveList,
 	handleMoveRegister,
+	onClickPage,
+	currentPage,
+	RightArrowPage,
+	LeftArrowPage,
+	pageArr,
 }: IBoardsProps) {
 	return (
 		<Wrapper>
@@ -60,6 +68,7 @@ export default function BoardsUI({
 							<RowTitle>날짜</RowTitle>
 						</DateWrapper>
 					</TableWrapper>
+
 					{data?.fetchBoards.slice(0, 10).map((data) => (
 						<RowWrapper key={data._id}>
 							<NumberWrapper>
@@ -79,6 +88,19 @@ export default function BoardsUI({
 						</RowWrapper>
 					))}
 				</Table>
+				<PageWrapper>
+					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
+					{pageArr.map((data) => (
+						<Page
+							id={String(data + 1)}
+							onClick={onClickPage}
+							isActive={currentPage === data + 1}
+						>
+							{data}
+						</Page>
+					))}
+					<PageRight src="/rightArrow.png" onClick={RightArrowPage}></PageRight>
+				</PageWrapper>
 				<RegisterBtnWrapper>
 					<ResgisterBtn onClick={handleMoveRegister}>
 						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기

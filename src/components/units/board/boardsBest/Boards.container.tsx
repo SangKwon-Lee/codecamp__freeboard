@@ -8,7 +8,7 @@ export default function BoardsBest() {
 	const router = useRouter();
 	const BestDatas = useQuery<Query>(FETCH_BEST_BOARDS);
 
-	const handleMoveList = (e) => {
+	const handleMoveList = (e: any) => {
 		router.push(`/board/${e.target.id}`);
 	};
 

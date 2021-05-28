@@ -163,4 +163,35 @@ export const SearchImg = styled.img``
 
 
 
-export const DateImg =styled.img``
+export const DateImg = styled.img``
+
+interface IProps {
+	isActive: boolean;
+}
+
+export const Page = styled.span`
+cursor: pointer;
+color:${(props: IProps) => (props.isActive ? '#FFD600' : 'black')};
+border-bottom: ${(props: IProps) => (props.isActive ? "1px solid #FFD600" : "none") };
+`
+
+export const PageWrapper = styled.div`
+padding-top: 60px;
+display: flex;
+justify-content: space-between;
+width:400px;
+
+align-items: center;
+`
+
+export const PageLeft = styled.img`
+margin-top :2px ;
+height: 10px;
+cursor: pointer;
+`
+
+export const PageRight = styled.img`
+margin-top :2px ;
+height: 10px;
+cursor: pointer;
+`

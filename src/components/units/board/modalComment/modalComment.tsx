@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 
-const App = () => {
+export default function ModalComment() {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const showModal = () => {
@@ -26,6 +26,9 @@ const App = () => {
 				visible={isModalVisible}
 				onOk={handleOk}
 				onCancel={handleCancel}
+				style={{
+					backgroundColor: 'red',
+				}}
 			>
 				<p>Some contents...</p>
 				<p>Some contents...</p>
@@ -33,4 +36,4 @@ const App = () => {
 			</Modal>
 		</>
 	);
-};
+}
