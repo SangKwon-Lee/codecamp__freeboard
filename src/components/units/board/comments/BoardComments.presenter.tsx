@@ -1,6 +1,7 @@
 // import { IBoardWriterProps } from "./BoardComments.types";
 
 import BoardCommentItem from './BoardCommentsItems.presenter';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import {
 	Wrapper,
 	DivideLine,
@@ -83,7 +84,8 @@ export default function BoardCommentsUI({
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-				{data?.fetchBoardComments.map((data) => (
+
+				{data?.fetchBoardComments.map((data: any) => (
 					<BoardCommentItem
 						key={data._id}
 						data={data}

@@ -36,12 +36,12 @@ function BoardCommentsPage() {
 		rating: '',
 	});
 
-	const { data, refetch } = useQuery<Query, QueryFetchBoardCommentsArgs>(
-		FETCH_BOARD_COMMENTS,
-		{
-			variables: { boardId: String(router.query.id) },
-		},
-	);
+	const { data, refetch, fetchMore } = useQuery<
+		Query,
+		QueryFetchBoardCommentsArgs
+	>(FETCH_BOARD_COMMENTS, {
+		variables: { boardId: String(router.query.id) },
+	});
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newInput = {
@@ -49,7 +49,6 @@ function BoardCommentsPage() {
 			[e.target.name]: e.target.value,
 		};
 		setInput(newInput);
-
 	};
 
 	const handleClickCreateComment = async () => {
@@ -78,7 +77,7 @@ function BoardCommentsPage() {
 		}
 	};
 
-	const handleDeleteComment = async (e) => {
+	const handleDeleteComment = async (e: any) => {
 		try {
 			const result = await deleteBoardComment({
 				variables: {
@@ -92,7 +91,7 @@ function BoardCommentsPage() {
 		}
 	};
 
-	const onSaveRating = (e) => {
+	const onSaveRating = (e: any) => {
 		const newInput = {
 			...input,
 			rating: e.target.id,

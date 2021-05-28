@@ -31,7 +31,7 @@ export default function BoardsBestUI({
 				<BestWrapper>
 					<BestTitle>베스트 게시글</BestTitle>
 					<BestCardWrapper>
-						{BestDatas?.data?.fetchBoardsOfTheBest.map((data) => (
+						{BestDatas?.data?.fetchBoardsOfTheBest.map((data: any) => (
 							<BestCard key={data._id}>
 								<BestImg src="/bestImage.png"></BestImg>
 								<BestContentsWrapper>

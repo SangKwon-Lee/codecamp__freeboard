@@ -73,7 +73,7 @@ export default function BoardCommentItemUI({
 		setUpdateInput(newInput);
 	};
 
-	const onSaveUpdateRating = (e) => {
+	const onSaveUpdateRating = (e: any) => {
 		const newInput = {
 			...updataInput,
 			rating: e.target.id,
@@ -82,7 +82,7 @@ export default function BoardCommentItemUI({
 		setUpdateRating(e.target.id);
 	};
 
-	const handleClickUpdateComment = async (e) => {
+	const handleClickUpdateComment = async (e: any) => {
 		try {
 			const result = await updateBoardComment({
 				variables: {
@@ -127,7 +127,7 @@ export default function BoardCommentItemUI({
 							></PasswordInput>
 						</WriterWrapper>
 						<StarWrapper>
-							{['1', '2', '3', '4', '5'].map((idx) => (
+							{['1', '2', '3', '4', '5'].map((idx: any) => (
 								<StarImg
 									key={idx}
 									onClick={onSaveUpdateRating}
@@ -154,40 +154,45 @@ export default function BoardCommentItemUI({
 					</CommmentsBoxWrapper>
 				</CommentsUpdatenputWrapper>
 			) : (
-				<CommentsWrapper key={data._id}>
-					<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
-					<CommentsCenterWrapper>
-						<CommentsTopWrapper>
-							<CommentsWriterAndStar>
-								<CommentsWriter>{data.writer}</CommentsWriter>
-								<StarWrapper>
-									{['1', '2', '3', '4', '5'].map((idx) => (
-										<StarImg
-											key={idx}
-											onClick={onSaveRating}
-											id={idx}
-											src={data.rating >= idx ? '/StarColor.png' : '/star.png'}
-										></StarImg>
-									))}
-								</StarWrapper>
-							</CommentsWriterAndStar>
-							<CommentsTopRightWrapper>
-								<CommentsUpdateImg
-									id={data._id}
-									onClick={commentUpdate}
-									src="/pencil.png"
-								></CommentsUpdateImg>
-								<CommentsDeleteImg
-									onClick={handleDeleteComment}
-									id={data._id}
-									src="/X.png"
-								></CommentsDeleteImg>
-							</CommentsTopRightWrapper>
-						</CommentsTopWrapper>
-						<CommentsText>{data.contents}</CommentsText>
-						<CommentsDate>{data.createdAt.slice(0, 10)}</CommentsDate>
-					</CommentsCenterWrapper>
-				</CommentsWrapper>
+				<>
+					<Modal />
+					<CommentsWrapper key={data._id}>
+						<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
+						<CommentsCenterWrapper>
+							<CommentsTopWrapper>
+								<CommentsWriterAndStar>
+									<CommentsWriter>{data.writer}</CommentsWriter>
+									<StarWrapper>
+										{['1', '2', '3', '4', '5'].map((idx) => (
+											<StarImg
+												key={idx}
+												onClick={onSaveRating}
+												id={idx}
+												src={
+													data.rating >= idx ? '/StarColor.png' : '/star.png'
+												}
+											></StarImg>
+										))}
+									</StarWrapper>
+								</CommentsWriterAndStar>
+								<CommentsTopRightWrapper>
+									<CommentsUpdateImg
+										id={data._id}
+										onClick={commentUpdate}
+										src="/pencil.png"
+									></CommentsUpdateImg>
+									<CommentsDeleteImg
+										onClick={handleDeleteComment}
+										id={data._id}
+										src="/X.png"
+									></CommentsDeleteImg>
+								</CommentsTopRightWrapper>
+							</CommentsTopWrapper>
+							<CommentsText>{data.contents}</CommentsText>
+							<CommentsDate>{data.createdAt.slice(0, 10)}</CommentsDate>
+						</CommentsCenterWrapper>
+					</CommentsWrapper>
+				</>
 			)}
 		</>
 	);
