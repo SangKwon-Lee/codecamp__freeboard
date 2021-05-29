@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+
 export const CommentsUpdatenputWrapper = styled.div`
 display: flex;
 width:100%;
@@ -97,3 +98,10 @@ export const CommentsBtn = styled.button`
 	border:none;
 `
 
+
+export const DeletePassword = styled.input`
+width:100%;
+border:none;
+outline:none;
+border-bottom:1px solid rgba(0,0,0,0.3);
+`

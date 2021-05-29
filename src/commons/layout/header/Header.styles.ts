@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 export const HeaderWrapper = styled.div`
-  position: fixed;
+  position: sticky;
   background-color:white;
   width: 100%;
   height:6.25rem;

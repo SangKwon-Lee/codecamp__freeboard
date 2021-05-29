@@ -18,7 +18,6 @@ export default function BoardPage() {
 		variables: { boardId: String(router.query.id) },
 	});
 
-	console.log(data);
 	const handleUpdate = () => {
 		router.push(`/board/${router.query.id}/edit`);
 	};
@@ -38,7 +37,6 @@ export default function BoardPage() {
 					boardId: String(router.query.id),
 				},
 			});
-			console.log(result);
 			refetch();
 		} catch (error) {
 			console.log(error);
@@ -51,7 +49,6 @@ export default function BoardPage() {
 					boardId: String(router.query.id),
 				},
 			});
-			console.log(result);
 			refetch();
 		} catch (error) {
 			console.log(error);

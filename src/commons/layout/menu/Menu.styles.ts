@@ -5,8 +5,10 @@ export const MenuWrapper = styled.div`
   justify-content: center;
   height: 64px;
   width: 100%;
+  margin-top:-5px;
   align-items: center;
   background-color: #FFD600;
+  
 `
 
 export const TitleWrapper = styled.div`

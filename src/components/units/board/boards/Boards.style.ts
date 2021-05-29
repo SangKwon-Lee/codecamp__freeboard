@@ -46,6 +46,7 @@ export const TableWrapper = styled.div`
 export const RowTitle = styled.div`
 	font-size: 18px;
 	font-weight: 500;
+
 `;
 
 export const NumberWrapper = styled.div`
@@ -62,6 +63,7 @@ export const TitleWrapper = styled.div`
 export const Title = styled.div`
 	font-size: 16px;
 	color: #4f4f4f;
+	cursor: pointer;
 	:hover{
 		font-weight: 700;
 	}

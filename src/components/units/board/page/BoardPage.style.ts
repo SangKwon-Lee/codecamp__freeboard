@@ -36,17 +36,18 @@ export const HeaderWrapper = styled.div`
 `;
 
 export const HeaderLeftWrapper = styled.div`
-	width: 194px;
+
 	display: flex;
 	height: 56px;
 	justify-content: space-between;
 	align-items: center;
+
 `;
 
 export const HeaderProfileImg = styled.img``;
 
 export const HeaderWriterWrapper = styled.div`
-	width: 130px;
+	padding-left:10px;
 	display: flex;
 	height: 60px;
 	justify-content: space-between;

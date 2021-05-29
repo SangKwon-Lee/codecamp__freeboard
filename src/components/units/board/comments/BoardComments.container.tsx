@@ -14,6 +14,7 @@ import {
 	QueryFetchBoardCommentsArgs,
 } from '../../../../commons/types/generated/types';
 import { useRouter } from 'next/router';
+
 function BoardCommentsPage() {
 	const router = useRouter();
 
@@ -109,6 +110,7 @@ function BoardCommentsPage() {
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
 			handleDeleteComment={handleDeleteComment}
+			refetch={refetch}
 		></BoardCommentsUI>
 	);
 }

@@ -1,5 +1,9 @@
 import BoardsUI from './Boards.presenter';
-import { FETCH_BOARDS, FETCH_BEST_BOARDS } from './Boards.queries';
+import {
+	FETCH_BOARDS,
+	FETCH_BEST_BOARDS,
+	FETCH_BOARDS_COUNT,
+} from './Boards.queries';
 import { useQuery } from '@apollo/client';
 import { Query } from '../../../../commons/types/generated/types';
 import { useRouter } from 'next/router';
@@ -23,6 +27,9 @@ export default function Boards() {
 	const { data, refetch } = useQuery(FETCH_BOARDS, {
 		variables: { page: currentPage },
 	});
+
+	const { data: count } = useQuery(FETCH_BOARDS_COUNT);
+
 	const onClickPage = (event) => {
 		if (currentPage > pageArr[pageArr.length - 1]) {
 			let newArr = pageArr.map((data) => data + 1);
@@ -32,13 +39,24 @@ export default function Boards() {
 	};
 
 	const RightArrowPage = () => {
-		if (currentPage > pageArr[pageArr.length - 1]) {
+		if (currentPage > count.fetchBoardsCount / 10) {
+			alert('마지막 페이지입니다.');
+			return;
+		}
+		if (currentPage >= pageArr[pageArr.length - 1]) {
 			let newArr = pageArr.map((data) => data + 1);
 			setPageArr(newArr);
 		}
 		setCurrentPage((prev) => prev + 1);
 	};
 	const LeftArrowPage = () => {
+		if (currentPage === 1) {
+			return;
+		}
+		if (currentPage <= pageArr[0]) {
+			let newArr = pageArr.map((data) => data - 1);
+			setPageArr(newArr);
+		}
 		setCurrentPage((prev) => prev - 1);
 	};
 

@@ -1,5 +1,3 @@
-// import { IBoardWriterProps } from "./BoardComments.types";
-
 import BoardCommentItem from './BoardCommentsItems.presenter';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {
@@ -32,6 +30,7 @@ export default function BoardCommentsUI({
 	onSaveRating,
 	handleClickCreateComment,
 	handleDeleteComment,
+	refetch,
 }: IBoardCommentsProps) {
 	return (
 		<Wrapper>
@@ -84,13 +83,12 @@ export default function BoardCommentsUI({
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-
 				{data?.fetchBoardComments.map((data: any) => (
 					<BoardCommentItem
 						key={data._id}
 						data={data}
 						onSaveRating={onSaveRating}
-						handleDeleteComment={handleDeleteComment}
+						refetch={refetch}
 					></BoardCommentItem>
 				))}
 			</Body>

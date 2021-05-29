@@ -15,13 +15,15 @@ export interface IBoardCommentsProps {
 	handleDeleteComment: (
 		event: React.MouseEvent<HTMLImageElement, MouseEvent>
 	) => void;
+	refetch:any
+
 }
 
 export interface IBoadrdCommentsItemsProps {
   data?: any;
 	onSaveRating: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-	handleDeleteComment: (
-	event: React.MouseEvent<HTMLImageElement, MouseEvent>
-	) => void;
+
+	refetch: any
+
 }
 
