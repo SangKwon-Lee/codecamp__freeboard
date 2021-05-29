@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import {
 	Mutation,
+	MutationDeleteBoardCommentArgs,
 	MutationUpdateBoardCommentArgs,
 } from '../../../../commons/types/generated/types';
 import { UPDATE_BOARD_COMMENT } from './BoardComments.queries';
@@ -31,14 +32,30 @@ import {
 	CommentsBoxBottom,
 	CommentsCount,
 	CommentsBtn,
+	DeletePassword,
 } from './BoardCommentsItems.style';
-import { Modal, Button } from 'antd';
 import { IBoadrdCommentsItemsProps } from './BoardComments.types';
+import 'antd/dist/antd.css';
+import { Modal } from 'antd';
+import { DELETE_BOARD_COMMENT } from './BoardComments.queries';
 export default function BoardCommentItemUI({
 	data,
 	onSaveRating,
-	handleDeleteComment,
+	refetch,
 }: IBoadrdCommentsItemsProps) {
+	//! 모달 관리
+	const [isModalVisible, setIsModalVisible] = useState(false);
+	const showModal = () => {
+		setIsModalVisible(true);
+	};
+	const handleOk = () => {
+		setIsModalVisible(false);
+	};
+	const handleCancel = () => {
+		setIsModalVisible(false);
+	};
+
+	//! 댓글 수정 상태 관리
 	const [Update, setUpdate] = useState(false);
 	const [UpdateRating, setUpdateRating] = useState(0);
 	const [updataInput, setUpdateInput] = useState({
@@ -52,6 +69,38 @@ export default function BoardCommentItemUI({
 		MutationUpdateBoardCommentArgs
 	>(UPDATE_BOARD_COMMENT);
 
+	//! 댓글 삭제 상태 관리
+	const [deleteBoardComment] = useMutation<
+		Mutation,
+		MutationDeleteBoardCommentArgs
+	>(DELETE_BOARD_COMMENT);
+	const [deletepassword, setDeletePassword] = useState('');
+	const [deleteId, setDeleteId] = useState('');
+
+	//! 댓글 삭제 함수
+	const handleDelteId = (e: any) => {
+		setDeleteId(e.target.id);
+	};
+
+	const handleDeletePassword = (e: any) => {
+		setDeletePassword(e.target.value);
+	};
+	const handleClickDeleteComment = async () => {
+		try {
+			const result = await deleteBoardComment({
+				variables: {
+					password: deletepassword,
+					boardCommentId: deleteId,
+				},
+			});
+			refetch();
+			setDeletePassword('');
+		} catch (error) {
+			alert(error);
+			setDeletePassword('');
+		}
+	};
+	//! 댓글 수정 함수
 	const commentUpdate = () => {
 		setUpdate((prev) => !prev);
 	};
@@ -72,7 +121,6 @@ export default function BoardCommentItemUI({
 		};
 		setUpdateInput(newInput);
 	};
-
 	const onSaveUpdateRating = (e: any) => {
 		const newInput = {
 			...updataInput,
@@ -81,7 +129,6 @@ export default function BoardCommentItemUI({
 		setUpdateInput(newInput);
 		setUpdateRating(e.target.id);
 	};
-
 	const handleClickUpdateComment = async (e: any) => {
 		try {
 			const result = await updateBoardComment({
@@ -155,7 +202,25 @@ export default function BoardCommentItemUI({
 				</CommentsUpdatenputWrapper>
 			) : (
 				<>
-					<Modal />
+					<Modal
+						title="비밀번호를 입력하세요."
+						visible={isModalVisible}
+						onOk={() => {
+							handleClickDeleteComment();
+							handleOk();
+						}}
+						onCancel={handleCancel}
+						style={{
+							position: 'absolute',
+							top: '20rem',
+							left: '36rem',
+						}}
+					>
+						<DeletePassword
+							value={deletepassword}
+							onChange={handleDeletePassword}
+						></DeletePassword>
+					</Modal>
 					<CommentsWrapper key={data._id}>
 						<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
 						<CommentsCenterWrapper>
@@ -182,7 +247,10 @@ export default function BoardCommentItemUI({
 										src="/pencil.png"
 									></CommentsUpdateImg>
 									<CommentsDeleteImg
-										onClick={handleDeleteComment}
+										onClick={(e) => {
+											handleDelteId(e);
+											showModal();
+										}}
 										id={data._id}
 										src="/X.png"
 									></CommentsDeleteImg>

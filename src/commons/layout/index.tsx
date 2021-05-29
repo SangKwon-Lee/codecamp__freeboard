@@ -13,7 +13,6 @@ const Layout = ({ children }: ILayout) => (
 		<HeaderContainer />
 		<Slide></Slide>
 		<Menu></Menu>
-
 		<div>{children}</div>
 	</div>
 );

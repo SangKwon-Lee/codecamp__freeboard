@@ -3,7 +3,6 @@ import styled from "@emotion/styled"
 export const SlideWrapper = styled.div`
   background-color:white;
   width: 100%;
-  padding-top:6.25rem;
   justify-content: center;
   align-items:center;
   display:flex;
@@ -11,6 +10,7 @@ export const SlideWrapper = styled.div`
 
 export const SlideImg = styled.img`
   width:100%;
+  position: relative;
 `
 
 export const SlideArrowWrapper = styled.div`

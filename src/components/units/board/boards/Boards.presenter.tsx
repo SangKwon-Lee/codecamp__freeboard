@@ -92,9 +92,9 @@ export default function BoardsUI({
 					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
 					{pageArr.map((data) => (
 						<Page
-							id={String(data + 1)}
+							id={String(data)}
 							onClick={onClickPage}
-							isActive={currentPage === data + 1}
+							isActive={currentPage === data}
 						>
 							{data}
 						</Page>

@@ -4,5 +4,8 @@ import MenuUI from './Menu.presenter';
 export default function Menu() {
 	const router = useRouter();
 
-	return <MenuUI></MenuUI>;
+	const handleMoveBoards = () => {
+		router.push(`boards`);
+	};
+	return <MenuUI handleMoveBoards={handleMoveBoards}></MenuUI>;
 }

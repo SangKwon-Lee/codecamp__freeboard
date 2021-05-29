@@ -5,11 +5,11 @@ import {
 	TitleWrapper,
 } from './Menu.styles';
 
-export default function MenuUI() {
+export default function MenuUI({ handleMoveBoards }) {
 	return (
 		<MenuWrapper>
 			<TitleWrapper>
-				<MenuTitle>자유게시판</MenuTitle>
+				<MenuTitle onClick={handleMoveBoards}>자유게시판</MenuTitle>
 				<DivdieLine></DivdieLine>
 				<MenuTitle>중고마켓</MenuTitle>
 				<DivdieLine></DivdieLine>
