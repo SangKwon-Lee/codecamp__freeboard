@@ -23,6 +23,7 @@ export const MenuTitle = styled.div`
 font-size:18px;
 font-weight: 700;
 color: #AB9000;
+cursor: pointer;
 :hover{
   color:black
 }:focus{
