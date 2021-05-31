@@ -39,25 +39,52 @@ export default function Boards() {
 	};
 
 	const RightArrowPage = () => {
-		if (currentPage > count.fetchBoardsCount / 10) {
-			alert('마지막 페이지입니다.');
+		let newArr = pageArr.map((data) => data + 10);
+		let last = Math.floor(count.fetchBoardsCount / 10) + 1;
+
+		if (currentPage === last) {
+			return alert('마지막 페이지 입니다.');
+		}
+		if (pageArr[pageArr.length - 1] === last) {
+			setCurrentPage(last);
 			return;
 		}
-		if (currentPage >= pageArr[pageArr.length - 1]) {
-			let newArr = pageArr.map((data) => data + 1);
+
+		if (newArr[newArr.length - 1] > count.fetchBoardsCount / 10) {
+			newArr = newArr.map((data) => data - (newArr[newArr.length - 1] - last));
 			setPageArr(newArr);
+			setCurrentPage(newArr[newArr.length - 1]);
 		}
-		setCurrentPage((prev) => prev + 1);
+		setPageArr(newArr);
+		setCurrentPage(newArr[0]);
 	};
+
 	const LeftArrowPage = () => {
-		if (currentPage === 1) {
+		let last = Math.floor(count.fetchBoardsCount / 10) + 1;
+
+		let lastString = String(last);
+		let WhenLastPage = Number(lastString[lastString.length - 1]) - 1;
+		if (currentPage <= 1) {
 			return;
 		}
-		if (currentPage <= pageArr[0]) {
-			let newArr = pageArr.map((data) => data - 1);
+
+		if (pageArr[pageArr.length - 1] === last) {
+			let newArr = pageArr.map((data) => data - WhenLastPage);
 			setPageArr(newArr);
+			setCurrentPage(newArr[newArr.length - 1]);
+			return;
 		}
-		setCurrentPage((prev) => prev - 1);
+
+		let newArr = pageArr.map((data) => data - 10);
+
+		if (newArr[0] < 1) {
+			newArr = newArr.map((data) => data + Math.abs(1 - newArr[0]));
+			setPageArr(newArr);
+			setCurrentPage(newArr[newArr.length - 1]);
+		}
+
+		setPageArr(newArr);
+		setCurrentPage(newArr[newArr.length - 1]);
 	};
 
 	return (
