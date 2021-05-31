@@ -61,17 +61,22 @@ export default function Boards() {
 
 	const LeftArrowPage = () => {
 		let last = Math.floor(count.fetchBoardsCount / 10) + 1;
-
 		let lastString = String(last);
-		let WhenLastPage = Number(lastString[lastString.length - 1]) - 1;
+		let WhenLastPage = Number(lastString[lastString.length - 1]);
+
 		if (currentPage <= 1) {
-			return;
+			return alert('처음 페이지 입니다.');
 		}
 
 		if (pageArr[pageArr.length - 1] === last) {
 			let newArr = pageArr.map((data) => data - WhenLastPage);
 			setPageArr(newArr);
 			setCurrentPage(newArr[newArr.length - 1]);
+			return;
+		}
+
+		if (pageArr[0] === 1) {
+			setCurrentPage(1);
 			return;
 		}
 

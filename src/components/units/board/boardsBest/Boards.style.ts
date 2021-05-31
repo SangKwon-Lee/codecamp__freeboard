@@ -33,6 +33,7 @@ export const BestCardWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	
 `;
 
 export const BestCard = styled.div`
@@ -52,6 +53,7 @@ export const BestImg = styled.img`
 export const BestCardTitle = styled.div`
 	font-weight: 500;
 	font-size: 18px;
+
 `;
 
 export const BestContentsWrapper = styled.div`
@@ -60,16 +62,18 @@ export const BestContentsWrapper = styled.div`
 	flex-direction: column;
 	padding: 20px;
 `;
+
 export const BestBottomWrapper = styled.div`
 	display: flex;
 	padding-top: 20px;
 	width: 100%;
 	justify-content: space-between;
+
 `;
 
 export const BestProfileAndWriter = styled.div`
 	display: flex;
-	
+
 	padding-bottom: 8px;
 `;
 export const BestCardProfileImg = styled.img`

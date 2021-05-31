@@ -25,6 +25,7 @@ export default function BoardsBestUI({
 	BestDatas,
 	handleMoveList,
 }: IBoardsProps) {
+	console.log(BestDatas?.data?.fetchBoardsOfTheBest[0]._id);
 	return (
 		<Wrapper>
 			<Contents>
@@ -33,14 +34,22 @@ export default function BoardsBestUI({
 					<BestCardWrapper>
 						{BestDatas?.data?.fetchBoardsOfTheBest.map((data: any) => (
 							<BestCard key={data._id}>
-								<BestImg src="/bestImage.png"></BestImg>
+								<BestImg
+									src="/bestImage.png"
+									id={data._id}
+									onClick={handleMoveList}
+								></BestImg>
 								<BestContentsWrapper>
-									<BestCardTitle>{data.title}</BestCardTitle>
+									<BestCardTitle id={data._id} onClick={handleMoveList}>
+										{data.title}
+									</BestCardTitle>
 									<BestBottomWrapper>
 										<BestLeftWrapper>
 											<BestProfileAndWriter>
 												<BestCardProfileImg src="/Smprofile.png"></BestCardProfileImg>
-												<BestCardWriter>{data.writer}</BestCardWriter>
+												<BestCardWriter id={data._id} onClick={handleMoveList}>
+													{data.writer}
+												</BestCardWriter>
 											</BestProfileAndWriter>
 											<BestDate>Date : {data.createdAt.slice(0, 10)}</BestDate>
 										</BestLeftWrapper>

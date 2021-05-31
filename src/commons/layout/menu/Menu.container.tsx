@@ -5,7 +5,7 @@ export default function Menu() {
 	const router = useRouter();
 
 	const handleMoveBoards = () => {
-		router.push(`boards`);
+		router.push(`/boards`);
 	};
 	return <MenuUI handleMoveBoards={handleMoveBoards}></MenuUI>;
 }
