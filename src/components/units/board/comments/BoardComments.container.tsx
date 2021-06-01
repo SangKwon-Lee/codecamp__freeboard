@@ -18,18 +18,10 @@ import { useRouter } from 'next/router';
 function BoardCommentsPage() {
 	const router = useRouter();
 
+	//* 별점 상태
 	const [rating, setRating] = useState(0);
 
-	const [createBoardComment] = useMutation<
-		Mutation,
-		MutationCreateBoardCommentArgs
-	>(CREATE_BOARD_COMMENT);
-
-	const [deleteBoardComment] = useMutation<
-		Mutation,
-		MutationDeleteBoardCommentArgs
-	>(DELETE_BOARD_COMMENT);
-
+	//* 댓글 작성 상태
 	const [input, setInput] = useState({
 		writer: '',
 		password: '',
@@ -37,13 +29,27 @@ function BoardCommentsPage() {
 		rating: '',
 	});
 
-	const { data, refetch, fetchMore } = useQuery<
-		Query,
-		QueryFetchBoardCommentsArgs
-	>(FETCH_BOARD_COMMENTS, {
-		variables: { boardId: String(router.query.id) },
-	});
+	//* 댓글 작성 뮤테이션
+	const [createBoardComment] = useMutation<
+		Mutation,
+		MutationCreateBoardCommentArgs
+	>(CREATE_BOARD_COMMENT);
 
+	//* 댓글 삭제 뮤테이션
+	const [deleteBoardComment] = useMutation<
+		Mutation,
+		MutationDeleteBoardCommentArgs
+	>(DELETE_BOARD_COMMENT);
+
+	//* 댓글 불러오기 쿼리
+	const { data, refetch } = useQuery<Query, QueryFetchBoardCommentsArgs>(
+		FETCH_BOARD_COMMENTS,
+		{
+			variables: { boardId: String(router.query.id) },
+		},
+	);
+
+	//* 댓글 작성 저장하는 함수
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newInput = {
 			...input,
@@ -52,6 +58,7 @@ function BoardCommentsPage() {
 		setInput(newInput);
 	};
 
+	//* 댓글 작성 뮤테이션 보내는 함수
 	const handleClickCreateComment = async () => {
 		try {
 			const result = await createBoardComment({
@@ -78,20 +85,7 @@ function BoardCommentsPage() {
 		}
 	};
 
-	const handleDeleteComment = async (e: any) => {
-		try {
-			const result = await deleteBoardComment({
-				variables: {
-					password: input.password,
-					boardCommentId: String(e.target.id),
-				},
-			});
-			refetch();
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
+	//* 별점 저장 함수
 	const onSaveRating = (e: any) => {
 		const newInput = {
 			...input,
@@ -109,7 +103,6 @@ function BoardCommentsPage() {
 			rating={rating}
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
-			handleDeleteComment={handleDeleteComment}
 			refetch={refetch}
 		></BoardCommentsUI>
 	);

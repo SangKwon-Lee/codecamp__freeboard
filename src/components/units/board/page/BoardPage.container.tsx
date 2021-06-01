@@ -14,10 +14,12 @@ import BoardComments from '../comments/BoardComments.container';
 export default function BoardPage() {
 	const router = useRouter();
 
+	//* 데이터 받아오기
 	const { data, refetch } = useQuery<Query, QueryFetchBoardArgs>(FETCH_BOARD, {
 		variables: { boardId: String(router.query.id) },
 	});
 
+	//* 페이지 이동
 	const handleUpdate = () => {
 		router.push(`/board/${router.query.id}/edit`);
 	};
@@ -25,11 +27,13 @@ export default function BoardPage() {
 		router.push(`/boards`);
 	};
 
+	//*좋아요 싫어요
 	const [likeBoard] = useMutation<Mutation, MutationLikeBoardArgs>(LIKE_BOARD);
 	const [disLikeBoard] = useMutation<Mutation, MutationDislikeBoardArgs>(
 		DISLIKE_BOARD,
 	);
 
+	//* 좋아요 싫어요 함수
 	const handleLike = async () => {
 		try {
 			const result = await likeBoard({

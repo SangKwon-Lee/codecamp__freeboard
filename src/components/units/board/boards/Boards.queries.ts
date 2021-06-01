@@ -13,20 +13,8 @@ export const FETCH_BOARDS = gql`
 	}
 `;
 
-export const FETCH_BEST_BOARDS = gql`
-query fetchBoardsOfTheBest{
-  fetchBoardsOfTheBest{
-    _id
-		writer
-    title
-    contents
-    likeCount
-    createdAt
-  }
-}`
-
+//* 모든 게시글 수 가져오기
 export const FETCH_BOARDS_COUNT = gql`
-
 query {
 	fetchBoardsCount
 }

@@ -14,8 +14,10 @@ import {
 function BoardWritePage() {
 	const router = useRouter();
 
+	//* 등록버튼 ON OFF
 	const [isTrue, setIsTrue] = useState(true);
 
+	//* 인풋 데이터
 	const [input, setInput] = useState({
 		writer: '',
 		password: '',
@@ -24,6 +26,7 @@ function BoardWritePage() {
 		youtubeUrl: '',
 	});
 
+	//* 등록 / 수정
 	const [createBoard] = useMutation<Mutation, MutationCreateBoardArgs>(
 		CREATE_BOARD,
 	);
@@ -36,16 +39,18 @@ function BoardWritePage() {
 		variables: { boardId: String(router.query.id) },
 	});
 
+	//* 수정시 데이터 살리기
 	useEffect(() => {
 		setInput({
-			writer: data?.fetchBoard.writer || '',
+			writer: data?.fetchBoard.writer,
 			password: '',
-			title: data?.fetchBoard.title ? data.fetchBoard.title : '',
-			contents: data?.fetchBoard.contents ? data.fetchBoard.contents : '',
-			youtubeUrl: data?.fetchBoard.youtubeUrl ? data.fetchBoard.youtubeUrl : '',
+			title: data?.fetchBoard.title,
+			contents: data?.fetchBoard.contents,
+			youtubeUrl: data?.fetchBoard.youtubeUrl,
 		});
 	}, [data]);
 
+	//* 인풋 함수
 	const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newInput = {
 			...input,
@@ -65,16 +70,13 @@ function BoardWritePage() {
 		}
 	};
 
+	//* 등록함수
 	const handleClickCreateBoard = async () => {
 		try {
 			const result = await createBoard({
 				variables: {
 					createBoardInput: {
-						writer: input.writer,
-						password: input.password,
-						title: input.title,
-						contents: input.contents,
-						youtubeUrl: input.youtubeUrl,
+						...input,
 					},
 				},
 			});
@@ -85,6 +87,7 @@ function BoardWritePage() {
 		}
 	};
 
+	//* 수정함수
 	const handleClickUpdateBoard = async () => {
 		try {
 			const result = await updateBoard({

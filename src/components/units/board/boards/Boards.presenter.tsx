@@ -1,4 +1,3 @@
-import { Query } from '../../../../commons/types/generated/types';
 import {
 	Contents,
 	Wrapper,
@@ -29,7 +28,6 @@ import {
 import { IBoardsProps } from './Boards.tpes';
 export default function BoardsUI({
 	data,
-	BestDatas,
 	handleMoveList,
 	handleMoveRegister,
 	onClickPage,
@@ -92,6 +90,7 @@ export default function BoardsUI({
 					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
 					{pageArr.map((data) => (
 						<Page
+							key={data}
 							id={String(data)}
 							onClick={onClickPage}
 							isActive={currentPage === data}
