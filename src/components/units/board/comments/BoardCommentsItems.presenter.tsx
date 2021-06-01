@@ -121,6 +121,7 @@ export default function BoardCommentItemUI({
 		};
 		setUpdateInput(newInput);
 	};
+
 	const onSaveUpdateRating = (e: any) => {
 		const newInput = {
 			...updataInput,
@@ -129,6 +130,7 @@ export default function BoardCommentItemUI({
 		setUpdateInput(newInput);
 		setUpdateRating(e.target.id);
 	};
+
 	const handleClickUpdateComment = async (e: any) => {
 		try {
 			const result = await updateBoardComment({

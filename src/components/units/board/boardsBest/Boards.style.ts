@@ -53,7 +53,9 @@ export const BestImg = styled.img`
 export const BestCardTitle = styled.div`
 	font-weight: 500;
 	font-size: 18px;
-
+	width:100%;
+	height: 30px;
+	overflow-x: scroll;
 `;
 
 export const BestContentsWrapper = styled.div`
@@ -73,15 +75,14 @@ export const BestBottomWrapper = styled.div`
 
 export const BestProfileAndWriter = styled.div`
 	display: flex;
-
 	padding-bottom: 8px;
 `;
 export const BestCardProfileImg = styled.img`
-
+	width:25px;
 `;
 
 export const BestCardWriter = styled.div`
-margin-left:10px;
+	margin-left:10px;
 	font-size: 16px;
 `;
 

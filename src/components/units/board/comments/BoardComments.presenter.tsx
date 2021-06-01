@@ -29,7 +29,6 @@ export default function BoardCommentsUI({
 	rating,
 	onSaveRating,
 	handleClickCreateComment,
-	handleDeleteComment,
 	refetch,
 }: IBoardCommentsProps) {
 	return (

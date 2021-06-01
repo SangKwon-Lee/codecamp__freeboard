@@ -1,9 +1,11 @@
-import Boards from '../src/components/units/board/boards/Boards.container';
+import BoardsList from '../src/components/units/board/boards/Boards.container';
+import BoardBest from '../src/components/units/board/boardsBest/Boards.container';
 
-export default function Home() {
+export default function Boards() {
 	return (
 		<>
-			<Boards />
+			<BoardBest></BoardBest>
+			<BoardsList></BoardsList>
 		</>
 	);
 }

@@ -1,3 +1,5 @@
+import { Query, QueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
+
 export interface IBoardCommentsProps {
 	input: {
 		writer: string;
@@ -5,25 +7,19 @@ export interface IBoardCommentsProps {
 		contents: string;
 		rating: string;
 	};
-	handleInputChange: (event:any) => void;
-	data?: any;
-	rating: any;
+	handleInputChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+	data?: Query;
+	rating: number | String;
 	onSaveRating: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 	handleClickCreateComment: (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => void;
-	handleDeleteComment: (
-		event: React.MouseEvent<HTMLImageElement, MouseEvent>
-	) => void;
-	refetch:any
-
+	refetch: (variables?: Partial<QueryFetchBoardCommentsArgs>) => void;
 }
 
 export interface IBoadrdCommentsItemsProps {
   data?: any;
 	onSaveRating: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-
-	refetch: any
-
+	refetch: (variables?: Partial<QueryFetchBoardCommentsArgs>) => void;
 }
 

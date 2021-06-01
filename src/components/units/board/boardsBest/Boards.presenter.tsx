@@ -1,4 +1,3 @@
-import { Query } from '../../../../commons/types/generated/types';
 import {
 	BestCardWrapper,
 	BestTitle,
@@ -21,18 +20,14 @@ import {
 } from './Boards.style';
 
 import { IBoardsProps } from './Boards.tpes';
-export default function BoardsBestUI({
-	BestDatas,
-	handleMoveList,
-}: IBoardsProps) {
-	console.log(BestDatas?.data?.fetchBoardsOfTheBest[0]._id);
+export default function BoardsBestUI({ data, handleMoveList }: IBoardsProps) {
 	return (
 		<Wrapper>
 			<Contents>
 				<BestWrapper>
 					<BestTitle>베스트 게시글</BestTitle>
 					<BestCardWrapper>
-						{BestDatas?.data?.fetchBoardsOfTheBest.map((data: any) => (
+						{data?.fetchBoardsOfTheBest.map((data: any) => (
 							<BestCard key={data._id}>
 								<BestImg
 									src="/bestImage.png"
