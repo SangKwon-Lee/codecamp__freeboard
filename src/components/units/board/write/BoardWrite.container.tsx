@@ -121,7 +121,7 @@ function BoardWritePage() {
 					boardId: String(router.query.id),
 				},
 			});
-			console.log(result);
+
 			alert('게시글 수정 성공');
 			router.push(`/board/${result.data?.updateBoard._id}`);
 		} catch (error) {

@@ -10,4 +10,6 @@ export interface IBoardsProps {
 	RightArrowPage: () => void;
 	LeftArrowPage: () => void;
 	pageArr: any
+	hadleSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleSearchBtn: () => void;
 }

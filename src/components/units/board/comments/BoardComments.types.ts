@@ -14,10 +14,13 @@ export interface IBoardCommentsProps {
 	handleClickCreateComment: (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => void;
+	LoadMore: () => void;
+	refetch: ()=> void;
 }
 
 export interface IBoadrdCommentsItemsProps {
   data?: any;
 	onSaveRating: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+		refetch: ()=> void;
 }
 

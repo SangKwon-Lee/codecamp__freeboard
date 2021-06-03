@@ -6,6 +6,8 @@ export const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	
+
 `;
 
 export const Body = styled.div`
@@ -131,13 +133,40 @@ export const CommentsBtn = styled.button`
 
 `
 
-
+interface IProps {
+	isActive: boolean;
+}
 export const CommentsWrapper = styled.div`
 	width:100%;
 	display: flex;
 	height: 111px;
 	margin-top:20px;
 	border-bottom : 1px solid rgba(0,0,0,0.1);
+	animation-duration: 2s;
+	animation-name: ${(props: IProps) => (props.isActive ? 'move' : 'delete')};;
+
+@keyframes move {
+	from {
+		transform: translateY(-100px);
+		opacity: 0
+	}
+		to {
+				transform: translateY(0px);
+		opacity: 1
+	}
+}
+
+@keyframes delete {
+	from {
+		transform: translateX(0px);
+		opacity: 1
+	}
+		to {
+				transform: translateX(300px);
+		opacity: 0
+	}
+}
+
 `
 
 export const CommentsProfileImg = styled.img`

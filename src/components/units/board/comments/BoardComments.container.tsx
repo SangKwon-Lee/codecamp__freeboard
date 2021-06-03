@@ -28,6 +28,7 @@ function BoardCommentsPage() {
 		contents: '',
 		rating: '',
 	});
+	const [currentComment, setCurrentComment] = useState(0);
 
 	//* 댓글 작성 뮤테이션
 	const [createBoardComment] = useMutation<
@@ -42,12 +43,28 @@ function BoardCommentsPage() {
 	>(DELETE_BOARD_COMMENT);
 
 	//* 댓글 불러오기 쿼리
-	const { data, refetch } = useQuery<Query, QueryFetchBoardCommentsArgs>(
-		FETCH_BOARD_COMMENTS,
-		{
-			variables: { boardId: String(router.query.id) },
-		},
-	);
+	const { data, refetch, fetchMore } = useQuery<
+		Query,
+		QueryFetchBoardCommentsArgs
+	>(FETCH_BOARD_COMMENTS, {
+		variables: { boardId: String(router.query.id), page: currentComment },
+	});
+
+	//* 댓글 더 불로오기
+	const LoadMore = () => {
+		if (data?.fetchBoardComments.length % 10 !== 0) return;
+		fetchMore({
+			variables: {
+				page: Math.floor(data?.fetchBoardComments.length / 10) + 1,
+			},
+			updateQuery: (prev, { fetchMoreResult }) => ({
+				fetchBoardComments: [
+					...prev.fetchBoardComments,
+					...fetchMoreResult.fetchBoardComments,
+				],
+			}),
+		});
+	};
 
 	//* 댓글 작성 저장하는 함수
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,6 +120,8 @@ function BoardCommentsPage() {
 			rating={rating}
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
+			LoadMore={LoadMore}
+			refetch={refetch}
 		></BoardCommentsUI>
 	);
 }

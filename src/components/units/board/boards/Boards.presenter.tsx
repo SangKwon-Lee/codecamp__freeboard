@@ -24,6 +24,7 @@ import {
 	PageWrapper,
 	PageLeft,
 	PageRight,
+	SearchBarBackGround,
 } from './Boards.style';
 import { IBoardsProps } from './Boards.tpes';
 export default function BoardsUI({
@@ -35,13 +36,21 @@ export default function BoardsUI({
 	RightArrowPage,
 	LeftArrowPage,
 	pageArr,
+	hadleSearchInput,
+	handleSearchBtn,
 }: IBoardsProps) {
 	return (
 		<Wrapper>
 			<Contents>
 				<SearchWrapper>
 					<SearchBarWrapper>
-						<SearchBar placeholder="제목을 검색해주세요."></SearchBar>
+						<SearchBarBackGround>
+							<SearchImg src="/search.png"></SearchImg>
+							<SearchBar
+								onChange={hadleSearchInput}
+								placeholder="제목을 검색해주세요."
+							></SearchBar>
+						</SearchBarBackGround>
 						<SearchDateWrapper>
 							<DateImg src="/dateImg.png" />
 							2020.02.12
@@ -49,7 +58,7 @@ export default function BoardsUI({
 							2020.02.12
 						</SearchDateWrapper>
 					</SearchBarWrapper>
-					<SearchBtn>검색하기</SearchBtn>
+					<SearchBtn onClick={handleSearchBtn}>검색하기</SearchBtn>
 				</SearchWrapper>
 				<Table>
 					<TableWrapper>
@@ -66,28 +75,46 @@ export default function BoardsUI({
 							<RowTitle>날짜</RowTitle>
 						</DateWrapper>
 					</TableWrapper>
-
-					{data?.fetchBoards.slice(0, 10).map((data) => (
-						<RowWrapper key={data._id}>
-							<NumberWrapper>
-								<Title>10</Title>
-							</NumberWrapper>
-							<TitleWrapper>
-								<Title id={data._id} onClick={handleMoveList}>
-									{data.title}
-								</Title>
-							</TitleWrapper>
-							<WriterWrapper>
-								<Title>{data.writer}</Title>
-							</WriterWrapper>
-							<DateWrapper>
-								<Title>{data.createdAt.slice(0, 10)}</Title>
-							</DateWrapper>
-						</RowWrapper>
-					))}
+					{!data
+						? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((data, index) => (
+								<RowWrapper key={data}>
+									<NumberWrapper>
+										<Title>{index + 1}</Title>
+									</NumberWrapper>
+									<TitleWrapper>
+										<Title></Title>
+									</TitleWrapper>
+									<WriterWrapper>
+										<Title></Title>
+									</WriterWrapper>
+									<DateWrapper>
+										<Title></Title>
+									</DateWrapper>
+								</RowWrapper>
+						  ))
+						: data?.fetchBoards.map((data, index) => (
+								<RowWrapper key={data._id}>
+									<NumberWrapper>
+										<Title>
+											{currentPage === 1
+												? index + 1
+												: index + 1 + (currentPage - 1) * 10}
+										</Title>
+									</NumberWrapper>
+									<TitleWrapper>
+										<Title id={data._id} onClick={handleMoveList}>
+											{data.title}
+										</Title>
+									</TitleWrapper>
+									<WriterWrapper>
+										<Title>{data.writer}</Title>
+									</WriterWrapper>
+									<DateWrapper>
+										<Title>{data.createdAt.slice(0, 10)}</Title>
+									</DateWrapper>
+								</RowWrapper>
+						  ))}
 				</Table>
-
-				
 				<PageWrapper>
 					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
 					{pageArr.map((data) => (
@@ -102,8 +129,6 @@ export default function BoardsUI({
 					))}
 					<PageRight src="/rightArrow.png" onClick={RightArrowPage}></PageRight>
 				</PageWrapper>
-
-
 				<RegisterBtnWrapper>
 					<ResgisterBtn onClick={handleMoveRegister}>
 						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기

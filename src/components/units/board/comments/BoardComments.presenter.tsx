@@ -1,5 +1,5 @@
 import BoardCommentItem from './BoardCommentsItems.presenter';
-import InfiniteScroll from 'react-infinite-scroll-component';
+
 import {
 	Wrapper,
 	DivideLine,
@@ -21,6 +21,7 @@ import {
 	PasswordInput,
 } from './BoardComments.style';
 import { IBoardCommentsProps } from './BoardComments.types';
+import InfiniteScroll from 'react-infinite-scroller';
 
 export default function BoardCommentsUI({
 	input,
@@ -29,6 +30,8 @@ export default function BoardCommentsUI({
 	rating,
 	onSaveRating,
 	handleClickCreateComment,
+	LoadMore,
+	refetch,
 }: IBoardCommentsProps) {
 	return (
 		<Wrapper>
@@ -81,13 +84,16 @@ export default function BoardCommentsUI({
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-				{data?.fetchBoardComments.map((data: any) => (
-					<BoardCommentItem
-						key={data._id}
-						data={data}
-						onSaveRating={onSaveRating}
-					></BoardCommentItem>
-				))}
+				<InfiniteScroll loadMore={LoadMore} hasMore={true}>
+					{data?.fetchBoardComments.map((data: any) => (
+						<BoardCommentItem
+							key={data._id}
+							data={data}
+							onSaveRating={onSaveRating}
+							refetch={refetch}
+						></BoardCommentItem>
+					))}
+				</InfiniteScroll>
 			</Body>
 		</Wrapper>
 	);

@@ -33,7 +33,22 @@ export const RowWrapper = styled.div`
 	justify-content: space-between;
 	height: 52px;
 	border-top: 1px solid rgba(0, 0, 0, 0.2);
-`;
+	animation-duration: 1.5s;
+	animation-name: move;
+
+@keyframes move {
+	from {
+		transform: translateY(-50px);
+		opacity: 0
+	}
+		to {
+				transform: translateY(0px);
+		opacity: 1
+	};
+}
+`
+
+
 
 export const TableWrapper = styled.div`
 	display: flex;
@@ -135,6 +150,18 @@ export const SearchBarWrapper = styled.div`
 
 export const SearchBar = styled.input`
 max-width: 588px;
+width: 100%;
+border:none;
+outline:none;
+background-color: #F2F2F2;
+border-radius: 8px;
+margin-left:10px;
+font-size:1f6px;
+`
+
+
+export const SearchBarBackGround = styled.div`
+max-width: 588px;
 height: 52px;
 width: 100%;
 border:none;
@@ -142,7 +169,11 @@ outline:none;
 background-color: #F2F2F2;
 padding:14px 16px;
 border-radius: 8px;
+display: flex;
+align-items: center;
 `
+
+
 export const SearchDateWrapper = styled.div`
   width: 282px;
   height: 52px;
@@ -159,11 +190,15 @@ height: 52px;
 background-color: black;
 color: white;
 outline: none;
-  border-radius: 8px;
+border-radius: 8px;
 border: none;
 cursor: pointer;
 `
-export const SearchImg = styled.img``
+export const SearchImg = styled.img`
+	width:15px;
+	height: 15px;
+
+`
 
 
 
@@ -198,4 +233,10 @@ export const PageRight = styled.img`
 margin-top :2px ;
 height: 10px;
 cursor: pointer;
+`
+
+export const EmptyDiv = styled.div`
+width:100%;
+height: 584px;
+background-color: white;
 `

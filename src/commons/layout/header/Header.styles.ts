@@ -12,6 +12,7 @@ export const HeaderWrapper = styled.div`
   display:flex;
   padding-left:3.75rem;
   padding-right:3.75rem;
+  box-shadow: 1px 5px 10px 4px rgba(0, 0, 0, 0.1);
 `
 export const HeaderBody = styled.div`
     max-width: 1200px;
