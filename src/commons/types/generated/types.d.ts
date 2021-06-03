@@ -11,6 +11,8 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 export type Board = {
@@ -19,9 +21,10 @@ export type Board = {
   writer?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   contents: Scalars['String'];
-  youtubeUrl: Scalars['String'];
+  youtubeUrl?: Maybe<Scalars['String']>;
   likeCount: Scalars['Int'];
   dislikeCount: Scalars['Int'];
+  images?: Maybe<Array<Scalars['String']>>;
   boardAddress?: Maybe<BoardAddress>;
   user?: Maybe<User>;
   createdAt: Scalars['DateTime'];
@@ -34,7 +37,7 @@ export type BoardAddress = {
   _id: Scalars['ID'];
   zipcode: Scalars['String'];
   address: Scalars['String'];
-  addressDetail: Scalars['String'];
+  addressDetail?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
@@ -65,6 +68,7 @@ export type CreateBoardInput = {
   title: Scalars['String'];
   contents: Scalars['String'];
   youtubeUrl?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type CreateUseditemInput = {
@@ -90,9 +94,21 @@ export type CreateUserInput = {
 };
 
 
+export type FileManager = {
+  __typename?: 'FileManager';
+  _id: Scalars['ID'];
+  url: Scalars['String'];
+  size?: Maybe<Scalars['Float']>;
+  isUsed: Scalars['Boolean'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  deletedAt?: Maybe<Scalars['DateTime']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createBoard: Board;
+  deleteBoard: Scalars['ID'];
   deleteBoards: Array<Scalars['ID']>;
   dislikeBoard: Scalars['Int'];
   likeBoard: Scalars['Int'];
@@ -100,6 +116,7 @@ export type Mutation = {
   createBoardComment: BoardComment;
   deleteBoardComment: Scalars['ID'];
   updateBoardComment: BoardComment;
+  uploadFile: FileManager;
   createPointTransactionOfBuyingAndSelling: Useditem;
   createPointTransactionOfLoading: PointTransaction;
   createUseditem: Useditem;
@@ -112,7 +129,6 @@ export type Mutation = {
   deleteUseditemQuestionAnswer: Scalars['String'];
   updateUseditemQuestionAnswer: UseditemQuestionAnswer;
   createUser: User;
-  logoutUser: Scalars['Boolean'];
   resetUserPassword: Scalars['Boolean'];
   updateUser: Scalars['Boolean'];
 };
@@ -120,6 +136,11 @@ export type Mutation = {
 
 export type MutationCreateBoardArgs = {
   createBoardInput: CreateBoardInput;
+};
+
+
+export type MutationDeleteBoardArgs = {
+  boardId: Scalars['ID'];
 };
 
 
@@ -161,6 +182,11 @@ export type MutationUpdateBoardCommentArgs = {
   updateBoardCommentInput: UpdateBoardCommentInput;
   password?: Maybe<Scalars['String']>;
   boardCommentId: Scalars['ID'];
+};
+
+
+export type MutationUploadFileArgs = {
+  file: Scalars['Upload'];
 };
 
 
@@ -278,7 +304,19 @@ export type QueryFetchBoardArgs = {
 };
 
 
+export type QueryFetchBoardsArgs = {
+  search?: Maybe<Scalars['String']>;
+  page?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryFetchBoardsCountArgs = {
+  search?: Maybe<Scalars['String']>;
+};
+
+
 export type QueryFetchBoardCommentsArgs = {
+  page?: Maybe<Scalars['Int']>;
   boardId: Scalars['ID'];
 };
 
@@ -306,6 +344,7 @@ export type UpdateBoardInput = {
   title?: Maybe<Scalars['String']>;
   contents?: Maybe<Scalars['String']>;
   youtubeUrl?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type UpdateUseditemInput = {
@@ -323,6 +362,7 @@ export type UpdateUseditemQuestionAnswerInput = {
 export type UpdateUseditemQuestionInput = {
   contents: Scalars['String'];
 };
+
 
 export type Useditem = {
   __typename?: 'Useditem';

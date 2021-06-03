@@ -6,4 +6,8 @@ export interface IBoardWriterProps {
 	isTrue: boolean;
 	data?: Query;
 	handleClickUpdateBoard: () => void;
+	imgArr: String[];
+	fileRef: any;
+	onChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	UploadPhotoCancle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }

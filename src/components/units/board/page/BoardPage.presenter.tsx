@@ -1,8 +1,5 @@
-import {
-	Query,
-	QueryFetchBoardArgs,
-} from '../../../../commons/types/generated/types';
 import ReactPlayer from 'react-player';
+import LazyLoad from 'react-lazy-load';
 import {
 	Wrapper,
 	Shadow,
@@ -34,6 +31,7 @@ import {
 	ContentTop,
 	ContentBottom,
 	ContentWrapper,
+	ContentImg,
 } from './BoardPage.style';
 
 import { IBoardPagePros } from './BoardPage.types';
@@ -73,6 +71,13 @@ export default function BoardPageUI({
 								<Title>{data?.fetchBoard.title}</Title>
 							</TitleWrapper>
 							<ContentWrapper>
+								{data?.fetchBoard.images.map((data) => (
+									<LazyLoad>
+										<ContentImg
+											src={`https://storage.cloud.google.com/${data}`}
+										></ContentImg>
+									</LazyLoad>
+								))}
 								<Content>{data?.fetchBoard.contents}</Content>
 								<ReactPlayer url={data?.fetchBoard.youtubeUrl}></ReactPlayer>
 							</ContentWrapper>

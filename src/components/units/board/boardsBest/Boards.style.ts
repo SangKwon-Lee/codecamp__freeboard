@@ -56,6 +56,7 @@ export const BestCardTitle = styled.div`
 	width:100%;
 	height: 30px;
 	overflow-x: scroll;
+	cursor: pointer;
 `;
 
 export const BestContentsWrapper = styled.div`

@@ -121,16 +121,33 @@ export const ImageWrapper = styled.div`
 	padding-top: 40px;
 `;
 
-export const UploadButton = styled.button`
-	width: 78px;
-	height: 78px;
-	background-color: #bdbdbd;
-	margin-right: 24px;
-	outline: none;
-	border: none;
-	cursor: pointer;
-`;
+export const UploadButton = styled.input`
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip:rect(0,0,0,0);
+border: 0;
 
+`;
+export const UploadLabel = styled.label`
+display: inline-block;
+width:78px;
+height: 78px;
+background-color: #999999;
+text-align: center;
+font-size: 14px;
+color:#4F4F4F;
+padding-top: 16px;
+cursor: pointer;
+`
+export const UploadBtnWrapper = styled.div`
+width: 282px;
+display: flex;
+justify-content: space-between;
+`
 export const OptionWrapper = styled.div`
 	width: 996px;
 	padding-top: 40px;
@@ -177,3 +194,27 @@ export const SubmitButton = styled.button`
 	margin-right: 12px;
 	cursor: pointer;
 `;
+
+export const UploadImg = styled.img`
+object-fit: cover;
+width: 78px;
+height: 78px;
+`
+
+
+export const UploadCancle = styled.button`
+	position: absolute;
+	width:30px;
+	height:30px;
+	background-color: transparent;
+	text-align: center;
+	border:1px solid rgba(0,0,0,0.5);
+	border-radius: 30px;
+	cursor: pointer;
+	outline: none;
+	margin-left: 50px;
+	margin-top:-10px;
+`
+
+
+

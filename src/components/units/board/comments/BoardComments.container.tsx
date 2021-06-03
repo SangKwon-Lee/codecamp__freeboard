@@ -103,7 +103,6 @@ function BoardCommentsPage() {
 			rating={rating}
 			onSaveRating={onSaveRating}
 			handleClickCreateComment={handleClickCreateComment}
-			refetch={refetch}
 		></BoardCommentsUI>
 	);
 }

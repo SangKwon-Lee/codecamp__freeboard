@@ -6,6 +6,7 @@ export const CREATE_BOARD = gql`
 			title
 			writer
 			_id
+	
 		}
 	}
 `;
@@ -18,6 +19,7 @@ export const FETCH_BOARD = gql`
 			contents
 			youtubeUrl
 			createdAt
+			images
 		}
 	}
 `;
@@ -35,4 +37,13 @@ export const UPDATE_BOARD = gql`
   }
 }
 `
-
+	export const UPLOAD_FILE = gql`
+		mutation uploadFile($file: Upload!) {
+			uploadFile(file: $file) {
+				url
+				_id
+				size
+				isUsed
+			}
+		}
+	`;

@@ -29,7 +29,6 @@ export default function BoardCommentsUI({
 	rating,
 	onSaveRating,
 	handleClickCreateComment,
-	refetch,
 }: IBoardCommentsProps) {
 	return (
 		<Wrapper>
@@ -87,7 +86,6 @@ export default function BoardCommentsUI({
 						key={data._id}
 						data={data}
 						onSaveRating={onSaveRating}
-						refetch={refetch}
 					></BoardCommentItem>
 				))}
 			</Body>

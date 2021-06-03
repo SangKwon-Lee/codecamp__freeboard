@@ -1,5 +1,5 @@
-import Modal from '../../src/components/units/board/modalComment/modalComment';
-
+import { useState } from 'react';
+import styled from '@emotion/styled';
 export default function Test() {
-	return <Modal></Modal>;
+	return <div>asfd</div>;
 }
