@@ -86,6 +86,8 @@ export default function BoardsUI({
 						</RowWrapper>
 					))}
 				</Table>
+
+				
 				<PageWrapper>
 					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
 					{pageArr.map((data) => (
@@ -100,6 +102,8 @@ export default function BoardsUI({
 					))}
 					<PageRight src="/rightArrow.png" onClick={RightArrowPage}></PageRight>
 				</PageWrapper>
+
+
 				<RegisterBtnWrapper>
 					<ResgisterBtn onClick={handleMoveRegister}>
 						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기

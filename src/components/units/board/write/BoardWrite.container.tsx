@@ -1,7 +1,12 @@
 import BoardUI from './BoardWrite.presenter';
 import { useMutation, useQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { CREATE_BOARD, FETCH_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
+import { useEffect, useRef, useState } from 'react';
+import {
+	CREATE_BOARD,
+	FETCH_BOARD,
+	UPDATE_BOARD,
+	UPLOAD_FILE,
+} from './BoardWrite.queries';
 import { useRouter } from 'next/router';
 import {
 	Mutation,
@@ -9,10 +14,17 @@ import {
 	MutationUpdateBoardArgs,
 	Query,
 	QueryFetchBoardArgs,
+	MutationUploadFileArgs,
 } from '../../../../commons/types/generated/types';
 
 function BoardWritePage() {
 	const router = useRouter();
+
+	//* 이미지 관련 상태
+	const [imgArr, setImgArr] = useState(['0', '0', '0']);
+
+	//*이미지 Ref
+	const fileRef = useRef<HTMLInputElement>(null);
 
 	//* 등록버튼 ON OFF
 	const [isTrue, setIsTrue] = useState(true);
@@ -24,6 +36,7 @@ function BoardWritePage() {
 		title: '',
 		contents: '',
 		youtubeUrl: '',
+		images: [],
 	});
 
 	//* 등록 / 수정
@@ -39,6 +52,11 @@ function BoardWritePage() {
 		variables: { boardId: String(router.query.id) },
 	});
 
+	//* 이미지 등록
+	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
+		UPLOAD_FILE,
+	);
+
 	//* 수정시 데이터 살리기
 	useEffect(() => {
 		setInput({
@@ -47,6 +65,7 @@ function BoardWritePage() {
 			title: data?.fetchBoard.title,
 			contents: data?.fetchBoard.contents,
 			youtubeUrl: data?.fetchBoard.youtubeUrl,
+			images: data?.fetchBoard.images,
 		});
 	}, [data]);
 
@@ -96,6 +115,7 @@ function BoardWritePage() {
 						title: input.title,
 						contents: input.contents,
 						youtubeUrl: input.youtubeUrl,
+						images: input.images,
 					},
 					password: input.password,
 					boardId: String(router.query.id),
@@ -109,6 +129,77 @@ function BoardWritePage() {
 		}
 	};
 
+	//* 이미지 등록 함수
+	const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files[0];
+
+		if (file.size > 5 * 1024 * 1024) {
+			alert('파일이 크다');
+			return;
+		}
+
+		if (!file.type.includes('png')) {
+			alert('png 파일만 업로드 가능합니다!');
+			return;
+		}
+
+		//* URL 뽑아주는 곳
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = (e) => {
+			console.log(e.target.result);
+		};
+
+		const { data } = await uploadFileMutation({
+			variables: { file: file },
+		});
+		const ImageData = data?.uploadFile.url;
+
+		let newArr = [...imgArr];
+		newArr[Number(e.target.id)] = ImageData;
+
+		for (let i = 0; i <= newArr.length; i++) {
+			if (newArr[newArr.length - 1] === '0') {
+				continue;
+			}
+
+			if (newArr[i] === '0' && newArr[i + 1] === '0') {
+				newArr[i] = newArr[i + 2];
+				newArr[i + 2] = '0';
+			}
+
+			if (newArr[i] === '0') {
+				newArr[i] = newArr[i + 1];
+				newArr[i + 1] = '0';
+			}
+		}
+
+		setImgArr(newArr);
+
+		let newInputImg = [...newArr];
+		newInputImg = newInputImg.filter((data) => data !== '0');
+		setInput({
+			...input,
+			images: newInputImg,
+		});
+	};
+
+	//* 이미지 삭제 함수
+	const UploadPhotoCancle = (
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+	) => {
+		let newArr = [...imgArr];
+		newArr[e.target.id] = '0';
+
+		for (let i = 0; i <= 1; i++) {
+			if (newArr[i] === '0') {
+				newArr[i] = newArr[i + 1];
+				newArr[i + 1] = '0';
+			}
+		}
+		setImgArr(newArr);
+	};
+
 	return (
 		<BoardUI
 			data={data}
@@ -116,6 +207,10 @@ function BoardWritePage() {
 			handleClickCreateBoard={handleClickCreateBoard}
 			isTrue={isTrue}
 			handleClickUpdateBoard={handleClickUpdateBoard}
+			fileRef={fileRef}
+			onChangeFile={onChangeFile}
+			UploadPhotoCancle={UploadPhotoCancle}
+			imgArr={imgArr}
 		></BoardUI>
 	);
 }

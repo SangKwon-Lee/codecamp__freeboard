@@ -104,8 +104,10 @@ export const ResgisterBtn = styled.button`
 	justify-content: center;
 	cursor: pointer;
 	outline: none;
+	transition: 300ms all;
 	:hover{
 	background-color: #FFD600;
+
 	}
 
 `

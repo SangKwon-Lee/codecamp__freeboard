@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
-	height: 1200px;
+	/* height: 1200px; */
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Shadow = styled.div`
-max-width: 1200px;
+	max-width: 1200px;
 	width: 100%;
 	display: flex;
 	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);
@@ -19,7 +19,7 @@ max-width: 1200px;
 `;
 
 export const Body = styled.div`
-max-width: 996px;
+	max-width: 996px;
 	width: 100%;
 	display: flex;
 	padding-left: 10px;
@@ -201,4 +201,9 @@ width:100%;
 
 export const ContentBottom = styled.div`
 
+`
+
+export const ContentImg = styled.img`
+	max-width:900px;
+	margin-bottom:20px;
 `

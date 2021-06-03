@@ -5,7 +5,10 @@ import {
 	MutationDeleteBoardCommentArgs,
 	MutationUpdateBoardCommentArgs,
 } from '../../../../commons/types/generated/types';
-import { UPDATE_BOARD_COMMENT } from './BoardComments.queries';
+import {
+	UPDATE_BOARD_COMMENT,
+	FETCH_BOARD_COMMENTS,
+} from './BoardComments.queries';
 import {
 	CommentsCenterWrapper,
 	CommentsDate,
@@ -38,11 +41,13 @@ import { IBoadrdCommentsItemsProps } from './BoardComments.types';
 import 'antd/dist/antd.css';
 import { Modal } from 'antd';
 import { DELETE_BOARD_COMMENT } from './BoardComments.queries';
+import { route } from 'next/dist/next-server/server/router';
+import { useRouter } from 'next/router';
 export default function BoardCommentItemUI({
 	data,
 	onSaveRating,
-	refetch,
 }: IBoadrdCommentsItemsProps) {
+	const router = useRouter();
 	//! 모달 관리
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const showModal = () => {
@@ -92,8 +97,14 @@ export default function BoardCommentItemUI({
 					password: deletepassword,
 					boardCommentId: deleteId,
 				},
+				refetchQueries: [
+					{
+						query: FETCH_BOARD_COMMENTS,
+						variables: { boardId: router.query.id },
+					},
+				],
 			});
-			refetch();
+
 			setDeletePassword('');
 		} catch (error) {
 			alert(error);
@@ -143,6 +154,12 @@ export default function BoardCommentItemUI({
 					password: updataInput.password,
 					boardCommentId: String(e.target.id),
 				},
+				refetchQueries: [
+					{
+						query: FETCH_BOARD_COMMENTS,
+						variables: { boardId: router.query.id },
+					},
+				],
 			});
 			setUpdateInput({
 				writer: '',
@@ -214,8 +231,8 @@ export default function BoardCommentItemUI({
 						onCancel={handleCancel}
 						style={{
 							position: 'absolute',
-							top: '20rem',
-							left: '36rem',
+							top: '25rem',
+							left: '58rem',
 						}}
 					>
 						<DeletePassword

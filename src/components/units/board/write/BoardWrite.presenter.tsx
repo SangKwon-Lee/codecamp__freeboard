@@ -1,4 +1,5 @@
 import { IBoardWriterProps } from './BoardWrite.types';
+import LazyLoad from 'react-lazy-load';
 import {
 	Wrapper,
 	Title,
@@ -24,15 +25,23 @@ import {
 	ButtonWrapper,
 	Shadow,
 	Body,
+	UploadLabel,
+	UploadBtnWrapper,
+	UploadImg,
+	UploadCancle,
 } from './BoardWrite.style';
-
 export default function BoardWritePage({
 	handleChangeInput,
 	handleClickCreateBoard,
 	isTrue,
 	data,
 	handleClickUpdateBoard,
+	fileRef,
+	onChangeFile,
+	UploadPhotoCancle,
+	imgArr,
 }: IBoardWriterProps) {
+	console.log(imgArr);
 	return (
 		<Wrapper>
 			<Shadow>
@@ -102,18 +111,37 @@ export default function BoardWritePage({
 					</InputWrapper>
 					<ImageWrapper>
 						<Label>사진첨부</Label>
-						<UploadButton>
-							<div>+</div>
-							<div>Upload</div>
-						</UploadButton>
-						<UploadButton>
-							<div>+</div>
-							<div>Upload</div>
-						</UploadButton>
-						<UploadButton>
-							<div>+</div>
-							<div>Upload</div>
-						</UploadButton>
+						<UploadBtnWrapper>
+							{imgArr.map((data, index) =>
+								imgArr[index] === '0' ? (
+									<>
+										<UploadLabel key={index} htmlFor={String(index)}>
+											<div>+</div>Upload
+										</UploadLabel>
+										<UploadButton
+											ref={fileRef}
+											type="file"
+											id={String(index)}
+											onChange={onChangeFile}
+										></UploadButton>
+									</>
+								) : (
+									<div key={index}>
+										<UploadCancle
+											id={String(index)}
+											onClick={UploadPhotoCancle}
+										>
+											X
+										</UploadCancle>
+										<LazyLoad>
+											<UploadImg
+												src={`https://storage.cloud.google.com/${data}`}
+											></UploadImg>
+										</LazyLoad>
+									</div>
+								),
+							)}
+						</UploadBtnWrapper>
 					</ImageWrapper>
 					<OptionWrapper>
 						<Label>메인설정</Label>
