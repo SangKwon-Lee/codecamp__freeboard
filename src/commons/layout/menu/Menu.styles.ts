@@ -8,7 +8,7 @@ export const MenuWrapper = styled.div`
   margin-top:-5px;
   align-items: center;
   background-color: #FFD600;
-  
+   box-shadow: 1px 5px 10px 4px rgba(0, 0, 0, 0.1);
 `
 
 export const TitleWrapper = styled.div`

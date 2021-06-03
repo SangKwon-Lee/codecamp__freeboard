@@ -34,6 +34,20 @@ export const BestCardWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	
+		animation-duration: 2s;
+	animation-name: move;
+
+@keyframes move {
+	from {
+		transform: translateY(-50px);
+		opacity: 0
+	}
+		to {
+				transform: translateY(0px);
+		opacity: 1
+	};
+}
+
 `;
 
 export const BestCard = styled.div`
@@ -43,6 +57,10 @@ export const BestCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.1);
+	transition: all 300ms;
+	:hover{
+			box-shadow: 0px 5px 12px 1px rgba(0, 0, 0, 0.2);
+	}
 `;
 
 export const BestImg = styled.img`
@@ -115,3 +133,4 @@ export const BestLike = styled.img`
 export const BestLikeCount = styled.div`
 	font-size: 16px;
 `;
+

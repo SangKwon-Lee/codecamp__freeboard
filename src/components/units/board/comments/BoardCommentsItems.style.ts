@@ -1,3 +1,4 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
 
@@ -8,6 +9,10 @@ width:100%;
 flex-direction: column;
 margin-bottom: 40px;
 margin-top:40px;
+
+
+
+
 `
 
 
@@ -60,6 +65,7 @@ export const CommmentsBoxWrapper = styled.div`
 	width: 100%;
 	height: 117px;
 	border:1px solid rgba(0,0,0,0.2);
+
 
 `
 

@@ -41,7 +41,6 @@ export default function BoardWritePage({
 	UploadPhotoCancle,
 	imgArr,
 }: IBoardWriterProps) {
-	console.log(imgArr);
 	return (
 		<Wrapper>
 			<Shadow>
@@ -114,8 +113,8 @@ export default function BoardWritePage({
 						<UploadBtnWrapper>
 							{imgArr.map((data, index) =>
 								imgArr[index] === '0' ? (
-									<>
-										<UploadLabel key={index} htmlFor={String(index)}>
+									<div key={index}>
+										<UploadLabel htmlFor={String(index)}>
 											<div>+</div>Upload
 										</UploadLabel>
 										<UploadButton
@@ -124,7 +123,7 @@ export default function BoardWritePage({
 											id={String(index)}
 											onChange={onChangeFile}
 										></UploadButton>
-									</>
+									</div>
 								) : (
 									<div key={index}>
 										<UploadCancle

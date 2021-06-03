@@ -11,13 +11,42 @@ export default function Boards() {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [pageArr, setPageArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
+	//* 검색어 상태
+	const [search, setSearch] = useState('');
+	const [searchBtn, setSearchBtn] = useState('');
+
 	//* 전체 게시글 불러오기
 	const { data } = useQuery(FETCH_BOARDS, {
-		variables: { page: currentPage },
+		variables: { page: currentPage, search },
 	});
 
 	//* 전체 게시글 숫자 불러오기
-	const { data: count } = useQuery(FETCH_BOARDS_COUNT);
+	const { data: count } = useQuery(FETCH_BOARDS_COUNT, {
+		variables: { search },
+	});
+
+	//* 검색어 관련 함수들
+	const hadleSearchInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		let newSearch = e.target.value;
+		setSearchBtn(newSearch);
+	};
+
+	const handleSearchBtn = () => {
+		setSearch(searchBtn);
+	};
+
+	useEffect(() => {
+		if (count?.fetchBoardsCount / 10 <= 10) {
+			let newArr = [];
+			for (let i = 1; i <= Math.floor(count.fetchBoardsCount / 10) + 1; i++) {
+				newArr.push(i);
+			}
+			setPageArr(newArr);
+			setCurrentPage(1);
+		} else {
+			setPageArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+		}
+	}, [count]);
 
 	//* 페이지네이션에서 숫자 클릭시
 	const onClickPage = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -59,6 +88,7 @@ export default function Boards() {
 		//* pageArr에서 10이 더해진 값을 넣어주고
 		//* 페이지를 넘길 때 기본 값은 각 페이지의 1번으로 해준다.
 		setPageArr(newArr);
+
 		setCurrentPage(newArr[0]);
 	};
 
@@ -70,7 +100,6 @@ export default function Boards() {
 		let lastString = String(last);
 		//* 마지막 페이지의 1의 자리를 구한다.
 		let WhenLastPage = Number(lastString[lastString.length - 1]);
-
 		if (currentPage <= 1) {
 			return alert('처음 페이지 입니다.');
 		}
@@ -78,21 +107,23 @@ export default function Boards() {
 		//* 126~137 이렇게 10의 단위로 떨어지지 않을 경우
 		//* 이 상태에서 < 을 클릭하면 121~130으로 가도록 만들었다.
 		//* 그러기 위해서 마지막 페이지의 1의 자리가 필요했다.
+		if (pageArr.length < 10) {
+			return setCurrentPage(1);
+		}
+
 		if (pageArr[pageArr.length - 1] === last) {
 			let newArr = pageArr.map((data) => data - WhenLastPage);
 			setPageArr(newArr);
 			setCurrentPage(newArr[newArr.length - 1]);
 			return;
 		}
-
 		//* 1~10 페이지에서 현재 페이지가 10인 경우에서
 		//* 화살표 클릭시 1로 간다
 		if (pageArr[0] === 1) {
 			setCurrentPage(1);
 			return;
 		}
-
-		//* 여기는 평범하게. $
+		//* 여기는 평범하게.
 		let newArr = pageArr.map((data) => data - 10);
 
 		if (newArr[0] < 1) {
@@ -126,6 +157,8 @@ export default function Boards() {
 				RightArrowPage={RightArrowPage}
 				LeftArrowPage={LeftArrowPage}
 				pageArr={pageArr}
+				hadleSearchInput={hadleSearchInput}
+				handleSearchBtn={handleSearchBtn}
 			></BoardsUI>
 		</>
 	);

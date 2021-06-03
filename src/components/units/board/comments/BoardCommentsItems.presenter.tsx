@@ -8,6 +8,7 @@ import {
 import {
 	UPDATE_BOARD_COMMENT,
 	FETCH_BOARD_COMMENTS,
+	DELETE_BOARD_COMMENT,
 } from './BoardComments.queries';
 import {
 	CommentsCenterWrapper,
@@ -40,12 +41,11 @@ import {
 import { IBoadrdCommentsItemsProps } from './BoardComments.types';
 import 'antd/dist/antd.css';
 import { Modal } from 'antd';
-import { DELETE_BOARD_COMMENT } from './BoardComments.queries';
-import { route } from 'next/dist/next-server/server/router';
 import { useRouter } from 'next/router';
 export default function BoardCommentItemUI({
 	data,
 	onSaveRating,
+	refetch,
 }: IBoadrdCommentsItemsProps) {
 	const router = useRouter();
 	//! 모달 관리
@@ -81,6 +81,7 @@ export default function BoardCommentItemUI({
 	>(DELETE_BOARD_COMMENT);
 	const [deletepassword, setDeletePassword] = useState('');
 	const [deleteId, setDeleteId] = useState('');
+	const [name, setName] = useState(true);
 
 	//! 댓글 삭제 함수
 	const handleDelteId = (e: any) => {
@@ -91,26 +92,31 @@ export default function BoardCommentItemUI({
 		setDeletePassword(e.target.value);
 	};
 	const handleClickDeleteComment = async () => {
-		try {
-			const result = await deleteBoardComment({
-				variables: {
-					password: deletepassword,
-					boardCommentId: deleteId,
-				},
-				refetchQueries: [
-					{
-						query: FETCH_BOARD_COMMENTS,
-						variables: { boardId: router.query.id },
+		setName(false);
+		setTimeout(async () => {
+			try {
+				const result = await deleteBoardComment({
+					variables: {
+						password: deletepassword,
+						boardCommentId: deleteId,
 					},
-				],
-			});
-
-			setDeletePassword('');
-		} catch (error) {
-			alert(error);
-			setDeletePassword('');
-		}
+					refetchQueries: [
+						{
+							query: FETCH_BOARD_COMMENTS,
+							variables: { boardId: router.query.id },
+						},
+					],
+				});
+				refetch();
+				setDeletePassword('');
+			} catch (error) {
+				setName(true);
+				alert(error);
+				setDeletePassword('');
+			}
+		}, 1000);
 	};
+
 	//! 댓글 수정 함수
 	const commentUpdate = () => {
 		setUpdate((prev) => !prev);
@@ -232,7 +238,7 @@ export default function BoardCommentItemUI({
 						style={{
 							position: 'absolute',
 							top: '25rem',
-							left: '58rem',
+							left: '50rem',
 						}}
 					>
 						<DeletePassword
@@ -240,7 +246,7 @@ export default function BoardCommentItemUI({
 							onChange={handleDeletePassword}
 						></DeletePassword>
 					</Modal>
-					<CommentsWrapper key={data._id}>
+					<CommentsWrapper isActive={name} key={data._id}>
 						<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
 						<CommentsCenterWrapper>
 							<CommentsTopWrapper>
