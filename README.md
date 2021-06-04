@@ -13,7 +13,4 @@ GraphQL-CodeGen / antd / Material-Ui /
 Container / Presenter 
 
 ### 주요 기능 <br/>
-게시글 CRUD 
-별점
-페이지네이션
-검색 디바운싱
+게시글 CRUD / 별점 /페이지네이션 / 검색 디바운싱
