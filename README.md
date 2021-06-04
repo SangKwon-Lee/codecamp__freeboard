@@ -1,9 +1,9 @@
 자유게시판 사이드 프로젝트<br/>
 
-###사용한 Stack <br/>
+### 사용한 Stack <br/>
 TypeScript / Emotion / Next.js / Apollo & GraphQL 
 
-###사용한 Library<br/>
+### 사용한 Library<br/>
 React-Infinite-Scroller / React-daum-PostCode / React-Player / React-Slick / React-Lazy-Load
 
 ### 그 외 <br/>
