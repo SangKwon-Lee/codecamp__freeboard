@@ -30,6 +30,7 @@ import {
 	UploadImg,
 	UploadCancle,
 } from './BoardWrite.style';
+import DaumPostcode from 'react-daum-postcode';
 export default function BoardWritePage({
 	handleChangeInput,
 	handleClickCreateBoard,
@@ -40,6 +41,10 @@ export default function BoardWritePage({
 	onChangeFile,
 	UploadPhotoCancle,
 	imgArr,
+	handleComplete,
+	handlePostOpen,
+	postOpen,
+	ZipCode,
 }: IBoardWriterProps) {
 	return (
 		<Wrapper>
@@ -94,10 +99,20 @@ export default function BoardWritePage({
 								name="boardAddress"
 								onChange={handleChangeInput}
 							/>
-							<SearchButton>우편번호 검색</SearchButton>
+							<SearchButton onClick={handlePostOpen}>
+								우편번호 검색
+							</SearchButton>
+							{postOpen && (
+								<DaumPostcode
+									onComplete={handleComplete}
+									autoClose={true}
+									animation={true}
+									style={{ position: 'absolute', zIndex: 3, width: '40%' }}
+								/>
+							)}
 						</ZipcodeWrapper>
-						<Address />
-						<Address />
+						<Address value={ZipCode} />
+						<Address placeholder="상세주소" />
 					</InputWrapper>
 					<InputWrapper>
 						<Label>유튜브</Label>

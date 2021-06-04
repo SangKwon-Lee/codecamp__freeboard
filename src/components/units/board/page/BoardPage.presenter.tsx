@@ -71,11 +71,9 @@ export default function BoardPageUI({
 								<Title>{data?.fetchBoard.title}</Title>
 							</TitleWrapper>
 							<ContentWrapper>
-								{data?.fetchBoard.images.map((data) => (
+								{data?.fetchBoard.images.map((data, index) => (
 									<LazyLoad offsetVertical={40}>
-										<ContentImg
-											src={`https://storage.cloud.google.com/${data}`}
-										></ContentImg>
+										<ContentImg key={index} src={data}></ContentImg>
 									</LazyLoad>
 								))}
 								<Content>{data?.fetchBoard.contents}</Content>

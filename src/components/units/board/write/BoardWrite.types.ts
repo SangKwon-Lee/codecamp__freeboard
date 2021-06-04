@@ -10,4 +10,8 @@ export interface IBoardWriterProps {
 	fileRef: any;
 	onChangeFile: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	UploadPhotoCancle: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	handleComplete: (data: any) => void;
+	handlePostOpen: () => void;
+	postOpen: boolean;
+	ZipCode: string;
 }
