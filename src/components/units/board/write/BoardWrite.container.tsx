@@ -20,6 +20,12 @@ import {
 function BoardWritePage() {
 	const router = useRouter();
 
+	//* 우편 주소 상태
+	const [postOpen, setPostOpen] = useState(false);
+
+	//* 우편 주소 인풋
+	const [ZipCode, setZipCode] = useState('');
+
 	//* 이미지 관련 상태
 	const [imgArr, setImgArr] = useState(['0', '0', '0']);
 
@@ -200,6 +206,32 @@ function BoardWritePage() {
 		setImgArr(newArr);
 	};
 
+	//* 우편 모달 오픈함수
+	const handlePostOpen = () => {
+		setPostOpen((prev) => !prev);
+	};
+
+	//* 우편 함수
+	const handleComplete = (data) => {
+		let fullAddress = data.address;
+		let extraAddress = '';
+
+		if (data.addressType === 'R') {
+			if (data.bname !== '') {
+				extraAddress += data.bname;
+			}
+			if (data.buildingName !== '') {
+				extraAddress +=
+					extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+			}
+			fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+		}
+
+		setZipCode(fullAddress);
+		console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+		setPostOpen(false);
+	};
+
 	return (
 		<BoardUI
 			data={data}
@@ -211,6 +243,10 @@ function BoardWritePage() {
 			onChangeFile={onChangeFile}
 			UploadPhotoCancle={UploadPhotoCancle}
 			imgArr={imgArr}
+			handleComplete={handleComplete}
+			handlePostOpen={handlePostOpen}
+			postOpen={postOpen}
+			ZipCode={ZipCode}
 		></BoardUI>
 	);
 }

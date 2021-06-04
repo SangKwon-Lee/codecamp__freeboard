@@ -238,7 +238,7 @@ export default function BoardCommentItemUI({
 						style={{
 							position: 'absolute',
 							top: '25rem',
-							left: '50rem',
+							left: '40%',
 						}}
 					>
 						<DeletePassword

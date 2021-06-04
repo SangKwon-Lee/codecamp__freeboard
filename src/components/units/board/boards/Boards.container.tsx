@@ -27,8 +27,13 @@ export default function Boards() {
 
 	//* 검색어 관련 함수들
 	const hadleSearchInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		let newSearch = e.target.value;
-		setSearchBtn(newSearch);
+		let timer;
+		if (timer) {
+			clearTimeout(timer);
+		}
+		timer = setTimeout(() => {
+			console.log('asd', setSearch(e.target.value));
+		}, 1000);
 	};
 
 	const handleSearchBtn = () => {
