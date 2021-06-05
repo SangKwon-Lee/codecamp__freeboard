@@ -2,17 +2,17 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
-	margin-bottom: 20px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 20px;
 `;
 
 export const Shadow = styled.div`
 	max-width: 1200px;
 	margin-top:100px;
 	width: 100%;
-		padding-bottom: 50px;
+	padding-bottom: 50px;
 	display: flex;
 	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);
 	justify-content: center;
@@ -33,30 +33,6 @@ export const Title = styled.div`
 	font-weight: bold;
 `;
 
-export const WriterWrapper = styled.div`
-	max-width:996px;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding-top: 40px;
-`;
-
-export const Writer = styled.input`
-		max-width:486px;
-	width: 100%;
-	height: 52px;
-	padding-left: 16px;
-	border: 1px solid #bdbdbd;
-`;
-
-export const Password = styled.input`
-	max-width:486px;
-	width: 100%;
-	height: 52px;
-	padding-left: 16px;
-	border: 1px solid #bdbdbd;
-`;
 
 export const Label = styled.div`
 	padding-bottom: 16px;
@@ -70,20 +46,22 @@ export const InputWrapper = styled.div`
 `;
 
 export const Subject = styled.input`
-max-width:996px;
+		max-width:996px;
 	width: 100%;
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+	outline: none;
 `;
 
 export const Contents = styled.textarea`
-	max-width:996px;
+		max-width:996px;
 	width: 100%;
-	height: 480px;
+	height: 320px;
 	padding-left: 16px;
 	padding: 14px;
 	border: 1px solid #bdbdbd;
+		outline: none;
 `;
 
 export const ZipcodeWrapper = styled.div`
@@ -91,11 +69,14 @@ export const ZipcodeWrapper = styled.div`
 	flex-direction: row;
 `;
 
+
+
 export const Zipcode = styled.input`
 	width: 77px;
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+		outline: none;
 `;
 
 export const SearchButton = styled.button`
@@ -107,22 +88,72 @@ export const SearchButton = styled.button`
 	color: white;
 `;
 
+export const GPSAndMapWrapper = styled.div`
+margin-top:40px;
+	max-width:996px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+`
+export const MapWrapper = styled.div`
+	max-width:384px;
+	width:384px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`
+export const MapImg = styled.img``
+
+export const GPSWrapper = styled.div`
+	max-width: 588px;
+	height: 92px;
+	width:100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`
+export const GPSImg = styled.img`
+	width: 30px;
+	height: 30px;
+`
+export const LATLNGWrapper = styled.div`
+	max-width:272px;
+	width:100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	`
+export const LAT = styled.input`
+	outline: none;
+	height: 52px;
+	border: 1px solid #bdbdbd;
+	max-width:108px;
+	width:100%;
+	padding-left:20px;
+	outline: none;
+`
+
+export const AddressWrapper = styled.div`
+	max-width:588px;
+
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 160px;
+	margin-top:40px;
+`
+
 export const Address = styled.input`
-		max-width:996px;
+	max-width:588px;
 	width: 100%;
 	height: 52px;
 	margin-top: 16px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+		outline: none;
 `;
 
-export const Youtube = styled.input`
-		max-width:996px;
-	width: 100%;
-	height: 52px;
-	padding-left: 16px;
-	border: 1px solid #bdbdbd;
-`;
 
 export const ImageWrapper = styled.div`
 		max-width:996px;
@@ -139,21 +170,21 @@ margin: -1px;
 overflow: hidden;
 clip:rect(0,0,0,0);
 border: 0;
-
+	outline: none;
 `;
 export const UploadLabel = styled.label`
 display: inline-block;
-width:78px;
-height: 78px;
+width:180px;
+height: 180px;
 background-color: #999999;
 text-align: center;
 font-size: 14px;
 color:#4F4F4F;
-padding-top: 16px;
+padding-top: 35%;
 cursor: pointer;
 `
 export const UploadBtnWrapper = styled.div`
-width: 282px;
+width: 384px;
 display: flex;
 justify-content: space-between;
 `
@@ -165,6 +196,7 @@ export const OptionWrapper = styled.div`
 
 export const RadioButton = styled.input`
 	cursor: pointer;
+		outline: none;
 `;
 
 export const RadioLabel = styled.label`
@@ -207,8 +239,8 @@ export const SubmitButton = styled.button`
 
 export const UploadImg = styled.img`
 object-fit: cover;
-width: 78px;
-height: 78px;
+width: 180px;
+height: 180px;
 `
 
 

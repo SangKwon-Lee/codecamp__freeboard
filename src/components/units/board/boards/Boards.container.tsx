@@ -119,7 +119,7 @@ export default function Boards() {
 		if (pageArr[pageArr.length - 1] === last) {
 			let newArr = pageArr.map((data) => data - WhenLastPage);
 			setPageArr(newArr);
-			setCurrentPage(newArr[newArr.length - 1]);
+			setCurrentPage(newArr[0]);
 			return;
 		}
 		//* 1~10 페이지에서 현재 페이지가 10인 경우에서
@@ -128,17 +128,18 @@ export default function Boards() {
 			setCurrentPage(1);
 			return;
 		}
+
 		//* 여기는 평범하게.
 		let newArr = pageArr.map((data) => data - 10);
 
 		if (newArr[0] < 1) {
 			newArr = newArr.map((data) => data + Math.abs(1 - newArr[0]));
 			setPageArr(newArr);
-			setCurrentPage(newArr[newArr.length - 1]);
+			setCurrentPage(newArr[0]);
 		}
 
 		setPageArr(newArr);
-		setCurrentPage(newArr[newArr.length - 1]);
+		setCurrentPage(newArr[0]);
 	};
 
 	//* 리스트에 있는 게시글로 이동
