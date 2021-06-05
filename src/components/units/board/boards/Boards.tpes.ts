@@ -9,7 +9,7 @@ export interface IBoardsProps {
 	currentPage: number;
 	RightArrowPage: () => void;
 	LeftArrowPage: () => void;
-	pageArr: any
+	pageArr: any;
 	hadleSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	handleSearchBtn: () => void;
 }

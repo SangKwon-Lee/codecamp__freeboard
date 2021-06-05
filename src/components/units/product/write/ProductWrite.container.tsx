@@ -1,23 +1,24 @@
-import BoardUI from './BoardWrite.presenter';
+import ProductUI from './ProductWrite.presenter';
 import { useMutation, useQuery } from '@apollo/client';
 import { useEffect, useRef, useState } from 'react';
 import {
-	CREATE_BOARD,
-	FETCH_BOARD,
-	UPDATE_BOARD,
+	FETCH_USED_ITEM,
+	UPDATE_USED_ITEM,
 	UPLOAD_FILE,
-} from './BoardWrite.queries';
+	CREATE_USED_ITEM,
+} from './ProductWrite.queries';
 import { useRouter } from 'next/router';
 import {
 	Mutation,
-	MutationCreateBoardArgs,
 	MutationUpdateBoardArgs,
 	Query,
-	QueryFetchBoardArgs,
 	MutationUploadFileArgs,
+	MutationCreateUseditemArgs,
+	QueryFetchUseditemArgs,
+	MutationUpdateUseditemArgs,
 } from '../../../../commons/types/generated/types';
 
-function BoardWritePage() {
+function ProductWritePage() {
 	const router = useRouter();
 
 	//* 우편 주소 상태
@@ -27,7 +28,7 @@ function BoardWritePage() {
 	const [ZipCode, setZipCode] = useState('');
 
 	//* 이미지 관련 상태
-	const [imgArr, setImgArr] = useState(['0', '0', '0']);
+	const [imgArr, setImgArr] = useState(['0', '0']);
 
 	//*이미지 Ref
 	const fileRef = useRef<HTMLInputElement>(null);
@@ -37,27 +38,27 @@ function BoardWritePage() {
 
 	//* 인풋 데이터
 	const [input, setInput] = useState({
-		writer: '',
-		password: '',
-		title: '',
+		name: '',
+		remarks: '',
 		contents: '',
-		youtubeUrl: '',
-		images: [],
+		price: 0,
+		tags: [],
 	});
 
 	//* 등록 / 수정
-	const [createBoard] = useMutation<Mutation, MutationCreateBoardArgs>(
-		CREATE_BOARD,
+	const [createUseditem] = useMutation<Mutation, MutationCreateUseditemArgs>(
+		CREATE_USED_ITEM,
 	);
 
-	const [updateBoard] = useMutation<Mutation, MutationUpdateBoardArgs>(
-		UPDATE_BOARD,
+	const [updateUsedItem] = useMutation<Mutation, MutationUpdateUseditemArgs>(
+		UPDATE_USED_ITEM,
 	);
 
-	const { data } = useQuery<Query, QueryFetchBoardArgs>(FETCH_BOARD, {
-		variables: { boardId: String(router.query.id) },
+	const { data } = useQuery<Query, QueryFetchUseditemArgs>(FETCH_USED_ITEM, {
+		variables: { useditemId: String(router.query.id) },
 	});
 
+	console.log(data);
 	//* 이미지 등록
 	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
 		UPLOAD_FILE,
@@ -66,12 +67,11 @@ function BoardWritePage() {
 	//* 수정시 데이터 살리기
 	useEffect(() => {
 		setInput({
-			writer: data?.fetchBoard.writer,
-			password: '',
-			title: data?.fetchBoard.title,
-			contents: data?.fetchBoard.contents,
-			youtubeUrl: data?.fetchBoard.youtubeUrl,
-			images: data?.fetchBoard.images,
+			name: data?.fetchUseditem.name,
+			remarks: data?.fetchUseditem.remarks,
+			contents: data?.fetchUseditem.contents,
+			price: data?.fetchUseditem.price,
+			tags: [data?.fetchUseditem.tags.join().replaceAll(',', ' ')],
 		});
 	}, [data]);
 
@@ -81,32 +81,49 @@ function BoardWritePage() {
 			...input,
 			[event.target.name]: event.target.value,
 		};
+		const newInputData = {
+			...newInput,
+			price: Number(newInput.price),
+			tags: [newInput.tags],
+		};
 
-		setInput(newInput);
+		setInput(newInputData);
 		if (
-			newInput.writer &&
-			newInput.password &&
-			newInput.title &&
-			newInput.contents
+			newInput.name &&
+			newInput.remarks &&
+			newInput.contents &&
+			newInput.price &&
+			newInput.tags
 		) {
 			setIsTrue(false);
 		} else {
 			setIsTrue(true);
 		}
+		console.log(newInputData);
 	};
 
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
+		let newTags = input.tags;
+		newTags = newTags[0]
+			.split('#')
+			.filter((data) => data !== '')
+			.map((data) => '#' + data.trim());
+
 		try {
-			const result = await createBoard({
+			const result = await createUseditem({
 				variables: {
-					createBoardInput: {
-						...input,
+					createUseditemInput: {
+						name: input.name,
+						remarks: input.remarks,
+						contents: input.contents,
+						price: input.price,
+						tags: newTags,
 					},
 				},
 			});
 			alert('게시글 등록 성공');
-			router.push(`/board/${result.data?.createBoard._id}`);
+			router.push(`/product/${result.data?.createUseditem._id}`);
 		} catch (error) {
 			alert(error);
 		}
@@ -114,22 +131,27 @@ function BoardWritePage() {
 
 	//* 수정함수
 	const handleClickUpdateBoard = async () => {
+		let newTags = input.tags;
+		newTags = newTags[0]
+			.split('#')
+			.filter((data) => data !== '')
+			.map((data) => '#' + data.trim());
+
 		try {
-			const result = await updateBoard({
+			const result = await updateUsedItem({
 				variables: {
-					updateBoardInput: {
-						title: input.title,
+					updateUseditemInput: {
+						name: input.name,
+						remarks: input.remarks,
 						contents: input.contents,
-						youtubeUrl: input.youtubeUrl,
-						images: input.images,
+						price: input.price,
+						tags: newTags,
 					},
-					password: input.password,
-					boardId: String(router.query.id),
+					useditemId: String(router.query.id),
 				},
 			});
-
 			alert('게시글 수정 성공');
-			router.push(`/board/${result.data?.updateBoard._id}`);
+			router.push(`/product/${result.data?.updateUseditem._id}`);
 		} catch (error) {
 			alert(error.message);
 		}
@@ -182,12 +204,12 @@ function BoardWritePage() {
 
 		setImgArr(newArr);
 
-		let newInputImg = [...newArr];
-		newInputImg = newInputImg.filter((data) => data !== '0');
-		setInput({
-			...input,
-			images: newInputImg,
-		});
+		// let newInputImg = [...newArr];
+		// newInputImg = newInputImg.filter((data) => data !== '0');
+		// setInput({
+		// 	...input,
+		// 	images: newInputImg,
+		// });
 	};
 
 	//* 이미지 삭제 함수
@@ -206,37 +228,12 @@ function BoardWritePage() {
 		setImgArr(newArr);
 	};
 
-	//* 우편 모달 오픈함수
-	const handlePostOpen = () => {
-		setPostOpen((prev) => !prev);
-	};
 	const handleZipCodeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setZipCode(e.target.value);
 	};
 
-	//* 우편 함수
-	const handleComplete = (data) => {
-		let fullAddress = data.address;
-		let extraAddress = '';
-
-		if (data.addressType === 'R') {
-			if (data.bname !== '') {
-				extraAddress += data.bname;
-			}
-			if (data.buildingName !== '') {
-				extraAddress +=
-					extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-			}
-			fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-		}
-
-		setZipCode(fullAddress);
-		console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-		setPostOpen(false);
-	};
-
 	return (
-		<BoardUI
+		<ProductUI
 			data={data}
 			handleChangeInput={handleChangeInput}
 			handleClickCreateBoard={handleClickCreateBoard}
@@ -246,13 +243,11 @@ function BoardWritePage() {
 			onChangeFile={onChangeFile}
 			UploadPhotoCancle={UploadPhotoCancle}
 			imgArr={imgArr}
-			handleComplete={handleComplete}
-			handlePostOpen={handlePostOpen}
 			postOpen={postOpen}
 			ZipCode={ZipCode}
 			handleZipCodeInput={handleZipCodeInput}
-		></BoardUI>
+		></ProductUI>
 	);
 }
 
-export default BoardWritePage;
+export default ProductWritePage;
