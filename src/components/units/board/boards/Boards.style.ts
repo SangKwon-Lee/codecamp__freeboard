@@ -23,7 +23,7 @@ export const Table = styled.div`
 	width: 100%;
 	margin-top: 40px;
 	border-top: 1px solid rgba(0,0,0,0.5);
-	border-bottom: 1px solid rgba(0,0,0,0.5);
+
 `;
 export const RowWrapper = styled.div`
 	display: flex;
@@ -58,6 +58,7 @@ export const TableWrapper = styled.div`
 	justify-content: space-between;
 	height: 52px;
 `;
+
 export const RowTitle = styled.div`
 	font-size: 18px;
 	font-weight: 500;
@@ -65,13 +66,13 @@ export const RowTitle = styled.div`
 `;
 
 export const NumberWrapper = styled.div`
-	width: 34px;
+	flex:0.3;
 	display: flex;
 	justify-content: center;
 `;
 
 export const TitleWrapper = styled.div`
-	width: 700px;
+	flex: 6;
 	display: flex;
 	justify-content: center;
 `;
@@ -85,13 +86,14 @@ export const Title = styled.div`
 `;
 
 export const WriterWrapper = styled.div`
-	width: 200px;
+	flex: 1;
 	display: flex;
+	
 	justify-content: center;
 `;
 
 export const DateWrapper = styled.div`
-	width: 100px;
+	flex: 1;
 	display: flex;
 	justify-content: center;
 `;

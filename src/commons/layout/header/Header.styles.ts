@@ -71,9 +71,46 @@ export const HeaderRightLoginWrapper = styled.button`
   cursor: pointer;
   outline:none;
 `
-export const HeaderProfile = styled.img`
+
+export const LoginOKWrapper = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width:190px;
+height: 76px;
+`
+
+export const LoginTopWrapper = styled.div`
+  display: flex;
+  width:100%;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export const LoginBottomWrapper = styled.div`
+  display: flex;
 
 `
-export const HeaderarrowDown = styled.img`
+export const LoginSapn = styled.span`
+  font-size:16px;
+  font-weight: 400;
+  color:grey;
+`
+export const LoginImg = styled.img`
+  width:20px;
+  height: 20px;
+`
 
+export const LoginText = styled.div`
+  font-size:16px;
+  font-weight: 700;
+`
+
+export const LogoutBtn = styled.button`
+  width:77px;
+  height: 34px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  border:1px solid rgba(0,0,0,0.3)
 `

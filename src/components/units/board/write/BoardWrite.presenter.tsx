@@ -135,6 +135,7 @@ export default function BoardWritePage({
 										</UploadLabel>
 										<UploadButton
 											ref={fileRef}
+											multiple
 											type="file"
 											id={String(index)}
 											onChange={onChangeFile}
