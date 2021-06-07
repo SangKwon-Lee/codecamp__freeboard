@@ -8,10 +8,21 @@ import '../styles/globals.css';
 import Layout from '../src/commons/layout/index';
 import GlobalStyles from '../src/commons/styles/globalStyles';
 import { createUploadLink } from 'apollo-upload-client';
+import { createContext, useState } from 'react';
+
+export const GlobalContext = createContext({
+	accessToken: '',
+	setAccessToken: (__: string) => {},
+});
 
 function MyApp({ Component, pageProps }) {
+	const [accessToken, setAccessToken] = useState('');
+
 	const uploadLink = createUploadLink({
 		uri: 'http://backend.codebootcamp.co.kr/graphql',
+		headers: {
+			authorization: `Bearer ${accessToken}`,
+		},
 	});
 
 	const clinet = new ApolloClient({
@@ -19,13 +30,20 @@ function MyApp({ Component, pageProps }) {
 		cache: new InMemoryCache(),
 	});
 
+	const value = {
+		accessToken,
+		setAccessToken,
+	};
+
 	return (
-		<ApolloProvider client={clinet}>
-			<Layout>
-				<GlobalStyles />
-				<Component {...pageProps} />
-			</Layout>
-		</ApolloProvider>
+		<GlobalContext.Provider value={value}>
+			<ApolloProvider client={clinet}>
+				<Layout>
+					<GlobalStyles />
+					<Component {...pageProps} />
+				</Layout>
+			</ApolloProvider>
+		</GlobalContext.Provider>
 	);
 }
 

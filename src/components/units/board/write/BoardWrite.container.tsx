@@ -137,43 +137,44 @@ function BoardWritePage() {
 
 	//* 이미지 등록 함수
 	const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files[0];
+		const fileArr = e.target.files;
+		let fileName;
 
-		if (file.size > 5 * 1024 * 1024) {
-			alert('파일이 크다');
-			return;
+		for (let i = 0; i < fileArr.length; i++) {
+			if (fileArr[i].size > 5 * 1024 * 1024) {
+				alert('파일이 크다');
+				return;
+			}
+			if (!fileArr[i].type.includes('png')) {
+				alert('png 파일만 업로드 가능합니다!');
+				return;
+			}
+			fileName = fileArr[i];
+			let reader = new FileReader();
+			reader.onload = () => {
+				console.log(reader.result);
+			};
+			reader.readAsDataURL(fileName);
 		}
 
-		if (!file.type.includes('png')) {
-			alert('png 파일만 업로드 가능합니다!');
-			return;
-		}
-
-		//* URL 뽑아주는 곳
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = (e) => {
-			console.log(e.target.result);
-		};
-
-		const { data } = await uploadFileMutation({
-			variables: { file: file },
-		});
-		const ImageData = data?.uploadFile.url;
+		const res = await Promise.all([
+			uploadFileMutation({ variables: { file: fileArr[0] } }),
+			uploadFileMutation({ variables: { file: fileArr[1] } }),
+			uploadFileMutation({ variables: { file: fileArr[2] } }),
+		]);
 
 		let newArr = [...imgArr];
-		newArr[Number(e.target.id)] = ImageData;
-
+		for (let i = 0; i < 3; i++) {
+			newArr[i] = res[i].data.uploadFile.url;
+		}
 		for (let i = 0; i <= newArr.length; i++) {
 			if (newArr[newArr.length - 1] === '0') {
 				continue;
 			}
-
 			if (newArr[i] === '0' && newArr[i + 1] === '0') {
 				newArr[i] = newArr[i + 2];
 				newArr[i + 2] = '0';
 			}
-
 			if (newArr[i] === '0') {
 				newArr[i] = newArr[i + 1];
 				newArr[i + 1] = '0';
@@ -181,7 +182,6 @@ function BoardWritePage() {
 		}
 
 		setImgArr(newArr);
-
 		let newInputImg = [...newArr];
 		newInputImg = newInputImg.filter((data) => data !== '0');
 		setInput({

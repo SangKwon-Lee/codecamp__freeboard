@@ -1,20 +1,27 @@
-import styled from '@emotion/styled';
 import HeaderContainer from './header/Header.container';
 import Slide from './slide/Slide.container';
 import Menu from './menu/Menu.container';
-import Search from '../search/Search.container';
+import { useRouter } from 'next/router';
 
 interface ILayout {
 	children: React.ReactNode;
 }
 
-const Layout = ({ children }: ILayout) => (
-	<div>
-		<HeaderContainer />
-		<Slide></Slide>
-		<Menu></Menu>
-		<div>{children}</div>
-	</div>
-);
+export default function Layout({ children }: ILayout) {
+	const router = useRouter();
+	const pathName =
+		router.pathname !== '/signup' && router.pathname !== '/login';
 
-export default Layout;
+	return (
+		<div>
+			{pathName && (
+				<>
+					<HeaderContainer />
+					<Slide></Slide>
+					<Menu></Menu>
+				</>
+			)}
+			<div>{children}</div>
+		</div>
+	);
+}

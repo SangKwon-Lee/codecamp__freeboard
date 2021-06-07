@@ -15,7 +15,6 @@ export default function ProductDetailPage() {
 		variables: { useditemId: String(router.query.id) },
 	});
 
-	console.log(data);
 	//* 페이지 이동
 	const handleUpdate = () => {
 		router.push(`/product/${router.query.id}/edit`);

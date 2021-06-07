@@ -129,6 +129,8 @@ export type Mutation = {
   deleteUseditemQuestionAnswer: Scalars['String'];
   updateUseditemQuestionAnswer: UseditemQuestionAnswer;
   createUser: User;
+  loginUser: Token;
+  loginUserExample: Token;
   resetUserPassword: Scalars['Boolean'];
   updateUser: Scalars['Boolean'];
 };
@@ -254,6 +256,18 @@ export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
 };
 
+
+export type MutationLoginUserArgs = {
+  password: Scalars['String'];
+  email: Scalars['String'];
+};
+
+
+export type MutationLoginUserExampleArgs = {
+  password: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type PointTransaction = {
   __typename?: 'PointTransaction';
   _id: Scalars['ID'];
@@ -333,6 +347,11 @@ export type QueryFetchUseditemQuestionsArgs = {
 
 export type QueryFetchUseditemQuestionAnswersArgs = {
   useditemQuestionId: Scalars['ID'];
+};
+
+export type Token = {
+  __typename?: 'Token';
+  accessToken: Scalars['String'];
 };
 
 export type UpdateBoardCommentInput = {
