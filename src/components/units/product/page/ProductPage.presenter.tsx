@@ -1,4 +1,3 @@
-import ReactPlayer from 'react-player';
 import LazyLoad from 'react-lazy-load';
 import {
 	Wrapper,

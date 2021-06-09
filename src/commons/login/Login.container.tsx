@@ -4,10 +4,10 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../../pages/_app';
 import { Mutation } from '../types/generated/types';
 import LoginUI from './Login.presenter';
-import { LOGIN_USER_EXAMPLE } from './Login.queries';
+import { LOGIN_USER } from './Login.queries';
 export default function LoginPage() {
 	const router = useRouter();
-	const [loginUserExample] = useMutation<Mutation>(LOGIN_USER_EXAMPLE);
+	const [loginUser] = useMutation<Mutation>(LOGIN_USER);
 	const { setAccessToken } = useContext(GlobalContext);
 	const [handleEmail, sethandleEmail] = useState(false);
 	const [handlePassword, sethandlePassword] = useState(false);
@@ -35,18 +35,27 @@ export default function LoginPage() {
 
 	const loginBtn = async () => {
 		try {
-			const { data } = await loginUserExample({
+			const { data } = await loginUser({
 				variables: {
 					...loginData,
 				},
 			});
-			setAccessToken(data?.loginUserExample.accessToken);
+			setAccessToken(data?.loginUser.accessToken);
 			router.push('/boards');
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	const handleMoveSignUp = () => {
+		router.push(`/signup`);
+	};
+
+	const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			loginBtn();
+		}
+	};
 	return (
 		<LoginUI
 			handleEmail={handleEmail}
@@ -54,6 +63,8 @@ export default function LoginPage() {
 			handleLoginData={handleLoginData}
 			loginBtn={loginBtn}
 			handleLoginBtn={handleLoginBtn}
+			handleMoveSignUp={handleMoveSignUp}
+			onKeyPress={onKeyPress}
 		/>
 	);
 }

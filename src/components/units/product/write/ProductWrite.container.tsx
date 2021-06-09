@@ -10,17 +10,16 @@ import {
 import { useRouter } from 'next/router';
 import {
 	Mutation,
-	MutationUpdateBoardArgs,
 	Query,
 	MutationUploadFileArgs,
 	MutationCreateUseditemArgs,
 	QueryFetchUseditemArgs,
 	MutationUpdateUseditemArgs,
 } from '../../../../commons/types/generated/types';
-
+import withAuth from '../../../commons/hocs/withAuth';
 function ProductWritePage() {
 	const router = useRouter();
-
+	console.log("컴포넌트 진짜로 실행될 때")
 	//* 우편 주소 상태
 	const [postOpen, setPostOpen] = useState(false);
 
@@ -58,7 +57,6 @@ function ProductWritePage() {
 		variables: { useditemId: String(router.query.id) },
 	});
 
-	console.log(data);
 	//* 이미지 등록
 	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
 		UPLOAD_FILE,
@@ -67,11 +65,11 @@ function ProductWritePage() {
 	//* 수정시 데이터 살리기
 	useEffect(() => {
 		setInput({
-			name: data?.fetchUseditem.name,
-			remarks: data?.fetchUseditem.remarks,
-			contents: data?.fetchUseditem.contents,
-			price: data?.fetchUseditem.price,
-			tags: [data?.fetchUseditem.tags.join().replaceAll(',', ' ')],
+			name: data?.fetchUseditem.name || '',
+			remarks: data?.fetchUseditem.remarks || '',
+			contents: data?.fetchUseditem.contents || '',
+			price: data?.fetchUseditem.price || 0,
+			tags: data?.fetchUseditem.tags,
 		});
 	}, [data]);
 
@@ -81,13 +79,8 @@ function ProductWritePage() {
 			...input,
 			[event.target.name]: event.target.value,
 		};
-		const newInputData = {
-			...newInput,
-			price: Number(newInput.price),
-			tags: [newInput.tags],
-		};
 
-		setInput(newInputData);
+		setInput(newInput);
 		if (
 			newInput.name &&
 			newInput.remarks &&
@@ -99,16 +92,22 @@ function ProductWritePage() {
 		} else {
 			setIsTrue(true);
 		}
-		console.log(newInputData);
+		console.log(newInput);
 	};
 
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
-		let newTags = input.tags;
-		newTags = newTags[0]
+		//* Tags의 배열 데이터 변환
+		let newTags;
+		if (typeof input.tags === 'object') {
+			newTags = input.tags[0];
+		} else {
+			newTags = input.tags;
+		}
+		newTags
 			.split('#')
 			.filter((data) => data !== '')
-			.map((data) => '#' + data.trim());
+			.map((data) => '#' + data);
 
 		try {
 			const result = await createUseditem({
@@ -117,7 +116,7 @@ function ProductWritePage() {
 						name: input.name,
 						remarks: input.remarks,
 						contents: input.contents,
-						price: input.price,
+						price: Number(input.price),
 						tags: newTags,
 					},
 				},
@@ -131,11 +130,17 @@ function ProductWritePage() {
 
 	//* 수정함수
 	const handleClickUpdateBoard = async () => {
-		let newTags = input.tags;
-		newTags = newTags[0]
+		//* Tags의 배열 데이터 변환
+		let newTags;
+		if (typeof input.tags === 'object') {
+			newTags = input.tags[0];
+		} else {
+			newTags = input.tags;
+		}
+		newTags
 			.split('#')
 			.filter((data) => data !== '')
-			.map((data) => '#' + data.trim());
+			.map((data) => '#' + data);
 
 		try {
 			const result = await updateUsedItem({
@@ -144,7 +149,7 @@ function ProductWritePage() {
 						name: input.name,
 						remarks: input.remarks,
 						contents: input.contents,
-						price: input.price,
+						price: Number(input.price),
 						tags: newTags,
 					},
 					useditemId: String(router.query.id),
@@ -201,15 +206,7 @@ function ProductWritePage() {
 				newArr[i + 1] = '0';
 			}
 		}
-
 		setImgArr(newArr);
-
-		// let newInputImg = [...newArr];
-		// newInputImg = newInputImg.filter((data) => data !== '0');
-		// setInput({
-		// 	...input,
-		// 	images: newInputImg,
-		// });
 	};
 
 	//* 이미지 삭제 함수
@@ -228,6 +225,7 @@ function ProductWritePage() {
 		setImgArr(newArr);
 	};
 
+	//* 주소 추가
 	const handleZipCodeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setZipCode(e.target.value);
 	};
@@ -250,4 +248,4 @@ function ProductWritePage() {
 	);
 }
 
-export default ProductWritePage;
+export default withAuth(ProductWritePage);

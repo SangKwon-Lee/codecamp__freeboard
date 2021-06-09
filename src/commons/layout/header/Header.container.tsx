@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import HeaderUI from './Header.presenter';
 import { GlobalContext } from '../../../../pages/_app';
+import HeaderUI from './Header.presenter';
 import { useRouter } from 'next/router';
 
 const HeaderContainer = () => {
 	const { accessToken } = useContext(GlobalContext);
-	console.log(accessToken);
 
 	const router = useRouter();
 

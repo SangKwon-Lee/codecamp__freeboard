@@ -16,6 +16,7 @@ export default function SignUpPage() {
 		CREATE_USER,
 	);
 	const [signUpIsTrue, setSignUpIstrue] = useState(true);
+	const [signUpOK, setSignUpOk] = useState(false);
 
 	const handleSignUpDate = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let newData = {
@@ -37,6 +38,11 @@ export default function SignUpPage() {
 	};
 
 	const signUpBtn = async () => {
+		if (SignUpData.password !== SignUpData.passwordCheck) {
+			alert('비밀번호가 서로 일치하지 않습니다.');
+			return;
+		}
+
 		try {
 			const result = await createUser({
 				variables: {
@@ -47,7 +53,8 @@ export default function SignUpPage() {
 					},
 				},
 			});
-			router.push(`/login`);
+			setSignUpOk(true);
+			console.log(signUpOK, 'asdasd');
 		} catch (error) {
 			console.log(error);
 		}
@@ -58,6 +65,7 @@ export default function SignUpPage() {
 			handleSignUpDate={handleSignUpDate}
 			signUpBtn={signUpBtn}
 			signUpIsTrue={signUpIsTrue}
+			signUpOK={signUpOK}
 		/>
 	);
 }

@@ -3,5 +3,7 @@ export interface LoginProps {
   loginBtn: () => void;
   handleLoginBtn: boolean;
   handleEmail: boolean;
-	handlePassword: boolean;
+  handlePassword: boolean;
+  handleMoveSignUp: () => void;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
