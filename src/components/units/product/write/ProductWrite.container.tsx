@@ -19,7 +19,6 @@ import {
 import withAuth from '../../../commons/hocs/withAuth';
 function ProductWritePage() {
 	const router = useRouter();
-	console.log("컴포넌트 진짜로 실행될 때")
 	//* 우편 주소 상태
 	const [postOpen, setPostOpen] = useState(false);
 

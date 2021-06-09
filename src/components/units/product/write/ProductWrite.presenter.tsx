@@ -52,7 +52,7 @@ function ProductWritePageUI({
 		<Wrapper>
 			<Shadow>
 				<Body>
-					<Title>상품 등록</Title>
+					{data ? <Title>상품 수정</Title> : <Title>상품 등록</Title>}
 					<InputWrapper>
 						<Label>상품명</Label>
 						<Subject
@@ -85,7 +85,7 @@ function ProductWritePageUI({
 					<InputWrapper>
 						<Label>판매 가격</Label>
 						<Subject
-							type="text"
+							type="number"
 							placeholder="판매 가격을 입력해주세요."
 							name="price"
 							defaultValue={data?.fetchUseditem.price}

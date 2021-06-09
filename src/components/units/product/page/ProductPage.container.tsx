@@ -6,7 +6,7 @@ import {
 	Query,
 	QueryFetchUseditemArgs,
 } from '../../../../commons/types/generated/types';
-
+import ProductComments from '../comments/ProductComments.container';
 export default function ProductDetailPage() {
 	const router = useRouter();
 
@@ -31,6 +31,7 @@ export default function ProductDetailPage() {
 				handleUpdate={handleUpdate}
 				handleMoveBoards={handleMoveBoards}
 			></ProductDetailPageUI>
+			<ProductComments></ProductComments>
 		</>
 	);
 }

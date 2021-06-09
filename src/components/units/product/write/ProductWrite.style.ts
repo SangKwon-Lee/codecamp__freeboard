@@ -46,12 +46,18 @@ export const InputWrapper = styled.div`
 `;
 
 export const Subject = styled.input`
-		max-width:996px;
+	max-width:996px;
 	width: 100%;
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
 	outline: none;
+	appearance: none;
+
+	::-webkit-outer-spin-button,
+	::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+	}
 `;
 
 export const Contents = styled.textarea`
