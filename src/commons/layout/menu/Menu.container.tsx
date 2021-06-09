@@ -7,5 +7,14 @@ export default function Menu() {
 	const handleMoveBoards = () => {
 		router.push(`/boards`);
 	};
-	return <MenuUI handleMoveBoards={handleMoveBoards}></MenuUI>;
+
+	const handleMoveUsedItem = () => {
+		router.push(`/product`);
+	};
+	return (
+		<MenuUI
+			handleMoveBoards={handleMoveBoards}
+			handleMoveUsedItem={handleMoveUsedItem}
+		></MenuUI>
+	);
 }

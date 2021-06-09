@@ -9,16 +9,19 @@ import {
 	SignUpTitle,
 	SignUpLabel,
 } from './signUp.styles';
-
+import SignUpModal from '../signupModal/signupModal.container';
 export default function SignUpUI({
 	handleSignUpDate,
 	signUpBtn,
 	signUpIsTrue,
+	signUpOK,
 }) {
+	console.log(signUpOK);
 	return (
 		<>
 			<LoginBG src="/BG.png"></LoginBG>
 			<LoginShadow></LoginShadow>
+			{signUpOK && <SignUpModal></SignUpModal>}
 			<LoginWrapper>
 				<LoginInputWrapper>
 					<SignUpTitle>회원가입</SignUpTitle>

@@ -42,13 +42,14 @@ export default function Boards() {
 
 	useEffect(() => {
 		if (count?.fetchBoardsCount / 10 <= 10) {
-			let newArr = [];
-			for (let i = 1; i <= Math.floor(count.fetchBoardsCount / 10) + 1; i++) {
-				newArr.push(i);
-			}
+			let newArr = new Array(10)
+				.fill(1)
+				.map((data, index) => data + index)
+				.filter((data) => data <= count.fetchBoardsCount / 10 + 1);
 			setPageArr(newArr);
 			setCurrentPage(1);
 		} else {
+			setCurrentPage(1);
 			setPageArr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 		}
 	}, [count]);

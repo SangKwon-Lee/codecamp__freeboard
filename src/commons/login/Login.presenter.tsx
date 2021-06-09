@@ -23,6 +23,8 @@ export default function LoginUI({
 	handleLoginBtn,
 	handleEmail,
 	handlePassword,
+	handleMoveSignUp,
+	onKeyPress,
 }: LoginProps) {
 	return (
 		<>
@@ -47,6 +49,7 @@ export default function LoginUI({
 							type="password"
 							onChange={handleLoginData}
 							placeholder="비밀번호를 입력해주세요."
+							onKeyPress={onKeyPress}
 						></LoginInput>
 						{handlePassword && (
 							<LoginErrorMessage>비밀번호는 필수 입력입니다.</LoginErrorMessage>
@@ -67,7 +70,7 @@ export default function LoginUI({
 						<LoginVrLine></LoginVrLine>
 						<LoginOption>비밀번호 찾기</LoginOption>
 						<LoginVrLine></LoginVrLine>
-						<LoginOption>회원가입</LoginOption>
+						<LoginOption onClick={handleMoveSignUp}>회원가입</LoginOption>
 					</LoginOptionWrapper>
 				</LoginInputWrapper>
 			</LoginWrapper>

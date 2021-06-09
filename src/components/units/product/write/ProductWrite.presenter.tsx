@@ -34,7 +34,7 @@ import {
 	GPSImg,
 	AddressWrapper,
 } from './ProductWrite.style';
-export default function ProductWritePageUI({
+function ProductWritePageUI({
 	handleChangeInput,
 	handleClickCreateBoard,
 	isTrue,
@@ -181,3 +181,5 @@ export default function ProductWritePageUI({
 		</Wrapper>
 	);
 }
+
+export default ProductWritePageUI;
