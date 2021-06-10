@@ -29,6 +29,10 @@ import {
 	Tags,
 	TagsWrapper,
 	MapImg,
+	HeartWrapper,
+	Heart,
+	HeartCount,
+	HeartAndTitle,
 } from './ProductPage.style';
 
 import { IBoardPagePros } from './ProductPage.types';
@@ -62,17 +66,21 @@ export default function ProductDetailPageUI({
 					<DivideLine></DivideLine>
 					<ContentsWrapper>
 						<ContentTop>
-							<TitleWrapper>
-								<Title>{data?.fetchUseditem.name}</Title>
-								<Remarks>{data?.fetchUseditem.remarks}</Remarks>
-								<Price>{data?.fetchUseditem.price} 원</Price>
-							</TitleWrapper>
+							<HeartAndTitle>
+								<TitleWrapper>
+									<Title>{data?.fetchUseditem.name}</Title>
+									<Remarks>{data?.fetchUseditem.remarks}</Remarks>
+								</TitleWrapper>
+								<HeartWrapper>
+									<Heart src="/heart.png"></Heart>
+									<HeartCount>20</HeartCount>
+								</HeartWrapper>
+							</HeartAndTitle>
+							<Price>{data?.fetchUseditem.price} 원</Price>
 							<ContentWrapper>
 								<Content>{data?.fetchUseditem.contents}</Content>
 								<TagsWrapper>
-									{data?.fetchUseditem.tags.map((data, index) => (
-										<Tags key={index}> {data}</Tags>
-									))}
+									<Tags>{data?.fetchUseditem.tags}</Tags>
 								</TagsWrapper>
 								<DivideLine></DivideLine>
 								<MapImg src="/map.png"></MapImg>
