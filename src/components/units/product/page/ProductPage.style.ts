@@ -184,7 +184,6 @@ width:100%;
 `
 
 export const ContentBottom = styled.div`
-
 `
 
 export const ContentImg = styled.img`
@@ -198,4 +197,25 @@ export const MapImg = styled.img`
 	width:100%;
 	height: 360px;
 
+`
+
+export const HeartWrapper = styled.div`
+	display: flex;
+	height: 63px;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	
+`
+
+export const Heart = styled.img``
+
+export const HeartCount = styled.div``
+
+export const HeartAndTitle = styled.div`
+	max-width: 996px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 `

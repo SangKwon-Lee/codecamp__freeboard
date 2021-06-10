@@ -1,6 +1,6 @@
 import ProductDetailPageUI from './ProductPage.presenter';
 import { useQuery } from '@apollo/client';
-import { FETCH_USED_ITEM } from './ProductPage.queries';
+import { FETCH_USED_ITEM, TOGGLES_USED_ITEM_PICK } from './ProductPage.queries';
 import { useRouter } from 'next/router';
 import {
 	Query,

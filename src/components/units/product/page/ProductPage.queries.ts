@@ -12,4 +12,10 @@ export const FETCH_USED_ITEM = gql`
 			updatedAt
 		}
 	}
-`;
+`
+export const TOGGLES_USED_ITEM_PICK = gql`
+	mutation toggleUseditemPick($useditemId: ID!){
+		toggleUseditemPick(useditemId: $useditemId)	
+		
+	}
+`

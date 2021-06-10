@@ -1,0 +1,101 @@
+import {
+	Contents,
+	Wrapper,
+	SearchDateWrapper,
+	SearchBar,
+	SearchWrapper,
+	SearchBarWrapper,
+	SearchBtn,
+	SearchImg,
+	DateImg,
+	ResgisterBtn,
+	RegisterImg,
+	RegisterBtnWrapper,
+	SearchBarBackGround,
+	SaleWrapper,
+	Sale,
+	ListWrapper,
+	ListItemWrapper,
+	ListSaleImg,
+	ListLeftWrapper,
+	ListName,
+	ListRemarks,
+	ListTags,
+	ListUserWrapper,
+	ListUser,
+	ListUserImg,
+	ListHeart,
+	ListHeartCount,
+	ListBodyWrapper,
+	ListPrice,
+	ListPriceWrapper,
+	ListPriceImg,
+} from './Products.style';
+import { IProductsProps } from './Products.tpes';
+export default function ProductsUI({
+	data,
+	handleMoveList,
+	handleMoveRegister,
+	hadleSearchInput,
+	handleSearchBtn,
+}: IProductsProps) {
+	return (
+		<Wrapper>
+			<Contents>
+				<SearchWrapper>
+					<SaleWrapper>
+						<Sale>판매중상품</Sale>
+						<Sale>판매된상품</Sale>
+					</SaleWrapper>
+					<SearchBarWrapper>
+						<SearchBarBackGround>
+							<SearchImg src="/search.png"></SearchImg>
+							<SearchBar
+								onChange={hadleSearchInput}
+								placeholder="제목을 검색해주세요."
+							></SearchBar>
+						</SearchBarBackGround>
+						<SearchDateWrapper>
+							<DateImg src="/dateImg.png" />
+							2020.02.12
+							<DateImg src="/dateImg.png" />
+							2020.02.12
+						</SearchDateWrapper>
+						<SearchBtn onClick={handleSearchBtn}>검색하기</SearchBtn>
+					</SearchBarWrapper>
+				</SearchWrapper>
+				<ListWrapper>
+					{data?.fetchUseditems.map((data) => (
+						<ListItemWrapper>
+							<ListSaleImg src="/listitem.png"></ListSaleImg>
+							<ListBodyWrapper>
+								<ListLeftWrapper>
+									<ListName>{data.name}</ListName>
+									<ListRemarks>{data.remarks}</ListRemarks>
+									<ListTags>{data.tags}</ListTags>
+									<ListUserWrapper>
+										<ListUserImg src="/smsmprofile.png"></ListUserImg>
+										<ListUser>판매자</ListUser>
+										<ListHeart src="/smheart.png"></ListHeart>
+										<ListHeartCount>20</ListHeartCount>
+									</ListUserWrapper>
+								</ListLeftWrapper>
+
+								<ListPriceWrapper>
+									<ListPriceImg src="/priceImg.png"></ListPriceImg>
+									<ListPrice>{data.price}원</ListPrice>
+								</ListPriceWrapper>
+							</ListBodyWrapper>
+						</ListItemWrapper>
+					))}
+				</ListWrapper>
+
+				<RegisterBtnWrapper>
+					<ResgisterBtn onClick={handleMoveRegister}>
+						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기
+					</ResgisterBtn>
+				</RegisterBtnWrapper>
+			</Contents>
+		</Wrapper>
+	);
+}
