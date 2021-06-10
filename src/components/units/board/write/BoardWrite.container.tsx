@@ -27,7 +27,7 @@ function BoardWritePage() {
 	const [ZipCode, setZipCode] = useState('');
 
 	//* 이미지 관련 상태
-	const [imgArr, setImgArr] = useState(['0', '0', '0']);
+	const [imgArr, setImgArr] = useState([]);
 
 	//*이미지 Ref
 	const fileRef = useRef<HTMLInputElement>(null);
@@ -71,7 +71,7 @@ function BoardWritePage() {
 			title: data?.fetchBoard.title,
 			contents: data?.fetchBoard.contents,
 			youtubeUrl: data?.fetchBoard.youtubeUrl,
-			images: data?.fetchBoard.images,
+			images: [],
 		});
 	}, [data]);
 
@@ -81,7 +81,6 @@ function BoardWritePage() {
 			...input,
 			[event.target.name]: event.target.value,
 		};
-
 		setInput(newInput);
 		if (
 			newInput.writer &&
@@ -97,11 +96,21 @@ function BoardWritePage() {
 
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
+		const res = await Promise.all(
+			input.images.map((file) => uploadFileMutation({ variables: { file } })),
+		);
+
+		let images = [];
+		for (let i = 0; i < res.length; i++) {
+			images.push(res[i].data.uploadFile.url);
+		}
+
 		try {
 			const result = await createBoard({
 				variables: {
 					createBoardInput: {
 						...input,
+						images,
 					},
 				},
 			});
@@ -138,7 +147,10 @@ function BoardWritePage() {
 	//* 이미지 등록 함수
 	const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const fileArr = e.target.files;
-		let fileName;
+
+		let fileURLs = [];
+		let fileName = [];
+		let file;
 
 		for (let i = 0; i < fileArr.length; i++) {
 			if (fileArr[i].size > 5 * 1024 * 1024) {
@@ -149,44 +161,21 @@ function BoardWritePage() {
 				alert('png 파일만 업로드 가능합니다!');
 				return;
 			}
-			fileName = fileArr[i];
+			file = fileArr[i];
+			fileName.push(fileArr[i]);
+
 			let reader = new FileReader();
 			reader.onload = () => {
 				console.log(reader.result);
+				fileURLs[i] = reader.result;
+				setImgArr([...fileURLs]);
 			};
-			reader.readAsDataURL(fileName);
+			reader.readAsDataURL(file);
 		}
 
-		const res = await Promise.all([
-			uploadFileMutation({ variables: { file: fileArr[0] } }),
-			uploadFileMutation({ variables: { file: fileArr[1] } }),
-			uploadFileMutation({ variables: { file: fileArr[2] } }),
-		]);
-
-		let newArr = [...imgArr];
-		for (let i = 0; i < 3; i++) {
-			newArr[i] = res[i].data.uploadFile.url;
-		}
-		for (let i = 0; i <= newArr.length; i++) {
-			if (newArr[newArr.length - 1] === '0') {
-				continue;
-			}
-			if (newArr[i] === '0' && newArr[i + 1] === '0') {
-				newArr[i] = newArr[i + 2];
-				newArr[i + 2] = '0';
-			}
-			if (newArr[i] === '0') {
-				newArr[i] = newArr[i + 1];
-				newArr[i + 1] = '0';
-			}
-		}
-
-		setImgArr(newArr);
-		let newInputImg = [...newArr];
-		newInputImg = newInputImg.filter((data) => data !== '0');
 		setInput({
 			...input,
-			images: newInputImg,
+			images: fileName,
 		});
 	};
 
@@ -195,14 +184,7 @@ function BoardWritePage() {
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
 		let newArr = [...imgArr];
-		newArr[e.target.id] = '0';
-
-		for (let i = 0; i <= 1; i++) {
-			if (newArr[i] === '0') {
-				newArr[i] = newArr[i + 1];
-				newArr[i + 1] = '0';
-			}
-		}
+		newArr.splice(Number(e.target.id), 1);
 		setImgArr(newArr);
 	};
 

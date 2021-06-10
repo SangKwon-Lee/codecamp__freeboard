@@ -1,3 +1,4 @@
+import { AddToHomeScreenSharp } from '@material-ui/icons';
 import {
 	Contents,
 	Wrapper,
@@ -65,12 +66,18 @@ export default function ProductsUI({
 					</SearchBarWrapper>
 				</SearchWrapper>
 				<ListWrapper>
-					{data?.fetchUseditems.map((data) => (
-						<ListItemWrapper>
-							<ListSaleImg src="/listitem.png"></ListSaleImg>
+					{data?.fetchUseditems.map((data, index) => (
+						<ListItemWrapper key={index} id={data._id} onClick={handleMoveList}>
+							<ListSaleImg
+								id={data._id}
+								onClick={handleMoveList}
+								src="/listitem.png"
+							></ListSaleImg>
 							<ListBodyWrapper>
 								<ListLeftWrapper>
-									<ListName>{data.name}</ListName>
+									<ListName id={data._id} onClick={handleMoveList}>
+										{data.name}
+									</ListName>
 									<ListRemarks>{data.remarks}</ListRemarks>
 									<ListTags>{data.tags}</ListTags>
 									<ListUserWrapper>

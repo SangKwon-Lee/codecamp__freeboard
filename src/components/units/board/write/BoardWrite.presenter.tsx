@@ -31,6 +31,7 @@ import {
 	UploadCancle,
 } from './BoardWrite.style';
 import DaumPostcode from 'react-daum-postcode';
+import { ImageAspectRatioRounded } from '@material-ui/icons';
 export default function BoardWritePage({
 	handleChangeInput,
 	handleClickCreateBoard,
@@ -127,36 +128,30 @@ export default function BoardWritePage({
 					<ImageWrapper>
 						<Label>사진첨부</Label>
 						<UploadBtnWrapper>
-							{imgArr.map((data, index) =>
-								imgArr[index] === '0' ? (
-									<div key={index}>
-										<UploadLabel htmlFor={String(index)}>
-											<div>+</div>Upload
-										</UploadLabel>
-										<UploadButton
-											ref={fileRef}
-											multiple
-											type="file"
-											id={String(index)}
-											onChange={onChangeFile}
-										></UploadButton>
-									</div>
-								) : (
-									<div key={index}>
-										<UploadCancle
-											id={String(index)}
-											onClick={UploadPhotoCancle}
-										>
-											X
-										</UploadCancle>
-										<LazyLoad>
-											<UploadImg
-												src={`https://storage.cloud.google.com/${data}`}
-											></UploadImg>
-										</LazyLoad>
-									</div>
-								),
-							)}
+							{imgArr.map((data, index) => (
+								<div key={index}>
+									<UploadCancle id={String(index)} onClick={UploadPhotoCancle}>
+										X
+									</UploadCancle>
+									<LazyLoad>
+										<UploadImg src={String(data)}></UploadImg>
+									</LazyLoad>
+								</div>
+							))}
+							{new Array(3 - imgArr.length).fill(1).map(() => (
+								<div>
+									<UploadLabel htmlFor="asd">
+										<div>+</div>Upload
+									</UploadLabel>
+									<UploadButton
+										ref={fileRef}
+										multiple
+										type="file"
+										id="asd"
+										onChange={onChangeFile}
+									></UploadButton>
+								</div>
+							))}
 						</UploadBtnWrapper>
 					</ImageWrapper>
 					<OptionWrapper>

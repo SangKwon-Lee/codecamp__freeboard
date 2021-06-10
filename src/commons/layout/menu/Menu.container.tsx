@@ -9,7 +9,7 @@ export default function Menu() {
 	};
 
 	const handleMoveUsedItem = () => {
-		router.push(`/product`);
+		router.push(`/products`);
 	};
 	return (
 		<MenuUI

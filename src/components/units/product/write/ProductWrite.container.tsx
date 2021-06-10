@@ -91,11 +91,18 @@ function ProductWritePage() {
 		} else {
 			setIsTrue(true);
 		}
-		console.log(newInput);
 	};
 
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
+		// const res = await Promise.all(
+		// 	input.images.map((file) => uploadFileMutation({ variables: { file } })),
+		// );
+
+		// let images = [];
+		// for (let i = 0; i < res.length; i++) {
+		// 	images.push(res[i].data.uploadFile.url);
+		// }
 		//* Tags의 배열 데이터 변환
 		let newTags;
 		if (typeof input.tags === 'object') {
@@ -163,65 +170,42 @@ function ProductWritePage() {
 
 	//* 이미지 등록 함수
 	const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files[0];
-
-		if (file.size > 5 * 1024 * 1024) {
-			alert('파일이 크다');
-			return;
-		}
-
-		if (!file.type.includes('png')) {
-			alert('png 파일만 업로드 가능합니다!');
-			return;
-		}
-
-		//* URL 뽑아주는 곳
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
-		reader.onload = (e) => {
-			console.log(e.target.result);
-		};
-
-		const { data } = await uploadFileMutation({
-			variables: { file: file },
-		});
-		const ImageData = data?.uploadFile.url;
-
-		let newArr = [...imgArr];
-		newArr[Number(e.target.id)] = ImageData;
-
-		for (let i = 0; i <= newArr.length; i++) {
-			if (newArr[newArr.length - 1] === '0') {
-				continue;
-			}
-
-			if (newArr[i] === '0' && newArr[i + 1] === '0') {
-				newArr[i] = newArr[i + 2];
-				newArr[i + 2] = '0';
-			}
-
-			if (newArr[i] === '0') {
-				newArr[i] = newArr[i + 1];
-				newArr[i + 1] = '0';
-			}
-		}
-		setImgArr(newArr);
+		// const fileArr = e.target.files;
+		// let fileURLs = [];
+		// let fileName = [];
+		// let file;
+		// for (let i = 0; i < fileArr.length; i++) {
+		// 	if (fileArr[i].size > 5 * 1024 * 1024) {
+		// 		alert('파일이 크다');
+		// 		return;
+		// 	}
+		// 	if (!fileArr[i].type.includes('png')) {
+		// 		alert('png 파일만 업로드 가능합니다!');
+		// 		return;
+		// 	}
+		// 	file = fileArr[i];
+		// 	fileName.push(fileArr[i]);
+		// 	let reader = new FileReader();
+		// 	reader.onload = () => {
+		// 		console.log(reader.result);
+		// 		fileURLs[i] = reader.result;
+		// 		setImgArr([...fileURLs]);
+		// 	};
+		// 	reader.readAsDataURL(file);
+		// }
+		// setInput({
+		// 	...input,
+		// 	images: fileName,
+		// });
 	};
 
 	//* 이미지 삭제 함수
 	const UploadPhotoCancle = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
-		let newArr = [...imgArr];
-		newArr[e.target.id] = '0';
-
-		for (let i = 0; i <= 1; i++) {
-			if (newArr[i] === '0') {
-				newArr[i] = newArr[i + 1];
-				newArr[i + 1] = '0';
-			}
-		}
-		setImgArr(newArr);
+		// let newArr = [...imgArr];
+		// newArr.splice(Number(e.target.id), 1);
+		// setImgArr(newArr);
 	};
 
 	//* 주소 추가

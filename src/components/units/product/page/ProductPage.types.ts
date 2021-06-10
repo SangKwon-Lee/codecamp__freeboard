@@ -4,4 +4,6 @@ export interface IBoardPagePros {
 	data?: Query;
 	handleUpdate: () => void;
 	handleMoveBoards: () => void;
+	isUser: boolean;
+	imgArr:number[]
 }

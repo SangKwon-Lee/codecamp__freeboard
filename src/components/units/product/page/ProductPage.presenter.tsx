@@ -33,6 +33,17 @@ import {
 	Heart,
 	HeartCount,
 	HeartAndTitle,
+	ImgSlideWrapper,
+	ImgTopWrapper,
+	ImgLeftArrow,
+	ImgRightArrow,
+	ImgWrapper,
+	SlideImg,
+	ImgDotsWrapper,
+	ImgDots,
+	ImgBottom,
+	ImgBottomWrapper,
+	ImgSlideBody,
 } from './ProductPage.style';
 
 import { IBoardPagePros } from './ProductPage.types';
@@ -41,6 +52,8 @@ export default function ProductDetailPageUI({
 	data,
 	handleUpdate,
 	handleMoveBoards,
+	isUser,
+	imgArr,
 }: IBoardPagePros) {
 	return (
 		<Wrapper>
@@ -77,6 +90,31 @@ export default function ProductDetailPageUI({
 								</HeartWrapper>
 							</HeartAndTitle>
 							<Price>{data?.fetchUseditem.price} 원</Price>
+
+							<ImgSlideWrapper>
+								<ImgSlideBody>
+									<ImgTopWrapper>
+										<ImgLeftArrow style={{ fontSize: '30px' }}></ImgLeftArrow>
+										<ImgWrapper>
+											{imgArr.map((data, index) => (
+												<SlideImg src={`/slick${index + 1}.png`}></SlideImg>
+											))}
+										</ImgWrapper>
+										<ImgRightArrow style={{ fontSize: '30px' }}></ImgRightArrow>
+									</ImgTopWrapper>
+									<ImgDotsWrapper>
+										{imgArr.map((data, index) => (
+											<ImgDots></ImgDots>
+										))}
+									</ImgDotsWrapper>
+									<ImgBottomWrapper>
+										{imgArr.map((data, index) => (
+											<ImgBottom src={`/slick${index + 1}.png`}></ImgBottom>
+										))}
+									</ImgBottomWrapper>
+								</ImgSlideBody>
+							</ImgSlideWrapper>
+
 							<ContentWrapper>
 								<Content>{data?.fetchUseditem.contents}</Content>
 								<TagsWrapper>
@@ -87,7 +125,11 @@ export default function ProductDetailPageUI({
 								<DivideLine></DivideLine>
 								<BottomBtnWrapper>
 									<ListBtn onClick={handleMoveBoards}>목록으로</ListBtn>
-									<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
+									{isUser ? (
+										<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
+									) : (
+										<UpdateBtn onClick={handleUpdate}>구매하기</UpdateBtn>
+									)}
 								</BottomBtnWrapper>
 							</ContentWrapper>
 						</ContentTop>
