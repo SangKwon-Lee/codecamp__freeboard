@@ -18,7 +18,6 @@ export default function Product() {
 	//* 전체 게시글 불러오기
 	const { data } = useQuery(FETCH_USED_ITEMS);
 
-	console.log(data, 'asd');
 	//* 전체 게시글 숫자 불러오기
 	// const { data: count } = useQuery(FETCH_USED_ITEMS_COUNT, {
 	// 	variables: { search },
@@ -41,7 +40,7 @@ export default function Product() {
 
 	//* 리스트에 있는 게시글로 이동
 	const handleMoveList = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		router.push(`/board/${e.target.id}`);
+		router.push(`/product/${e.target.id}`);
 	};
 
 	//* 등록페이지로 이동

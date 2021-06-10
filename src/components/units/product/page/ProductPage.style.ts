@@ -219,3 +219,81 @@ export const HeartAndTitle = styled.div`
 	justify-content: space-between;
 	align-items: center;
 `
+
+//! 슬라이드
+export const ImgSlideWrapper = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+margin-top:80px;
+margin-bottom:80px;
+
+`
+export const ImgSlideBody = styled.div`
+	width: 504px;
+`
+
+
+export const ImgTopWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width:100%;
+	height: 384px;
+	margin-bottom:30px;
+`
+
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+export const ImgLeftArrow = styled(NavigateBeforeIcon)`
+	background-color: rgba(0,0,0,0.2);
+	border-radius:50%;
+	color:white;
+
+`
+
+export const ImgRightArrow = styled(NavigateNextIcon)`
+	background-color: rgba(0,0,0,0.2);
+	border-radius:50%;
+	color:white;
+	`
+
+export const ImgWrapper = styled.div`
+	display: flex;
+	justify-content: start;
+	width: 340px;
+	height: 384px;
+	padding:44px;
+	overflow-x: hidden;
+
+`
+
+export const SlideImg = styled.img`
+`
+
+export const ImgDotsWrapper = styled.div`
+	display: flex;
+	justify-content:center;
+	margin-bottom:30px;
+	margin-top:-40px;
+`
+
+export const ImgDots = styled.div`
+	background-color: gold;
+	width:10px;
+	height: 10px;
+	margin-right:10px;
+	border-radius: 50%;
+`
+
+export const ImgBottomWrapper = styled.div`
+display: flex;
+justify-content: center;
+
+`
+
+
+export const ImgBottom = styled.img`
+	width: 78px;
+	margin-right:20px;
+`

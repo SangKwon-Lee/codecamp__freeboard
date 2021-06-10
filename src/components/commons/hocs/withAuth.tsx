@@ -5,8 +5,6 @@ import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../../pages/_app';
 
 export default function withAuth(Component) {
-	console.log(Component);
-
 	return function test(props, asd) {
 		//* 토큰 체크
 		const router = useRouter();

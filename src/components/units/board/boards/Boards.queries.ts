@@ -19,4 +19,3 @@ query fetchBoardsCount($search: String){
 	fetchBoardsCount(search:$search)
 }
 `
-

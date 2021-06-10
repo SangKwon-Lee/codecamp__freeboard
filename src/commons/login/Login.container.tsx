@@ -1,14 +1,14 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { GlobalContext } from '../../../pages/_app';
-import { Mutation } from '../types/generated/types';
+import { Mutation, Query } from '../types/generated/types';
 import LoginUI from './Login.presenter';
 import { LOGIN_USER } from './Login.queries';
 export default function LoginPage() {
 	const router = useRouter();
 	const [loginUser] = useMutation<Mutation>(LOGIN_USER);
-	const { setAccessToken } = useContext(GlobalContext);
+	const { setAccessToken, setUserEmail } = useContext(GlobalContext);
 	const [handleEmail, sethandleEmail] = useState(false);
 	const [handlePassword, sethandlePassword] = useState(false);
 	const [handleLoginBtn, setHandleLoginBtn] = useState(true);
@@ -41,6 +41,7 @@ export default function LoginPage() {
 				},
 			});
 			setAccessToken(data?.loginUser.accessToken);
+			setUserEmail(loginData.email);
 			router.push('/boards');
 		} catch (error) {
 			console.log(error);

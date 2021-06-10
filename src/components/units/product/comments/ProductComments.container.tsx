@@ -1,5 +1,5 @@
 import ProductCommentsUI from './ProductComments.presenter';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import {
 	FETCH_USED_ITEM_QUESTIONS,
 	CREATE_USED_ITEM_QUESTION,
@@ -12,12 +12,16 @@ import {
 	QueryFetchUseditemQuestionsArgs,
 } from '../../../../commons/types/generated/types';
 import { useRouter } from 'next/router';
+import { GlobalContext } from '../../../../../pages/_app';
 
 function ProductCommentsPage() {
 	const router = useRouter();
 
 	//* 문의 작성 상태
 	const [contents, setContents] = useState('');
+
+	const { userEmail } = useContext(GlobalContext);
+	const [isUser, setIsUser] = useState(false);
 
 	// const [currentComment, setCurrentComment] = useState(0);
 
@@ -34,6 +38,8 @@ function ProductCommentsPage() {
 	>(FETCH_USED_ITEM_QUESTIONS, {
 		variables: { useditemId: String(router.query.id) },
 	});
+
+	console.log(data);
 
 	// //* 문의 더 불로오기
 	const LoadMore = () => {

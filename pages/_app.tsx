@@ -8,7 +8,7 @@ import '../styles/globals.css';
 import Layout from '../src/commons/layout/index';
 import GlobalStyles from '../src/commons/styles/globalStyles';
 import { createUploadLink } from 'apollo-upload-client';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { onError } from '@apollo/client/link/error';
 import axios from 'axios';
 
@@ -16,10 +16,13 @@ import axios from 'axios';
 export const GlobalContext = createContext({
 	accessToken: '',
 	setAccessToken: (__: string) => {},
+	userEmail: '',
+	setUserEmail: (__: string) => {},
 });
 
 function MyApp({ Component, pageProps }) {
 	const [accessToken, setAccessToken] = useState('');
+	const [userEmail, setUserEmail] = useState('');
 
 	//* 모든 쿼리, 뮤테이션에 토큰이 들어가게 만들어 줌.
 	const uploadLink = createUploadLink({
@@ -82,6 +85,8 @@ function MyApp({ Component, pageProps }) {
 	const value = {
 		accessToken,
 		setAccessToken,
+		userEmail,
+		setUserEmail,
 	};
 
 	return (

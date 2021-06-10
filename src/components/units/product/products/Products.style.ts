@@ -23,12 +23,12 @@ export const SaleWrapper = styled.div`
 	width: 186px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 `
 
 export const Sale = styled.div`
 	font-size: 18px;
 	font-weight: 500;
-	margin-bottom:22px;
 	border-bottom: 3px solid #FFD600;
 `
 
@@ -140,12 +140,28 @@ export const DateImg = styled.img``
 export const ListWrapper = styled.div`
 	margin-top:40px;
 	max-width: 1200px;
+	padding: 0px 20px;
 	height: 1006px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	border-top:1px solid #BDBDBD;
 	overflow-y: scroll;
+	::-webkit-scrollbar {
+    width: 10px;
+    background-color: white;
+  }
+	::-webkit-scrollbar-thumb {
+    background-color: #FFD600;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #F2F2F2;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 `
 
 export const ListItemWrapper = styled.div`
@@ -177,6 +193,7 @@ export const ListName = styled.div`
 	font-size:24px;
 	margin-top: 4px;
 	font-weight: 500;
+	cursor: pointer;
 
 `
 
@@ -195,6 +212,7 @@ export const ListPriceImg = styled.img`
 	width: 24px;
 	height: 24px;
 	margin-right: 8px;
+	cursor: pointer;
 `
 
 
@@ -230,8 +248,6 @@ export const ListHeart = styled.img`
 `
 
 export const ListHeartCount = styled.div`
-	margin-left:4px;`
-
-
-
+	margin-left:4px;
+`
 

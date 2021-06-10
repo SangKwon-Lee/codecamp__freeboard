@@ -150,12 +150,13 @@ text-align: center;
 font-size: 14px;
 color:#4F4F4F;
 padding-top: 16px;
+margin-right:20px;
 cursor: pointer;
 `
 export const UploadBtnWrapper = styled.div`
 width: 282px;
 display: flex;
-justify-content: space-between;
+
 `
 export const OptionWrapper = styled.div`
 		max-width:996px;
@@ -209,6 +210,7 @@ export const UploadImg = styled.img`
 object-fit: cover;
 width: 78px;
 height: 78px;
+margin-right: 20px;
 `
 
 
