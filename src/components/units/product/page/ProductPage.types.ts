@@ -5,5 +5,8 @@ export interface IBoardPagePros {
 	handleUpdate: () => void;
 	handleMoveBoards: () => void;
 	isUser: boolean;
-	imgArr:number[]
+	imgArr: number[]
+	handeImgRight: () => void;
+	handeImgLeft: () => void;
+	isActive: number;
 }

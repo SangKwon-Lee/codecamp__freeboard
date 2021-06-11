@@ -33,12 +33,15 @@ import {
 	ListPriceImg,
 } from './Products.style';
 import { IProductsProps } from './Products.tpes';
+import InfiniteScroll from 'react-infinite-scroller';
+
 export default function ProductsUI({
 	data,
 	handleMoveList,
 	handleMoveRegister,
 	hadleSearchInput,
 	handleSearchBtn,
+	LoadMore,
 }: IProductsProps) {
 	return (
 		<Wrapper>
@@ -65,38 +68,43 @@ export default function ProductsUI({
 						<SearchBtn onClick={handleSearchBtn}>검색하기</SearchBtn>
 					</SearchBarWrapper>
 				</SearchWrapper>
-				<ListWrapper>
-					{data?.fetchUseditems.map((data, index) => (
-						<ListItemWrapper key={index} id={data._id} onClick={handleMoveList}>
-							<ListSaleImg
+				<InfiniteScroll loadMore={LoadMore} hasMore={true}>
+					<ListWrapper>
+						{data?.fetchUseditems.map((data, index) => (
+							<ListItemWrapper
+								key={index}
 								id={data._id}
 								onClick={handleMoveList}
-								src="/listitem.png"
-							></ListSaleImg>
-							<ListBodyWrapper>
-								<ListLeftWrapper>
-									<ListName id={data._id} onClick={handleMoveList}>
-										{data.name}
-									</ListName>
-									<ListRemarks>{data.remarks}</ListRemarks>
-									<ListTags>{data.tags}</ListTags>
-									<ListUserWrapper>
-										<ListUserImg src="/smsmprofile.png"></ListUserImg>
-										<ListUser>판매자</ListUser>
-										<ListHeart src="/smheart.png"></ListHeart>
-										<ListHeartCount>20</ListHeartCount>
-									</ListUserWrapper>
-								</ListLeftWrapper>
+							>
+								<ListSaleImg
+									id={data._id}
+									onClick={handleMoveList}
+									src="/listitem.png"
+								></ListSaleImg>
+								<ListBodyWrapper>
+									<ListLeftWrapper>
+										<ListName id={data._id} onClick={handleMoveList}>
+											{data.name}
+										</ListName>
+										<ListRemarks>{data.remarks}</ListRemarks>
+										<ListTags>{data.tags}</ListTags>
+										<ListUserWrapper>
+											<ListUserImg src="/smsmprofile.png"></ListUserImg>
+											<ListUser>판매자</ListUser>
+											<ListHeart src="/smheart.png"></ListHeart>
+											<ListHeartCount>20</ListHeartCount>
+										</ListUserWrapper>
+									</ListLeftWrapper>
 
-								<ListPriceWrapper>
-									<ListPriceImg src="/priceImg.png"></ListPriceImg>
-									<ListPrice>{data.price}원</ListPrice>
-								</ListPriceWrapper>
-							</ListBodyWrapper>
-						</ListItemWrapper>
-					))}
-				</ListWrapper>
-
+									<ListPriceWrapper>
+										<ListPriceImg src="/priceImg.png"></ListPriceImg>
+										<ListPrice>{data.price.toLocaleString()}원</ListPrice>
+									</ListPriceWrapper>
+								</ListBodyWrapper>
+							</ListItemWrapper>
+						))}
+					</ListWrapper>
+				</InfiniteScroll>
 				<RegisterBtnWrapper>
 					<ResgisterBtn onClick={handleMoveRegister}>
 						<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기

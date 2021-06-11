@@ -16,6 +16,7 @@ export const Body = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	margin-bottom :50px;
 `;
 
 export const DivideLine = styled.div`

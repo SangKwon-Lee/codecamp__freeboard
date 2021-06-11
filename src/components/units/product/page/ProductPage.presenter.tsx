@@ -54,6 +54,9 @@ export default function ProductDetailPageUI({
 	handleMoveBoards,
 	isUser,
 	imgArr,
+	handeImgRight,
+	handeImgLeft,
+	isActive,
 }: IBoardPagePros) {
 	return (
 		<Wrapper>
@@ -89,27 +92,39 @@ export default function ProductDetailPageUI({
 									<HeartCount>20</HeartCount>
 								</HeartWrapper>
 							</HeartAndTitle>
-							<Price>{data?.fetchUseditem.price} 원</Price>
+							<Price>{data?.fetchUseditem.price.toLocaleString()} 원</Price>
 
 							<ImgSlideWrapper>
 								<ImgSlideBody>
 									<ImgTopWrapper>
-										<ImgLeftArrow style={{ fontSize: '30px' }}></ImgLeftArrow>
+										<ImgLeftArrow
+											onClick={handeImgLeft}
+											style={{ fontSize: '30px' }}
+										></ImgLeftArrow>
 										<ImgWrapper>
-											{imgArr.map((data, index) => (
-												<SlideImg src={`/slick${index + 1}.png`}></SlideImg>
-											))}
+											<SlideImg src={`/slick${isActive}.png`}></SlideImg>
 										</ImgWrapper>
-										<ImgRightArrow style={{ fontSize: '30px' }}></ImgRightArrow>
+										<ImgRightArrow
+											onClick={handeImgRight}
+											style={{ fontSize: '30px' }}
+										></ImgRightArrow>
 									</ImgTopWrapper>
 									<ImgDotsWrapper>
 										{imgArr.map((data, index) => (
-											<ImgDots></ImgDots>
+											<ImgDots
+												key={index}
+												id={String(index)}
+												isTrue={isActive === index}
+											></ImgDots>
 										))}
 									</ImgDotsWrapper>
 									<ImgBottomWrapper>
 										{imgArr.map((data, index) => (
-											<ImgBottom src={`/slick${index + 1}.png`}></ImgBottom>
+											<ImgBottom
+												key={index}
+												isTrue={isActive === index}
+												src={`/slick${index}.png`}
+											></ImgBottom>
 										))}
 									</ImgBottomWrapper>
 								</ImgSlideBody>

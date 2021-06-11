@@ -109,3 +109,10 @@ border:none;
 outline:none;
 border-bottom:1px solid rgba(0,0,0,0.3);
 `
+
+export const QuestionImg = styled.img`
+	width:25px;
+	height: 25px;
+	margin-left:15px;
+	cursor: pointer;
+`

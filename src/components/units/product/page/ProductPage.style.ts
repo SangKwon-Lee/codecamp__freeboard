@@ -250,12 +250,22 @@ export const ImgLeftArrow = styled(NavigateBeforeIcon)`
 	border-radius:50%;
 	color:white;
 
+	:hover{
+		background-color: #FFD600;
+				transition: all 300ms;
+	}
+	transition: all 300ms;
 `
 
 export const ImgRightArrow = styled(NavigateNextIcon)`
 	background-color: rgba(0,0,0,0.2);
 	border-radius:50%;
 	color:white;
+	:hover{
+		background-color: #FFD600;
+				transition: all 300ms;
+	}
+		transition: all 300ms;
 	`
 
 export const ImgWrapper = styled.div`
@@ -269,7 +279,11 @@ export const ImgWrapper = styled.div`
 `
 
 export const SlideImg = styled.img`
+
 `
+interface styleProps {
+	isTrue: boolean;
+}
 
 export const ImgDotsWrapper = styled.div`
 	display: flex;
@@ -279,11 +293,12 @@ export const ImgDotsWrapper = styled.div`
 `
 
 export const ImgDots = styled.div`
-	background-color: gold;
+	background-color:${(props: styleProps) => (props.isTrue ? '#FFD600' : 'black')};
 	width:10px;
 	height: 10px;
 	margin-right:10px;
 	border-radius: 50%;
+	transition: all 350ms;
 `
 
 export const ImgBottomWrapper = styled.div`
@@ -296,4 +311,6 @@ justify-content: center;
 export const ImgBottom = styled.img`
 	width: 78px;
 	margin-right:20px;
+	border:${(props: styleProps) => (props.isTrue ? '2px solid #FFD600' : 'none')};
+	transition: all 350ms
 `

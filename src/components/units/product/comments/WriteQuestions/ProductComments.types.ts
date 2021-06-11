@@ -1,4 +1,4 @@
-import { Query, QueryFetchBoardCommentsArgs } from "../../../../commons/types/generated/types";
+import { Query } from "../../../../../commons/types/generated/types";
 
 export interface IProductQuestionsProps {
 	contents: string;
@@ -11,8 +11,4 @@ export interface IProductQuestionsProps {
 	refetch: ()=> void;
 }
 
-export interface IProductQuestionsItemsProps {
-  data?: any;
-	refetch: ()=> void;
-}
 

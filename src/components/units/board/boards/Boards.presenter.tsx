@@ -117,7 +117,7 @@ export default function BoardsUI({
 				</Table>
 				<PageWrapper>
 					<PageLeft src="/leftArrow.png" onClick={LeftArrowPage}></PageLeft>
-					{pageArr.map((data) => (
+					{pageArr.map((data: any) => (
 						<Page
 							key={data}
 							id={String(data)}

@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 //* 모든 게시글 가져오기
 export const FETCH_USED_ITEMS = gql`
-	query {
-		fetchUseditems{
+	query fetchUseditems($page: Int, $search:String){
+		fetchUseditems(page:$page, search:$search ){
 			_id
 			name
 			remarks
