@@ -3,25 +3,22 @@ import { FETCH_USED_ITEMS_COUNT, FETCH_USED_ITEMS } from './Products.queries';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { Query } from '../../../../commons/types/generated/types';
 
 export default function Product() {
 	const router = useRouter();
 
-	//* 페이지네이션 상태
-	const [currentPage, setCurrentPage] = useState(1);
-	const [pageArr, setPageArr] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+	//* 게시글 페이지 상태
+	const [currentPage, setCurrentPage] = useState(0);
 
 	//* 검색어 상태
 	const [search, setSearch] = useState('');
 	const [searchBtn, setSearchBtn] = useState('');
 
 	//* 전체 게시글 불러오기
-	const { data } = useQuery(FETCH_USED_ITEMS);
-
-	//* 전체 게시글 숫자 불러오기
-	// const { data: count } = useQuery(FETCH_USED_ITEMS_COUNT, {
-	// 	variables: { search },
-	// });
+	const { data, fetchMore } = useQuery<Query>(FETCH_USED_ITEMS, {
+		variables: { page: currentPage, search },
+	});
 
 	//* 검색어 관련 함수들
 	const hadleSearchInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +27,7 @@ export default function Product() {
 			clearTimeout(timer);
 		}
 		timer = setTimeout(() => {
-			console.log('asd', setSearch(e.target.value));
+			setSearch(e.target.value);
 		}, 1000);
 	};
 
@@ -48,6 +45,22 @@ export default function Product() {
 		router.push(`/product/`);
 	};
 
+	const LoadMore = () => {
+		if (data?.fetchUseditems.length % 10 !== 0) return;
+
+		fetchMore({
+			variables: {
+				page: Math.floor(data?.fetchUseditems.length / 10) + 1,
+			},
+			updateQuery: (prev, { fetchMoreResult }) => ({
+				fetchUseditems: [
+					...prev.fetchUseditems,
+					...fetchMoreResult.fetchUseditems,
+				],
+			}),
+		});
+	};
+
 	return (
 		<>
 			<ProductUI
@@ -55,9 +68,9 @@ export default function Product() {
 				handleMoveList={handleMoveList}
 				handleMoveRegister={handleMoveRegister}
 				currentPage={currentPage}
-				pageArr={pageArr}
 				hadleSearchInput={hadleSearchInput}
 				handleSearchBtn={handleSearchBtn}
+				LoadMore={LoadMore}
 			></ProductUI>
 		</>
 	);

@@ -1,4 +1,4 @@
-import ProductCommentItem from './ProductCommentsItems.presenter';
+import ProductCommentItem from '../QueryQuestions/ProductQueryQuestions.Container';
 
 import {
 	Wrapper,

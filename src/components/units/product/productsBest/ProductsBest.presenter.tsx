@@ -40,7 +40,7 @@ export default function ProductsBestBestUI({
 								<BestBottomWrapper>
 									<BestRemarksAndPrice>
 										<BestRemarks>{data.remarks}</BestRemarks>
-										<BestPrice>{data.price}원</BestPrice>
+										<BestPrice>{data.price.toLocaleString()}원</BestPrice>
 									</BestRemarksAndPrice>
 									<BestPickAndCount>
 										<BestPickImg src="/smheart.png"></BestPickImg>

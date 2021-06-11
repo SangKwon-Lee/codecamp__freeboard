@@ -6,7 +6,6 @@ import {
 	Query,
 	QueryFetchUseditemArgs,
 } from '../../../../commons/types/generated/types';
-import ProductComments from '../comments/ProductComments.container';
 import { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../../../../../pages/_app';
 export default function ProductDetailPage() {
@@ -18,14 +17,37 @@ export default function ProductDetailPage() {
 	});
 	const { userEmail } = useContext(GlobalContext);
 	const [isUser, setIsUser] = useState(false);
-
 	const [imgArr, setImgArr] = useState([1, 2, 3, 4]);
+	const [isActive, setIsActive] = useState(0);
+	const [dataLength, setDataLength] = useState(0);
 
+	//* 본인 확인하는 내용
 	useEffect(() => {
+		setDataLength(imgArr.length);
 		if (userEmail === data?.fetchUseditem.seller.email) {
 			setIsUser(true);
 		}
-	}, [data?.fetchUseditem.seller.email]);
+	}, [data?.fetchUseditem.seller.email, data]);
+
+	const handeImgLeft = () => {
+		let newLength = isActive;
+		newLength = newLength - 1;
+		if (0 > newLength) {
+			setIsActive(imgArr.length - 1);
+		} else {
+			setIsActive(newLength);
+		}
+	};
+
+	const handeImgRight = () => {
+		let newLength = isActive;
+		newLength = newLength + 1;
+		if (imgArr.length <= newLength) {
+			setIsActive(0);
+		} else {
+			setIsActive(newLength);
+		}
+	};
 
 	//* 페이지 이동
 	const handleUpdate = () => {
@@ -44,8 +66,10 @@ export default function ProductDetailPage() {
 				handleMoveBoards={handleMoveBoards}
 				isUser={isUser}
 				imgArr={imgArr}
+				handeImgRight={handeImgRight}
+				handeImgLeft={handeImgLeft}
+				isActive={isActive}
 			></ProductDetailPageUI>
-			<ProductComments></ProductComments>
 		</>
 	);
 }

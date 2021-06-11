@@ -142,7 +142,7 @@ export const ListWrapper = styled.div`
 	max-width: 1200px;
 	padding: 0px 20px;
 	height: 1006px;
-	width: 100%;
+	width: 1200px;
 	display: flex;
 	flex-direction: column;
 	border-top:1px solid #BDBDBD;

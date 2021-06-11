@@ -51,6 +51,7 @@ function BoardCommentsPage() {
 	});
 
 	//* 댓글 더 불로오기
+
 	const LoadMore = () => {
 		if (data?.fetchBoardComments.length % 10 !== 0) return;
 		fetchMore({

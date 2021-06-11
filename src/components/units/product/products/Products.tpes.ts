@@ -6,7 +6,7 @@ export interface IProductsProps {
 	handleMoveList: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 	handleMoveRegister: () => void;
 	currentPage: number;
-	pageArr: any;
 	hadleSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	handleSearchBtn: () => void;
+	LoadMore: () => void;
 }
