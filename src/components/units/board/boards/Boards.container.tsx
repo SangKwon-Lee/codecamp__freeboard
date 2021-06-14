@@ -36,10 +36,12 @@ export default function Boards() {
 		}, 1000);
 	};
 
+	//* 검색어 버튼을 눌렀을 시 search가 되도록
 	const handleSearchBtn = () => {
 		setSearch(searchBtn);
 	};
 
+	//* Count에 따른 페이지네이션 값을 변경하기 위한 UesEffect
 	useEffect(() => {
 		if (count?.fetchBoardsCount / 10 <= 10) {
 			let newArr = new Array(10)
@@ -138,7 +140,6 @@ export default function Boards() {
 			setPageArr(newArr);
 			setCurrentPage(newArr[0]);
 		}
-
 		setPageArr(newArr);
 		setCurrentPage(newArr[0]);
 	};

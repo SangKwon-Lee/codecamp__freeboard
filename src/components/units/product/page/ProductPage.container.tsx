@@ -15,10 +15,17 @@ export default function ProductDetailPage() {
 	const { data } = useQuery<Query, QueryFetchUseditemArgs>(FETCH_USED_ITEM, {
 		variables: { useditemId: String(router.query.id) },
 	});
+
+	//* 본인 확인을 위한 전역 관리 상태
 	const { userEmail } = useContext(GlobalContext);
 	const [isUser, setIsUser] = useState(false);
+
+	//* 이미지 배열
 	const [imgArr, setImgArr] = useState([1, 2, 3, 4]);
+
+	//* 현재 이미지에 따른 상태
 	const [isActive, setIsActive] = useState(0);
+	//* 이미지 갯수가 몇개인가
 	const [dataLength, setDataLength] = useState(0);
 
 	//* 본인 확인하는 내용
@@ -29,6 +36,7 @@ export default function ProductDetailPage() {
 		}
 	}, [data?.fetchUseditem.seller.email, data]);
 
+	//* 이미지 왼쪽 화살표 클릭시
 	const handeImgLeft = () => {
 		let newLength = isActive;
 		newLength = newLength - 1;
@@ -39,6 +47,7 @@ export default function ProductDetailPage() {
 		}
 	};
 
+	//* 이미지 오른쪽 화살표 클릭시
 	const handeImgRight = () => {
 		let newLength = isActive;
 		newLength = newLength + 1;
@@ -57,6 +66,28 @@ export default function ProductDetailPage() {
 	const handleMoveBoards = () => {
 		router.push(`/product`);
 	};
+
+	let todayList =
+		typeof window === 'undefined'
+			? [0]
+			: JSON.parse(window.localStorage.getItem('todayList'));
+
+	useEffect(() => {
+		if (!window.localStorage.getItem('todayList')) {
+			window.localStorage.setItem('todayList', JSON.stringify([data]));
+		} else if (data !== null) {
+			let newTodayList = [];
+			newTodayList = [...todayList, JSON.stringify(data)];
+			newTodayList = newTodayList.filter((data) => data !== null);
+
+			for (let i = 0; i < todayList.length; i++) {
+				if (JSON.parse(todayList[i]).fetchUseditem._id !== router.query.id) {
+				}
+			}
+
+			window.localStorage.setItem('todayList', JSON.stringify(newTodayList));
+		}
+	}, [data]);
 
 	return (
 		<>

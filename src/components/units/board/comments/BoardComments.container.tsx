@@ -3,13 +3,11 @@ import { useState } from 'react';
 import {
 	FETCH_BOARD_COMMENTS,
 	CREATE_BOARD_COMMENT,
-	DELETE_BOARD_COMMENT,
 } from './BoardComments.queries';
 import { useMutation, useQuery } from '@apollo/client';
 import {
 	Mutation,
 	MutationCreateBoardCommentArgs,
-	MutationDeleteBoardCommentArgs,
 	Query,
 	QueryFetchBoardCommentsArgs,
 } from '../../../../commons/types/generated/types';
@@ -35,12 +33,6 @@ function BoardCommentsPage() {
 		Mutation,
 		MutationCreateBoardCommentArgs
 	>(CREATE_BOARD_COMMENT);
-
-	//* 댓글 삭제 뮤테이션
-	const [deleteBoardComment] = useMutation<
-		Mutation,
-		MutationDeleteBoardCommentArgs
-	>(DELETE_BOARD_COMMENT);
 
 	//* 댓글 불러오기 쿼리
 	const { data, refetch, fetchMore } = useQuery<

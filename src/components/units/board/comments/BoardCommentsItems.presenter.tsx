@@ -48,7 +48,8 @@ export default function BoardCommentItemUI({
 	refetch,
 }: IBoadrdCommentsItemsProps) {
 	const router = useRouter();
-	//! 모달 관리
+
+	//* 모달 관리
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const showModal = () => {
 		setIsModalVisible(true);
@@ -60,7 +61,7 @@ export default function BoardCommentItemUI({
 		setIsModalVisible(false);
 	};
 
-	//! 댓글 수정 상태 관리
+	//* 댓글 수정 상태 관리
 	const [Update, setUpdate] = useState(false);
 	const [UpdateRating, setUpdateRating] = useState(0);
 	const [updataInput, setUpdateInput] = useState({
@@ -74,7 +75,7 @@ export default function BoardCommentItemUI({
 		MutationUpdateBoardCommentArgs
 	>(UPDATE_BOARD_COMMENT);
 
-	//! 댓글 삭제 상태 관리
+	//* 댓글 삭제 상태 관리
 	const [deleteBoardComment] = useMutation<
 		Mutation,
 		MutationDeleteBoardCommentArgs
@@ -83,14 +84,16 @@ export default function BoardCommentItemUI({
 	const [deleteId, setDeleteId] = useState('');
 	const [name, setName] = useState(true);
 
-	//! 댓글 삭제 함수
+	//* 댓글 삭제 함수
 	const handleDelteId = (e: any) => {
 		setDeleteId(e.target.id);
 	};
 
+	//* 댓글 삭제시 비밀번호 입력값
 	const handleDeletePassword = (e: any) => {
 		setDeletePassword(e.target.value);
 	};
+	//* 댓글 삭제 뮤테이션
 	const handleClickDeleteComment = async () => {
 		setName(false);
 		setTimeout(async () => {
@@ -117,11 +120,12 @@ export default function BoardCommentItemUI({
 		}, 1000);
 	};
 
-	//! 댓글 수정 함수
+	//* 댓글 수정 함수
 	const commentUpdate = () => {
 		setUpdate((prev) => !prev);
 	};
 
+	//* useEffcet를 통해 댓글 수정을 클릭시 기존 데이터 복원
 	useEffect(() => {
 		setUpdateInput({
 			writer: data.writer,
@@ -131,6 +135,7 @@ export default function BoardCommentItemUI({
 		});
 	}, [Update]);
 
+	//* 댓글 수정 인풋 데이터 함수
 	const handleUpdateInputChange = (e: any) => {
 		const newInput = {
 			...updataInput,
@@ -139,6 +144,7 @@ export default function BoardCommentItemUI({
 		setUpdateInput(newInput);
 	};
 
+	//* 별점 저장
 	const onSaveUpdateRating = (e: any) => {
 		const newInput = {
 			...updataInput,
@@ -148,12 +154,12 @@ export default function BoardCommentItemUI({
 		setUpdateRating(e.target.id);
 	};
 
+	//* 댓글 수정 뮤테이션
 	const handleClickUpdateComment = async (e: any) => {
 		try {
 			const result = await updateBoardComment({
 				variables: {
 					updateBoardCommentInput: {
-						// writer: updataInput.writer,
 						rating: Number(updataInput.rating),
 						contents: updataInput.contents,
 					},
