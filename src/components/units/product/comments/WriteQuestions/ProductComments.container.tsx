@@ -19,8 +19,6 @@ function ProductCommentsPage() {
 	//* 문의 작성 상태
 	const [contents, setContents] = useState('');
 
-	// const [currentComment, setCurrentComment] = useState(0);
-
 	//* 문의 작성 뮤테이션
 	const [createUsedItemQuestions] = useMutation<
 		Mutation,
@@ -44,7 +42,9 @@ function ProductCommentsPage() {
 			},
 			updateQuery: (prev, { fetchMoreResult }) => ({
 				fetchUseditemQuestions: [
+					//@ts-ignore
 					...prev.fetchUseditemQuestions,
+					//@ts-ignore
 					...fetchMoreResult.fetchUseditemQuestions,
 				],
 			}),

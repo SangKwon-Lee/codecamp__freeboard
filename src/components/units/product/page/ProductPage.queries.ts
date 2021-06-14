@@ -5,6 +5,7 @@ export const FETCH_USED_ITEM = gql`
 		fetchUseditem(useditemId: $useditemId) {
 			name
 			remarks
+			_id
 			contents
 			price
 			tags

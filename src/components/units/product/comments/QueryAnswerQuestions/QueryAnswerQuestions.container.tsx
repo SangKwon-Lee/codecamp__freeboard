@@ -131,7 +131,6 @@ export default function QueryAnswerQuestions({ data, questionId }) {
 					},
 				],
 			});
-			console.log(data._id, '얘는 누구냐');
 			setWrite(false);
 		} catch (error) {
 			console.log(error);

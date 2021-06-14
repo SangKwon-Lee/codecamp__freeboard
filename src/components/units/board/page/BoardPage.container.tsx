@@ -33,7 +33,7 @@ export default function BoardPage() {
 		DISLIKE_BOARD,
 	);
 
-	//* 좋아요 싫어요 함수
+	//* 좋아요 뮤테이션 함수
 	const handleLike = async () => {
 		try {
 			const result = await likeBoard({
@@ -46,6 +46,7 @@ export default function BoardPage() {
 			console.log(error);
 		}
 	};
+	//* 싫어요 뮤테이션 함수
 	const handleDisLike = async () => {
 		try {
 			const result = await disLikeBoard({

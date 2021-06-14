@@ -108,6 +108,7 @@ export default function BoardCommentItemUI({
 			{Answer?.fetchUseditemQuestionAnswers.map((data) => (
 				<>
 					<QueryAnswerQuestions
+						key={data._id}
 						questionId={questionId}
 						data={data}
 					></QueryAnswerQuestions>

@@ -31,6 +31,7 @@ export default function Product() {
 		}, 1000);
 	};
 
+	//* 버튼 클릭시 검색되도록
 	const handleSearchBtn = () => {
 		setSearch(searchBtn);
 	};
@@ -45,6 +46,7 @@ export default function Product() {
 		router.push(`/product/`);
 	};
 
+	//* 인피니티 스크롤 설정
 	const LoadMore = () => {
 		if (data?.fetchUseditems.length % 10 !== 0) return;
 
