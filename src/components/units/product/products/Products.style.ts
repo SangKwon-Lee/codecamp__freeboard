@@ -14,9 +14,16 @@ export const Contents = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-left: 170px;
 `;
 
 //! 써치바 구역
+
+export const InfiniteWrapper = styled.div`
+	max-width: 1200px;
+	width:100%;
+`
+
 
 export const SaleWrapper = styled.div`
 
@@ -142,7 +149,7 @@ export const ListWrapper = styled.div`
 	max-width: 1200px;
 	padding: 0px 20px;
 	height: 1006px;
-	width: 1200px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	border-top:1px solid #BDBDBD;
@@ -199,7 +206,7 @@ export const ListName = styled.div`
 
 export const ListRemarks = styled.div`
 font-size:16px;
-	font-weight: 500;
+font-weight: 500;
 
 `
 
@@ -250,4 +257,95 @@ export const ListHeart = styled.img`
 export const ListHeartCount = styled.div`
 	margin-left:4px;
 `
+
+//! Fix 구역
+
+export const FixWrapper = styled.div`
+	position: relative;
+	width: 196px;
+	padding: 20px 20px 0px 20px;
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+	margin-top:180px;
+	margin-left: 20px;
+	border:1px solid #BDBDBD;
+	align-items: center;
+`
+
+export const FixTitle = styled.div`
+	font-weight: 700;
+	font-size: 18px;
+	padding-bottom: 20px;
+`
+
+export const FixCardWrapper = styled.div`
+	width: 156px;
+	display: flex;
+	border:1px solid #BDBDBD;
+	flex-direction: column;
+	padding:10px;
+	margin-bottom: 20px;
+	
+`
+export const FixHeartAndCount = styled.div`
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+	align-items: center;
+`
+
+export const FixImgWrapper = styled.div`
+	width:100%;
+	display: flex;
+	justify-content: center;
+`
+export const FixHeartImg = styled.img`
+	width:25px;
+	height: 25px;
+	margin-right:4px;
+
+
+`
+export const FixHeartCount = styled.div`
+font-size:12px;
+font-weight: 500;
+`
+
+
+export const FixImg = styled.img`
+	width:80px;
+	margin-left:10px;
+	margin-bottom: 16px;
+
+`
+
+export const FixName = styled.div`
+	font-size:12px;
+	font-weight: 500;
+		margin-bottom: 4px;
+`
+
+export const FixRemarks = styled.div`
+
+	font-size:12px;
+	font-weight:400;
+	margin-bottom: 4px;
+`
+
+export const FixTags = styled.div`
+	font-size:10px;
+	font-weight:500;
+	color:#BDBDBD;
+
+`
+
+export const FixPrice = styled.div`
+	font-size:16px;
+	font-weight:700;
+	margin-bottom: 8px;
+	height:16px;
+`
+
+
 

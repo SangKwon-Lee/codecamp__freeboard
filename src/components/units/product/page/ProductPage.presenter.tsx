@@ -93,7 +93,6 @@ export default function ProductDetailPageUI({
 								</HeartWrapper>
 							</HeartAndTitle>
 							<Price>{data?.fetchUseditem.price.toLocaleString()} 원</Price>
-
 							<ImgSlideWrapper>
 								<ImgSlideBody>
 									<ImgTopWrapper>

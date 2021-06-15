@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
 	width: 100%;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -11,7 +10,6 @@ export const Wrapper = styled.div`
 export const Contents = styled.div`
 	max-width: 1200px;
 	width: 100%;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -52,7 +50,8 @@ export const BestCardWrapper = styled.div`
 `;
 
 export const BestCard = styled.div`
-	width: 282px;
+	max-width: 282px;
+	width: 100%;
 	height: 391px;
 	display: flex;
 	flex-direction: column;
@@ -61,7 +60,8 @@ export const BestCard = styled.div`
 `
 
 export const BestCardImg = styled.img`
-	width:242px;
+max-width: 242px;
+	width:100%;
 	height: 242px;
 	margin-bottom:20px;
 	cursor: pointer;

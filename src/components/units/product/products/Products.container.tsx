@@ -20,6 +20,24 @@ export default function Product() {
 		variables: { page: currentPage, search },
 	});
 
+	const [todayList, setTodayList] = useState([]);
+
+	useEffect(() => {
+		let data = [];
+		if (window.localStorage.getItem('todayList')) {
+			for (
+				let i = 0;
+				i < JSON.parse(window.localStorage.getItem('todayList')).length;
+				i++
+			) {
+				data.push(
+					JSON.parse(JSON.parse(window.localStorage.getItem('todayList'))[i]),
+				);
+			}
+			setTodayList(data);
+		}
+	}, []);
+
 	//* 검색어 관련 함수들
 	const hadleSearchInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		let timer;
@@ -73,6 +91,7 @@ export default function Product() {
 				hadleSearchInput={hadleSearchInput}
 				handleSearchBtn={handleSearchBtn}
 				LoadMore={LoadMore}
+				todayList={todayList}
 			></ProductUI>
 		</>
 	);

@@ -80,11 +80,15 @@ export default function ProductDetailPage() {
 			newTodayList = [...todayList, JSON.stringify(data)];
 			newTodayList = newTodayList.filter((data) => data !== null);
 
-			for (let i = 0; i < todayList.length; i++) {
-				if (JSON.parse(todayList[i]).fetchUseditem._id !== router.query.id) {
+			for (let i = 0; i < newTodayList.length; i++) {
+				if (newTodayList[i] === newTodayList[i + 1]) {
+					newTodayList.pop();
 				}
 			}
 
+			if (newTodayList.length > 2) {
+				newTodayList.splice(0, 1);
+			}
 			window.localStorage.setItem('todayList', JSON.stringify(newTodayList));
 		}
 	}, [data]);

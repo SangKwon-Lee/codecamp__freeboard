@@ -9,4 +9,5 @@ export interface IProductsProps {
 	hadleSearchInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	handleSearchBtn: () => void;
 	LoadMore: () => void;
+	todayList: any[];
 }

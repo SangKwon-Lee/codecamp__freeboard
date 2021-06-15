@@ -10,6 +10,7 @@ import styled from "@emotion/styled"
 
 export const SlideImg = styled.img`
   width:100%;
+  height: 447px;
   /* position: relative; */
 `
 
