@@ -49,15 +49,19 @@ export default function ProductCommentsUI({
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-				<InfiniteScroll loadMore={LoadMore} hasMore={true}>
-					{data?.fetchUseditemQuestions.map((data: any) => (
-						<ProductCommentItem
-							key={data._id}
-							data={data}
-							refetch={refetch}
-						></ProductCommentItem>
-					))}
-				</InfiniteScroll>
+				{data && (
+					<InfiniteScroll loadMore={LoadMore} hasMore={true}>
+						{data?.fetchUseditemQuestions.map((data: any) => (
+							<div key={data._id}>
+								<ProductCommentItem
+									key={data._id}
+									data={data}
+									refetch={refetch}
+								></ProductCommentItem>
+							</div>
+						))}
+					</InfiniteScroll>
+				)}
 			</Body>
 		</Wrapper>
 	);

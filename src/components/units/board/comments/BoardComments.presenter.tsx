@@ -84,16 +84,18 @@ export default function BoardCommentsUI({
 						</CommentsBoxBottom>
 					</CommmentsBoxWrapper>
 				</CommentsInputWrapper>
-				<InfiniteScroll loadMore={LoadMore} hasMore={true}>
-					{data?.fetchBoardComments.map((data: any) => (
-						<BoardCommentItem
-							key={data._id}
-							data={data}
-							onSaveRating={onSaveRating}
-							refetch={refetch}
-						></BoardCommentItem>
-					))}
-				</InfiniteScroll>
+				{data && (
+					<InfiniteScroll loadMore={LoadMore} hasMore={true}>
+						{data?.fetchBoardComments.map((data: any) => (
+							<BoardCommentItem
+								key={data._id}
+								data={data}
+								onSaveRating={onSaveRating}
+								refetch={refetch}
+							></BoardCommentItem>
+						))}
+					</InfiniteScroll>
+				)}
 			</Body>
 		</Wrapper>
 	);
