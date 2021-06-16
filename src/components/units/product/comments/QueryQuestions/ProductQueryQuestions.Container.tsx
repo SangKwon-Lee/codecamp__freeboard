@@ -21,7 +21,7 @@ export default function ProductQueryQuestion({ data, refetch }) {
 	const router = useRouter();
 
 	//* 본인 이메일 확인
-	const { userEmail } = useContext(GlobalContext);
+	const { userData } = useContext(GlobalContext);
 	const [questionId, setQuestionId] = useState('');
 
 	//* 대댓글 상태 관리
@@ -130,7 +130,7 @@ export default function ProductQueryQuestion({ data, refetch }) {
 			Update={Update}
 			handleUpdateInputChange={handleUpdateInputChange}
 			handleClickUpdateComment={handleClickUpdateComment}
-			userEmail={userEmail}
+			userData={userData}
 			name={name}
 			commentUpdate={commentUpdate}
 			handleClickDeleteComment={handleClickDeleteComment}

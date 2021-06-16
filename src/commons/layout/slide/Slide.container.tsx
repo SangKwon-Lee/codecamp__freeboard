@@ -85,7 +85,7 @@ export default function SimpleSlider(props) {
 		}
 		.slick-next {
 			right: 25% !important;
-			z-index: 1;
+			z-index: 0;
 		}
 		.slick-prev,
 		.slick-next {

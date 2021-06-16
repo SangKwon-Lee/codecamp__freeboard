@@ -28,7 +28,7 @@ export default function BoardCommentItemUI({
 	Update,
 	handleUpdateInputChange,
 	handleClickUpdateComment,
-	userEmail,
+	userData,
 	name,
 	commentUpdate,
 	handleClickDeleteComment,
@@ -44,7 +44,7 @@ export default function BoardCommentItemUI({
 				<CommentsUpdatenputWrapper key={data._id}>
 					<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
 					<CommentsUpdateWriterWrapper>
-						<CommentsWriter>노원두</CommentsWriter>
+						<CommentsWriter>{data.user.name}</CommentsWriter>
 						<CommmentsBoxWrapper>
 							<CommentsInput
 								name="contents"
@@ -67,10 +67,10 @@ export default function BoardCommentItemUI({
 						<CommentsCenterWrapper>
 							<CommentsTopWrapper>
 								<CommentsWriterAndStar>
-									<CommentsWriter>노원두</CommentsWriter>
+									<CommentsWriter>{data.user.name}</CommentsWriter>
 								</CommentsWriterAndStar>
 								<CommentsTopRightWrapper>
-									{data.user.email === userEmail ? (
+									{data.user._id === userData?._id ? (
 										<>
 											<CommentsUpdateImg
 												id={data._id}

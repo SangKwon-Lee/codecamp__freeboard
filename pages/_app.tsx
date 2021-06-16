@@ -12,26 +12,39 @@ import { createContext, useEffect, useState } from 'react';
 import { onError } from '@apollo/client/link/error';
 import axios from 'axios';
 
+const userDataInit = {
+	name: '',
+	_id: '',
+	email: '',
+	createdAt: '',
+	updatedAt: '',
+	userPoint: {
+		_id: '',
+		amount: '',
+		createdAt: '',
+		updatedAt: '',
+	},
+};
+
 //* 전역상태로 보낼 것들
 export const GlobalContext = createContext({
 	accessToken: '',
 	setAccessToken: (__: string) => {},
-	userEmail: '',
-	setUserEmail: (__: string) => {},
+	userData: userDataInit,
+	setUserData: (__: typeof userDataInit) => {},
 });
 
 function MyApp({ Component, pageProps }) {
 	const [accessToken, setAccessToken] = useState('');
-	const [userEmail, setUserEmail] = useState('');
-
+	const [userData, setUserData] = useState(userDataInit);
 	//* 모든 쿼리, 뮤테이션에 토큰이 들어가게 만들어 줌.
 	const uploadLink = createUploadLink({
 		uri: 'http://backend.codebootcamp.co.kr/graphql',
 		headers: {
 			authorization: `Bearer ${accessToken}`,
+			credentials: 'include',
 		},
 	});
-
 	// @ts-ignore
 	// const errorLink = onError(async ({ graphQLErrors, operation, forward }) => {
 	// 	// 	//*만료된 토근을 재발급 받기
@@ -79,26 +92,27 @@ function MyApp({ Component, pageProps }) {
 	const clinet = new ApolloClient({
 		link: ApolloLink.from([(uploadLink as unknown) as ApolloLink]),
 		cache: new InMemoryCache(),
-		credentials: 'include',
 	});
 
 	const value = {
 		accessToken,
 		setAccessToken,
-		userEmail,
-		setUserEmail,
+		userData,
+		setUserData,
 	};
 
 	return (
-		//*Provider를 통해 전역으로 나가게 된다.
-		<GlobalContext.Provider value={value}>
-			<ApolloProvider client={clinet}>
-				<Layout>
-					<GlobalStyles />
-					<Component {...pageProps} />
-				</Layout>
-			</ApolloProvider>
-		</GlobalContext.Provider>
+		<>
+			{/* //*프로바이더를 통해 전역으로 나가게 된다. */}
+			<GlobalContext.Provider value={value}>
+				<ApolloProvider client={clinet}>
+					<Layout>
+						<GlobalStyles />
+						<Component {...pageProps} />
+					</Layout>
+				</ApolloProvider>
+			</GlobalContext.Provider>
+		</>
 	);
 }
 

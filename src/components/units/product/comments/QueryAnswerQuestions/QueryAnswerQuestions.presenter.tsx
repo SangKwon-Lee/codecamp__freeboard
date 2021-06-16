@@ -40,7 +40,7 @@ export default function QueryAnswerQuestionsUI({
 					<AnswerImg src="/answerArrow.png"></AnswerImg>
 					<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
 					<CommentsUpdateWriterWrapper>
-						<CommentsWriter>노원두</CommentsWriter>
+						<CommentsWriter>{data.user.name}</CommentsWriter>
 						<CommmentsBoxWrapper>
 							<CommentsInput
 								name="contents"
@@ -60,7 +60,7 @@ export default function QueryAnswerQuestionsUI({
 						<AnswerProfile src="/profileImg.png"></AnswerProfile>
 						<AnswerCenterWrapper>
 							<AnswerNameAndContents>
-								<AnswerName>노원두</AnswerName>
+								<AnswerName>{data.user.name}</AnswerName>
 								<AnswerContetns>{data.contents}</AnswerContetns>
 							</AnswerNameAndContents>
 							{isUser ? (

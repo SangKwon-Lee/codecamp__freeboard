@@ -7,14 +7,12 @@ import {
 	SearchBarWrapper,
 	SearchBtn,
 	SearchImg,
-	DateImg,
 	ResgisterBtn,
 	RegisterImg,
 	RegisterBtnWrapper,
 	SearchBarBackGround,
 	SaleWrapper,
 	Sale,
-	ListWrapper,
 	ListItemWrapper,
 	ListSaleImg,
 	ListLeftWrapper,
@@ -43,6 +41,7 @@ import {
 	FixPrice,
 	FixTags,
 	FixImgWrapper,
+	DateInput,
 } from './Products.style';
 import { IProductsProps } from './Products.tpes';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -75,10 +74,8 @@ export default function ProductsUI({
 								></SearchBar>
 							</SearchBarBackGround>
 							<SearchDateWrapper>
-								<DateImg src="/dateImg.png" />
-								2020.02.12
-								<DateImg src="/dateImg.png" />
-								2020.02.12
+								<DateInput placeholder="YYYY.MM.DD"></DateInput>~
+								<DateInput placeholder="YYYY.MM.DD"></DateInput>
 							</SearchDateWrapper>
 							<SearchBtn onClick={handleSearchBtn}>검색하기</SearchBtn>
 						</SearchBarWrapper>
@@ -86,36 +83,36 @@ export default function ProductsUI({
 					<InfiniteWrapper id="scrollableDiv">
 						{data && (
 							<InfiniteScroll loadMore={LoadMore} hasMore={true}>
-								<ListWrapper>
-									{data?.fetchUseditems.map((data, index) => (
-										<ListItemWrapper key={index}>
-											<ListSaleImg
-												id={data._id}
-												onClick={handleMoveList}
-												src="/listitem.png"
-											></ListSaleImg>
-											<ListBodyWrapper>
-												<ListLeftWrapper>
-													<ListName id={data._id} onClick={handleMoveList}>
-														{data.name}
-													</ListName>
-													<ListRemarks>{data.remarks}</ListRemarks>
-													<ListTags>{data.tags}</ListTags>
-													<ListUserWrapper>
-														<ListUserImg src="/smsmprofile.png"></ListUserImg>
-														<ListUser>판매자</ListUser>
-														<ListHeart src="/smheart.png"></ListHeart>
-														<ListHeartCount>20</ListHeartCount>
-													</ListUserWrapper>
-												</ListLeftWrapper>
-												<ListPriceWrapper>
-													<ListPriceImg src="/priceImg.png"></ListPriceImg>
-													<ListPrice>{data.price.toLocaleString()}원</ListPrice>
-												</ListPriceWrapper>
-											</ListBodyWrapper>
-										</ListItemWrapper>
-									))}
-								</ListWrapper>
+								{/* <ListWrapper> */}
+								{data?.fetchUseditems.map((data, index) => (
+									<ListItemWrapper key={index}>
+										<ListSaleImg
+											id={data._id}
+											onClick={handleMoveList}
+											src="/listitem.png"
+										></ListSaleImg>
+										<ListBodyWrapper>
+											<ListLeftWrapper>
+												<ListName id={data._id} onClick={handleMoveList}>
+													{data.name}
+												</ListName>
+												<ListRemarks>{data.remarks}</ListRemarks>
+												<ListTags>{data.tags}</ListTags>
+												<ListUserWrapper>
+													<ListUserImg src="/smsmprofile.png"></ListUserImg>
+													<ListUser>{data.seller.name}</ListUser>
+													<ListHeart src="/smheart.png"></ListHeart>
+													<ListHeartCount>20</ListHeartCount>
+												</ListUserWrapper>
+											</ListLeftWrapper>
+											<ListPriceWrapper>
+												<ListPriceImg src="/priceImg.png"></ListPriceImg>
+												<ListPrice>{data.price.toLocaleString()}원</ListPrice>
+											</ListPriceWrapper>
+										</ListBodyWrapper>
+									</ListItemWrapper>
+								))}
+								{/* </ListWrapper> */}
 							</InfiniteScroll>
 						)}
 					</InfiniteWrapper>

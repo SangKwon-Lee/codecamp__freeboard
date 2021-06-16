@@ -119,6 +119,7 @@ export type Mutation = {
   uploadFile: FileManager;
   createPointTransactionOfBuyingAndSelling: Useditem;
   createPointTransactionOfLoading: PointTransaction;
+  restoreAccessToken: Token;
   createUseditem: Useditem;
   updateUseditem: Useditem;
   toggleUseditemPick: Scalars['Int'];
@@ -340,12 +341,20 @@ export type QueryFetchUseditemArgs = {
 };
 
 
+export type QueryFetchUseditemsArgs = {
+  search?: Maybe<Scalars['String']>;
+  page?: Maybe<Scalars['Int']>;
+};
+
+
 export type QueryFetchUseditemQuestionsArgs = {
+  page?: Maybe<Scalars['Int']>;
   useditemId: Scalars['ID'];
 };
 
 
 export type QueryFetchUseditemQuestionAnswersArgs = {
+  page?: Maybe<Scalars['Int']>;
   useditemQuestionId: Scalars['ID'];
 };
 
@@ -367,10 +376,10 @@ export type UpdateBoardInput = {
 };
 
 export type UpdateUseditemInput = {
-  name: Scalars['String'];
-  remarks: Scalars['String'];
-  contents: Scalars['String'];
-  price: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  remarks?: Maybe<Scalars['String']>;
+  contents?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Int']>;
   tags?: Maybe<Array<Scalars['String']>>;
 };
 
@@ -390,9 +399,9 @@ export type Useditem = {
   remarks: Scalars['String'];
   contents: Scalars['String'];
   price: Scalars['Int'];
-  tags: Array<Scalars['String']>;
+  tags?: Maybe<Array<Scalars['String']>>;
   useditemAddress?: Maybe<UseditemAddress>;
-  buyer: User;
+  buyer?: Maybe<User>;
   seller: User;
   soldAt?: Maybe<Scalars['DateTime']>;
   createdAt: Scalars['DateTime'];

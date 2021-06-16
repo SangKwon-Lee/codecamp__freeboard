@@ -66,7 +66,7 @@ export default function ProductDetailPageUI({
 						<HeaderLeftWrapper>
 							<HeaderProfileImg src="/profileImg.png"></HeaderProfileImg>
 							<HeaderWriterWrapper>
-								<HeaderWriter>노원두</HeaderWriter>
+								<HeaderWriter>{data?.fetchUseditem.seller.name}</HeaderWriter>
 								<HeaderDate>
 									{data?.fetchUseditem.updatedAt
 										? data?.fetchUseditem.updatedAt.slice(0, 10)

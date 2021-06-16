@@ -4,7 +4,7 @@ import HeaderUI from './Header.presenter';
 import { useRouter } from 'next/router';
 
 const HeaderContainer = () => {
-	const { accessToken } = useContext(GlobalContext);
+	const { accessToken, userData } = useContext(GlobalContext);
 
 	const router = useRouter();
 
@@ -16,6 +16,7 @@ const HeaderContainer = () => {
 		<HeaderUI
 			accessToken={accessToken}
 			handleMoveLoginPage={handleMoveLoginPage}
+			userData={userData}
 		/>
 	);
 };
