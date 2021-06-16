@@ -7,18 +7,27 @@ import {
 	LogoWrapper,
 	SignUp,
 	LoginOKWrapper,
-	LoginTopWrapper,
 	LoginImg,
-	LoginText,
-	LogoutBtn,
-	LoginSapn,
+	LoginModalWrapper,
+	LoginModalBottom,
+	LoginModalTop,
+	LoginDataWrapper,
+	LoginName,
+	LoginPoint,
+	LogoutImg,
+	LoginBottomText,
+	LogoutBottomHr,
+	LoginAb,
+	LoginModalBottomTextWrapper,
 } from './Header.styles';
 import { HeaderProps } from './Header.types';
-
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 const HeaderPresenter = ({
 	accessToken,
 	handleMoveLoginPage,
 	userData,
+	isModal,
+	handleIsModal,
 }: HeaderProps) => (
 	<>
 		<HeaderWrapper>
@@ -28,21 +37,42 @@ const HeaderPresenter = ({
 				</LogoWrapper>
 				<HeaderRightLogoutWrapper>
 					{accessToken ? (
-						<LoginOKWrapper>
-							<LoginTopWrapper>
-								<LoginImg src="/loginprofile.png"></LoginImg>
-								<LoginText>
-									{userData?.name}
-									<LoginSapn>님</LoginSapn>
-								</LoginText>
-								<LogoutBtn>로그아웃</LogoutBtn>
-							</LoginTopWrapper>
-							<LoginTopWrapper>
-								<LoginImg src="/pig.png"></LoginImg>
-								<LoginText>{userData?.userPoint.amount}원</LoginText>
-								<LogoutBtn>충전하기</LogoutBtn>
-							</LoginTopWrapper>
-						</LoginOKWrapper>
+						<>
+							<LoginOKWrapper>
+								<LoginImg src="/profileImg.png"></LoginImg>
+								<ArrowDropDownIcon
+									style={{
+										margin: '10px',
+									}}
+									id="Modal"
+									onClick={handleIsModal}
+								></ArrowDropDownIcon>
+							</LoginOKWrapper>
+							{isModal && (
+								<LoginAb>
+									<LoginModalWrapper>
+										<LoginModalTop>
+											<LoginImg src="/profileImg.png"></LoginImg>
+											<LoginDataWrapper>
+												<LoginName>{userData.name}</LoginName>
+												<LoginPoint>{userData.userPoint.amount} P</LoginPoint>
+											</LoginDataWrapper>
+										</LoginModalTop>
+										<LoginModalBottom>
+											<LoginModalBottomTextWrapper>
+												<LogoutImg src="/greypig.png"></LogoutImg>
+												<LoginBottomText>충전하기</LoginBottomText>
+											</LoginModalBottomTextWrapper>
+											<LogoutBottomHr></LogoutBottomHr>
+											<LoginModalBottomTextWrapper>
+												<LogoutImg src="/greylogout.png"></LogoutImg>
+												<LoginBottomText>로그아웃</LoginBottomText>
+											</LoginModalBottomTextWrapper>
+										</LoginModalBottom>
+									</LoginModalWrapper>
+								</LoginAb>
+							)}
+						</>
 					) : (
 						<>
 							<Login onClick={handleMoveLoginPage}>로그인</Login>
