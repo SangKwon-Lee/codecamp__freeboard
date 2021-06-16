@@ -32,7 +32,6 @@ function ProductCommentsPage() {
 	>(FETCH_USED_ITEM_QUESTIONS, {
 		variables: { useditemId: String(router.query.id) },
 	});
-
 	// //* 문의 더 불로오기
 	const LoadMore = () => {
 		if (data?.fetchUseditemQuestions.length % 10 !== 0) return;

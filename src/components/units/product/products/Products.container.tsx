@@ -20,19 +20,14 @@ export default function Product() {
 		variables: { page: currentPage, search },
 	});
 
+	//* 로컬스토리지를 이용하여 오늘 본 상품 로직
 	const [todayList, setTodayList] = useState([]);
-
 	useEffect(() => {
 		let data = [];
+		let jsonData = JSON.parse(window.localStorage.getItem('todayList'));
 		if (window.localStorage.getItem('todayList')) {
-			for (
-				let i = 0;
-				i < JSON.parse(window.localStorage.getItem('todayList')).length;
-				i++
-			) {
-				data.push(
-					JSON.parse(JSON.parse(window.localStorage.getItem('todayList'))[i]),
-				);
+			for (let i = 0; i < jsonData.length; i++) {
+				data.push(JSON.parse(jsonData[i]));
 			}
 			setTodayList(data);
 		}

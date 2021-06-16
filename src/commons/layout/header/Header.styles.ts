@@ -31,7 +31,7 @@ export const Logo = styled.img``
 
 export const HeaderRightLogoutWrapper = styled.div`
   display: flex;
-  width: 11.125rem;
+  /* width: 11.125rem; */
   align-items:center;
   justify-content: space-between;
 `
@@ -41,6 +41,7 @@ export const Login = styled.button`
   border:none;
   outline:none;
   font-weight:500;
+  margin-right:20px;
   font-size: 1rem;
   :hover{
   font-weight:700;
@@ -76,7 +77,7 @@ export const LoginOKWrapper = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-width:190px;
+/* width:190px; */
 height: 76px;
 `
 
@@ -98,12 +99,15 @@ export const LoginSapn = styled.span`
 `
 export const LoginImg = styled.img`
   width:20px;
+  margin-right:10px;
   height: 20px;
 `
 
 export const LoginText = styled.div`
+  text-align: end;
   font-size:16px;
   font-weight: 700;
+  margin-right: 10px;
 `
 
 export const LogoutBtn = styled.button`

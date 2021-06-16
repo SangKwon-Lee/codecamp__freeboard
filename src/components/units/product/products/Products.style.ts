@@ -21,7 +21,9 @@ export const Contents = styled.div`
 
 export const InfiniteWrapper = styled.div`
 	max-width: 1200px;
+	margin-top: 20px;
 	width:100%;
+	border-top: 1px solid #BDBDBD;
 `
 
 
@@ -121,6 +123,7 @@ export const SearchDateWrapper = styled.div`
   align-items: center;
   border :1px solid rgba(0,0,0,0.2);
   border-radius: 8px;
+		color:#BDBDBD;
 `
 
 export const SearchBtn = styled.button`
@@ -141,6 +144,17 @@ export const SearchImg = styled.img`
 
 export const DateImg = styled.img``
 
+export const DateInput = styled.input`
+	outline: none;
+	border: none;
+	font-size:16px;
+	
+	width:93px;
+	text-align: center;
+	::placeholder{
+		color:#BDBDBD
+	}
+`
 
 //! 테이블 구역 
 
@@ -200,6 +214,7 @@ export const ListName = styled.div`
 	font-size:24px;
 	margin-top: 4px;
 	font-weight: 500;
+	height: 34px;
 	cursor: pointer;
 
 `
@@ -207,7 +222,7 @@ export const ListName = styled.div`
 export const ListRemarks = styled.div`
 font-size:16px;
 font-weight: 500;
-
+height: 22px;
 `
 
 export const ListPriceWrapper = styled.div`

@@ -15,7 +15,11 @@ import {
 } from './Header.styles';
 import { HeaderProps } from './Header.types';
 
-const HeaderPresenter = ({ accessToken, handleMoveLoginPage }: HeaderProps) => (
+const HeaderPresenter = ({
+	accessToken,
+	handleMoveLoginPage,
+	userData,
+}: HeaderProps) => (
 	<>
 		<HeaderWrapper>
 			<HeaderBody>
@@ -28,13 +32,14 @@ const HeaderPresenter = ({ accessToken, handleMoveLoginPage }: HeaderProps) => (
 							<LoginTopWrapper>
 								<LoginImg src="/loginprofile.png"></LoginImg>
 								<LoginText>
-									노원두 <LoginSapn>님</LoginSapn>
+									{userData?.name}
+									<LoginSapn>님</LoginSapn>
 								</LoginText>
 								<LogoutBtn>로그아웃</LogoutBtn>
 							</LoginTopWrapper>
 							<LoginTopWrapper>
 								<LoginImg src="/pig.png"></LoginImg>
-								<LoginText>100,000</LoginText>
+								<LoginText>{userData?.userPoint.amount}원</LoginText>
 								<LogoutBtn>충전하기</LogoutBtn>
 							</LoginTopWrapper>
 						</LoginOKWrapper>

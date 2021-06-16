@@ -8,6 +8,11 @@ export const FETCH_USED_ITEMS = gql`
 			name
 			remarks
 			contents
+			seller{
+				name
+				_id
+				email
+			}
 			price
 			tags
 			createdAt

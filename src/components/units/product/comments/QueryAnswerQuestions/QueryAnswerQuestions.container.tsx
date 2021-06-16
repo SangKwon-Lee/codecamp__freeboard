@@ -16,7 +16,7 @@ import {
 } from './QueryAnswerQuestions.queries';
 export default function QueryAnswerQuestions({ data, questionId }) {
 	//* 본인 확인 이메일
-	const { userEmail } = useContext(GlobalContext);
+	const { userData } = useContext(GlobalContext);
 
 	//* 대댓글 작성 Open
 	const [write, setWrite] = useState(false);
@@ -65,7 +65,7 @@ export default function QueryAnswerQuestions({ data, questionId }) {
 
 	//* 본인 확인 UseEffect
 	useEffect(() => {
-		if (userEmail === data?.user.email) {
+		if (userData?._id === data?.user._id) {
 			setIsUser(true);
 		}
 	}, [data?.user.email, data]);

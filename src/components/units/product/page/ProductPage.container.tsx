@@ -15,11 +15,11 @@ export default function ProductDetailPage() {
 	const { data } = useQuery<Query, QueryFetchUseditemArgs>(FETCH_USED_ITEM, {
 		variables: { useditemId: String(router.query.id) },
 	});
+	console.log(data?.fetchUseditem.seller._id);
 
 	//* 본인 확인을 위한 전역 관리 상태
-	const { userEmail } = useContext(GlobalContext);
+	const { userData } = useContext(GlobalContext);
 	const [isUser, setIsUser] = useState(false);
-
 	//* 이미지 배열
 	const [imgArr, setImgArr] = useState([1, 2, 3, 4]);
 
@@ -31,7 +31,7 @@ export default function ProductDetailPage() {
 	//* 본인 확인하는 내용
 	useEffect(() => {
 		setDataLength(imgArr.length);
-		if (userEmail === data?.fetchUseditem.seller.email) {
+		if (userData?._id === data?.fetchUseditem.seller._id) {
 			setIsUser(true);
 		}
 	}, [data?.fetchUseditem.seller.email, data]);
@@ -67,6 +67,7 @@ export default function ProductDetailPage() {
 		router.push(`/product`);
 	};
 
+	//* 로컬스토리지를 이용하여 오늘 본 상품 로직
 	let todayList =
 		typeof window === 'undefined'
 			? [0]
@@ -79,13 +80,11 @@ export default function ProductDetailPage() {
 			let newTodayList = [];
 			newTodayList = [...todayList, JSON.stringify(data)];
 			newTodayList = newTodayList.filter((data) => data !== null);
-
 			for (let i = 0; i < newTodayList.length; i++) {
 				if (newTodayList[i] === newTodayList[i + 1]) {
 					newTodayList.pop();
 				}
 			}
-
 			if (newTodayList.length > 2) {
 				newTodayList.splice(0, 1);
 			}
