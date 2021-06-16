@@ -16,4 +16,7 @@ export interface HeaderProps {
   handleMoveLoginPage: () => void;
   accessToken: String;
   userData: typeof userDataInit
+  isModal: boolean;
+  handleIsModal: () => void;
 }
+

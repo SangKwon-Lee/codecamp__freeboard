@@ -75,40 +75,22 @@ export const HeaderRightLoginWrapper = styled.button`
 
 export const LoginOKWrapper = styled.div`
 display: flex;
-flex-direction: column;
 justify-content: space-between;
-/* width:190px; */
-height: 76px;
+align-items: center;
 `
 
-export const LoginTopWrapper = styled.div`
-  display: flex;
-  width:100%;
-  align-items: center;
-  justify-content: space-between;
-`
+
 
 export const LoginBottomWrapper = styled.div`
   display: flex;
 
 `
-export const LoginSapn = styled.span`
-  font-size:16px;
-  font-weight: 400;
-  color:grey;
-`
+
 export const LoginImg = styled.img`
-  width:20px;
-  margin-right:10px;
-  height: 20px;
+width:40px;
+  margin-right:15px;
 `
 
-export const LoginText = styled.div`
-  text-align: end;
-  font-size:16px;
-  font-weight: 700;
-  margin-right: 10px;
-`
 
 export const LogoutBtn = styled.button`
   width:77px;
@@ -116,5 +98,86 @@ export const LogoutBtn = styled.button`
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  border:1px solid rgba(0,0,0,0.3)
+  border:1px solid rgba(0,0,0,0.3);
+`
+
+
+//! 본인 정보 확인 모달
+
+export const LoginAb = styled.div`
+position: absolute;
+`
+
+export const LoginModalWrapper = styled.div`
+  position: absolute;
+  top:30px;
+  background-color: white;
+  right:-70px;
+  width:258px;
+  height: 231px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0,0.3);
+  border-radius: 16px;
+  animation-name: move;
+  animation-duration: 1s;
+  @keyframes move {
+    from {
+      opacity: 0;
+    } to{
+      opacity: 1;
+    }
+  }
+`
+
+export const LoginModalTop = styled.div`
+  display: flex;
+  padding:30px 0px 26px 24px;
+  border-bottom:1px solid;
+  height: 100px;
+  width: 100%;
+`
+export const LoginDataWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 48px;
+  justify-content: space-between;
+`
+export const LoginName = styled.div`
+  font-size:16px;
+  font-weight: 700;
+
+`
+
+export const LoginPoint = styled.div`
+
+  font-size:12px;
+  font-weight: 700;`
+
+
+export const LoginModalBottom = styled.div`
+  width: 100%;
+  `
+
+export const LoginModalBottomTextWrapper = styled.div`
+  width:100%;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  padding-left: 36px;
+  padding-bottom:21px;
+  padding-top:20px;
+`
+
+export const LogoutImg = styled.img`
+  margin-right:12px;
+`
+
+export const LogoutBottomHr = styled.div`
+  width: 100%;
+    border-top:1px solid #BDBDBD;
+  `
+
+export const LoginBottomText = styled.div`
+  cursor: pointer;
 `
