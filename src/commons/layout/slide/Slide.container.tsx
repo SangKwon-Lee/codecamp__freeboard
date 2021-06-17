@@ -178,6 +178,7 @@ export default function SimpleSlider(props) {
 
 	var settings = {
 		dots: true,
+		autoplay: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,

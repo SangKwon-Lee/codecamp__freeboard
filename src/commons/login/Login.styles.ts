@@ -11,6 +11,7 @@ export const LoginWrapper = styled.div`
 export const LoginBG = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
   position: absolute;
   z-index: -2;
 `

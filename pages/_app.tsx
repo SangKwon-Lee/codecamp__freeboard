@@ -45,7 +45,6 @@ function MyApp({ Component, pageProps }) {
 			credentials: 'include',
 		},
 	});
-	console.log(userData);
 	// @ts-ignore
 	// const errorLink = onError(async ({ graphQLErrors, operation, forward }) => {
 	// 	// 	//*만료된 토근을 재발급 받기
