@@ -18,5 +18,8 @@ export interface HeaderProps {
   userData: typeof userDataInit
   isModal: boolean;
   handleIsModal: () => void;
+   handleIsPayment: () => void;
+  isPayment: boolean;
+  handleIsPaymentClose: () => void;
 }
 

@@ -22,14 +22,22 @@ import {
 } from './Header.styles';
 import { HeaderProps } from './Header.types';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PaymetModal from '../../paymentModal/paymentModal.container';
+
 const HeaderPresenter = ({
 	accessToken,
 	handleMoveLoginPage,
 	userData,
 	isModal,
 	handleIsModal,
+	handleIsPayment,
+	isPayment,
+	handleIsPaymentClose,
 }: HeaderProps) => (
 	<>
+		{isPayment && (
+			<PaymetModal handleIsPaymentClose={handleIsPaymentClose}></PaymetModal>
+		)}
 		<HeaderWrapper>
 			<HeaderBody>
 				<LogoWrapper>
@@ -61,7 +69,9 @@ const HeaderPresenter = ({
 										<LoginModalBottom>
 											<LoginModalBottomTextWrapper>
 												<LogoutImg src="/greypig.png"></LogoutImg>
-												<LoginBottomText>충전하기</LoginBottomText>
+												<LoginBottomText onClick={handleIsPayment}>
+													충전하기
+												</LoginBottomText>
 											</LoginModalBottomTextWrapper>
 											<LogoutBottomHr></LogoutBottomHr>
 											<LoginModalBottomTextWrapper>
