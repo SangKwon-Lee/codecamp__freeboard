@@ -6,7 +6,6 @@ import {
 	Label,
 	InputWrapper,
 	Subject,
-	Contents,
 	ZipcodeWrapper,
 	Zipcode,
 	SearchButton,
@@ -34,6 +33,13 @@ import {
 	GPSImg,
 	AddressWrapper,
 } from './ProductWrite.style';
+import dynamic from 'next/dynamic';
+import 'react-quill/dist/quill.snow.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+	ssr: false,
+});
+
 function ProductWritePageUI({
 	handleChangeInput,
 	handleClickCreateBoard,
@@ -47,6 +53,7 @@ function ProductWritePageUI({
 	postOpen,
 	ZipCode,
 	handleZipCodeInput,
+	handleChangeEditor,
 }: IBoardWriterProps) {
 	return (
 		<Wrapper>
@@ -75,12 +82,11 @@ function ProductWritePageUI({
 					</InputWrapper>
 					<InputWrapper>
 						<Label>내용</Label>
-						<Contents
-							placeholder="내용을 작성해주세요."
-							name="contents"
+						<ReactQuill
 							defaultValue={data?.fetchUseditem.contents}
-							onChange={handleChangeInput}
-						/>
+							onChange={handleChangeEditor}
+							style={{ height: '320px', marginBottom: '40px' }}
+						></ReactQuill>
 					</InputWrapper>
 					<InputWrapper>
 						<Label>판매 가격</Label>

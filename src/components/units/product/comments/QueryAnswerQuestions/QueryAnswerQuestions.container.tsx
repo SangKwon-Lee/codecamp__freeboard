@@ -149,6 +149,7 @@ export default function QueryAnswerQuestions({ data, questionId }) {
 			deleteAnswer={deleteAnswer}
 			updateAnswer={updateAnswer}
 			handleCreateAnswer={handleCreateAnswer}
+			userData={userData}
 		></QueryAnswerQuestionsUI>
 	);
 }

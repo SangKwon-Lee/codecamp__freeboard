@@ -32,6 +32,7 @@ export default function QueryAnswerQuestionsUI({
 	handleWrite,
 	write,
 	handleCreateAnswer,
+	userData,
 }: QueryAnswerQuestionsProps) {
 	return (
 		<>
@@ -88,7 +89,7 @@ export default function QueryAnswerQuestionsUI({
 					<AnswerImg src="/answerArrow.png"></AnswerImg>
 					<CommentsProfileImg src="/profileImg.png"></CommentsProfileImg>
 					<CommentsUpdateWriterWrapper>
-						<CommentsWriter>노원두</CommentsWriter>
+						<CommentsWriter>{userData.name}</CommentsWriter>
 						<CommmentsBoxWrapper>
 							<CommentsInput
 								name="contents"

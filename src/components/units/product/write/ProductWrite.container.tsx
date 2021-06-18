@@ -80,17 +80,22 @@ function ProductWritePage() {
 		};
 
 		setInput(newInput);
-		if (
-			newInput.name &&
-			newInput.remarks &&
-			newInput.contents &&
-			newInput.price &&
-			newInput.tags
-		) {
+		if (newInput.name && newInput.remarks && newInput.price && newInput.tags) {
 			setIsTrue(false);
 		} else {
 			setIsTrue(true);
 		}
+	};
+
+	//*웹 에디터 체인지 함수
+
+	const handleChangeEditor = (contents) => {
+		const newInput = {
+			...input,
+			contents,
+		};
+		console.log(newInput);
+		setInput(newInput);
 	};
 
 	//* 등록함수
@@ -227,6 +232,7 @@ function ProductWritePage() {
 			postOpen={postOpen}
 			ZipCode={ZipCode}
 			handleZipCodeInput={handleZipCodeInput}
+			handleChangeEditor={handleChangeEditor}
 		></ProductUI>
 	);
 }
