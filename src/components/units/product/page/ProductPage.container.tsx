@@ -15,7 +15,6 @@ export default function ProductDetailPage() {
 	const { data } = useQuery<Query, QueryFetchUseditemArgs>(FETCH_USED_ITEM, {
 		variables: { useditemId: String(router.query.id) },
 	});
-	console.log(data?.fetchUseditem.seller._id);
 
 	//* 본인 확인을 위한 전역 관리 상태
 	const { userData } = useContext(GlobalContext);

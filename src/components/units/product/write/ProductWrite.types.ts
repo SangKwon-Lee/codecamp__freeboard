@@ -13,4 +13,5 @@ export interface IBoardWriterProps {
 	postOpen: boolean;
 	ZipCode: string;
 	handleZipCodeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	handleChangeEditor: (contents: string) => void;
 }

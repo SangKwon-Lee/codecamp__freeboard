@@ -130,7 +130,11 @@ export default function ProductDetailPageUI({
 							</ImgSlideWrapper>
 
 							<ContentWrapper>
-								<Content>{data?.fetchUseditem.contents}</Content>
+								<Content
+									dangerouslySetInnerHTML={{
+										__html: data?.fetchUseditem.contents,
+									}}
+								></Content>
 								<TagsWrapper>
 									<Tags>{data?.fetchUseditem.tags}</Tags>
 								</TagsWrapper>

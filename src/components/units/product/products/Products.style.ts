@@ -28,7 +28,6 @@ export const InfiniteWrapper = styled.div`
 
 
 export const SaleWrapper = styled.div`
-
 	width: 186px;
 	display: flex;
 	justify-content: space-between;
