@@ -31,7 +31,6 @@ import {
 	UploadCancle,
 } from './BoardWrite.style';
 import DaumPostcode from 'react-daum-postcode';
-import { ImageAspectRatioRounded } from '@material-ui/icons';
 export default function BoardWritePage({
 	handleChangeInput,
 	handleClickCreateBoard,
