@@ -137,6 +137,7 @@ export const LAT = styled.input`
 	width:100%;
 	padding-left:20px;
 	outline: none;
+text-overflow: clip;
 `
 
 export const AddressWrapper = styled.div`
@@ -264,5 +265,22 @@ export const UploadCancle = styled.button`
 	margin-top:-10px;
 `
 
+
+export const AddressBtn = styled.button`
+margin-left: 10px;
+	margin-bottom: 16px;
+	background-color: transparent;
+	cursor: pointer;
+	outline: none;
+		font-size: 16px;
+	font-weight: 500;
+	width: 50px;
+	border:1px solid #BDBDBD;
+`
+
+export const AddressBtnWrapper = styled.div`
+	display: flex;
+	align-items: center;
+`
 
 
