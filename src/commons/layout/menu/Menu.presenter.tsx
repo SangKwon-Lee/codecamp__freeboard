@@ -5,18 +5,33 @@ import {
 	TitleWrapper,
 } from './Menu.styles';
 import { MenuProps } from './Menu.types';
-export default function MenuUI({
-	handleMoveBoards,
-	handleMoveUsedItem,
-}: MenuProps) {
+export default function MenuUI({ handleMove, move }: MenuProps) {
 	return (
 		<MenuWrapper>
 			<TitleWrapper>
-				<MenuTitle onClick={handleMoveBoards}>자유게시판</MenuTitle>
+				<MenuTitle
+					id="boards"
+					onClick={handleMove}
+					isActive={move === 'boards'}
+				>
+					자유게시판
+				</MenuTitle>
 				<DivdieLine></DivdieLine>
-				<MenuTitle onClick={handleMoveUsedItem}>중고마켓</MenuTitle>
+				<MenuTitle
+					id="products"
+					onClick={handleMove}
+					isActive={move === 'products'}
+				>
+					중고마켓
+				</MenuTitle>
 				<DivdieLine></DivdieLine>
-				<MenuTitle>마이페이지</MenuTitle>
+				<MenuTitle
+					id="mypage"
+					onClick={handleMove}
+					isActive={move === 'mypage'}
+				>
+					마이페이지
+				</MenuTitle>
 			</TitleWrapper>
 		</MenuWrapper>
 	);

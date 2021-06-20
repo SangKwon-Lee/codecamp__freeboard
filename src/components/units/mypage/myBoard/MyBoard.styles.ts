@@ -145,3 +145,40 @@ export const MyBoardContentsSaleText = styled.div`
   font-size: 16px;
   font-weight: 700;
 `
+interface IProps {
+	isActive: boolean;
+}
+
+export const PageContainer = styled.div`
+  width:100%;
+  display: flex;
+  justify-content: center;
+`
+
+export const Page = styled.span`
+cursor: pointer;
+color:${(props: IProps) => (props.isActive ? '#FFD600' : 'black')};
+border-bottom: ${(props: IProps) => (props.isActive ? "1px solid #FFD600" : "none") };
+margin:20px;
+
+`
+
+export const PageWrapper = styled.div`
+padding-top: 60px;
+display: flex;
+justify-content: space-between;
+
+align-items: center;
+`
+
+export const PageLeft = styled.img`
+margin-top :2px ;
+height: 10px;
+cursor: pointer;
+`
+
+export const PageRight = styled.img`
+margin-top :2px ;
+height: 10px;
+cursor: pointer;
+`

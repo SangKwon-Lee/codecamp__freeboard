@@ -21,13 +21,18 @@ import {
 	MyBoardContentsDate,
 	MyBoardContentsSale,
 	MyBoardContentsSaleText,
+	PageWrapper,
+	PageLeft,
+	Page,
+	PageRight,
+	PageContainer,
 } from './MyBoard.styles';
-
-import MyPoint from './MyBoard.container';
 
 export default function MyBoardUI({
 	changeMyBoardMenu,
 	handleChangeMyBoardMenu,
+	pageArr,
+	currentPage,
 }) {
 	return (
 		<MyBoardWrapper>
@@ -94,6 +99,28 @@ export default function MyBoardUI({
 					))}
 				</MyBoardTableWrapper>
 			</MyBoardTableWrapper>
+			<PageContainer>
+				<PageWrapper>
+					<PageLeft
+						src="/leftArrow.png"
+						// onClick={LeftArrowPage}
+					></PageLeft>
+					{pageArr.map((data: any) => (
+						<Page
+							key={data}
+							id={String(data)}
+							// onClick={onClickPage}
+							isActive={currentPage === data}
+						>
+							{data}
+						</Page>
+					))}
+					<PageRight
+						src="/rightArrow.png"
+						// onClick={RightArrowPage}
+					></PageRight>
+				</PageWrapper>
+			</PageContainer>
 		</MyBoardWrapper>
 	);
 }
