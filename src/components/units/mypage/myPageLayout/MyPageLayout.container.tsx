@@ -7,16 +7,16 @@ export default function MyPageLayout() {
 	const [menuHandle, setMenuHandle] = useState(false);
 
 	//* 클릭한 메뉴에 따라 CSS 변경 상태
-	const [menuColor, setMenuColor] = useState('');
+	const [menuChoice, setMenuChoice] = useState('Point');
 
 	const handleMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		setMenuColor(e.target.id);
+		setMenuChoice(e.target.id);
 	};
 
 	return (
 		<MyPageLayoutUI
 			handleMenu={handleMenu}
-			menuColor={menuColor}
+			menuChoice={menuChoice}
 			userData={userData}
 		></MyPageLayoutUI>
 	);

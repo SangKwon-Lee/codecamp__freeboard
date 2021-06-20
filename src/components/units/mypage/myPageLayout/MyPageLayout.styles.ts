@@ -10,7 +10,7 @@ export const MyPageContainer = styled.div`
   width:100%;
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 960px;
 `
 
 
@@ -19,7 +19,7 @@ export const MyPageWrapper = styled.div`
   width:100%;
   display: flex;
   justify-content: space-between;
-  height: 900px;
+  height: 100%;
 `
 
 export const MyPageLeftLayout = styled.div`
@@ -90,7 +90,8 @@ color:${(props:MyPageStyleProps) => props.isActive ? "#FFD600" : "black"};
 
 export const MyPageMenu = styled.div`
   margin-left:8px;
-  font-weight:${(props:MyPageStyleProps) => props.isActive ? 700 : 500};
+  font-weight:${(props: MyPageStyleProps) => props.isActive ? 700 : 500};
+  color: ${(props: MyPageStyleProps) => props.isActive ? 'black' : '#BDBDBD'};
 `
 
 export const MyPageRightLayout = styled.div`

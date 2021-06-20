@@ -18,11 +18,10 @@ import {
 	MyPageIconProfle,
 } from './MyPageLayout.styles';
 import { MyPageLayoutProps } from './MyPageLayout.types';
-import MyBoard from '../myBoard/MyBoard.container';
-
+import MyPageUI from '../index';
 export default function MyPageLayoutUI({
 	handleMenu,
-	menuColor,
+	menuChoice,
 	userData,
 }: MyPageLayoutProps) {
 	return (
@@ -42,12 +41,12 @@ export default function MyPageLayoutUI({
 								<MyPageIconCart
 									id="Cart"
 									onClick={handleMenu}
-									isActive={menuColor === 'Cart'}
+									isActive={menuChoice === 'Cart'}
 								></MyPageIconCart>
 								<MyPageMenu
 									id="Cart"
 									onClick={handleMenu}
-									isActive={menuColor === 'Cart'}
+									isActive={menuChoice === 'Cart'}
 								>
 									내 장터
 								</MyPageMenu>
@@ -56,12 +55,12 @@ export default function MyPageLayoutUI({
 								<MyPageIconPoint
 									id="Point"
 									onClick={handleMenu}
-									isActive={menuColor === 'Point'}
+									isActive={menuChoice === 'Point'}
 								></MyPageIconPoint>
 								<MyPageMenu
 									id="Point"
 									onClick={handleMenu}
-									isActive={menuColor === 'Point'}
+									isActive={menuChoice === 'Point'}
 								>
 									내 포인트
 								</MyPageMenu>
@@ -70,12 +69,12 @@ export default function MyPageLayoutUI({
 								<MyPageIconProfle
 									id="Profile"
 									onClick={handleMenu}
-									isActive={menuColor === 'Profile'}
+									isActive={menuChoice === 'Profile'}
 								></MyPageIconProfle>
 								<MyPageMenu
 									id="Profile"
 									onClick={handleMenu}
-									isActive={menuColor === 'Profile'}
+									isActive={menuChoice === 'Profile'}
 								>
 									내 프로필
 								</MyPageMenu>
@@ -84,7 +83,7 @@ export default function MyPageLayoutUI({
 					</MyPageLeftWrapper>
 				</MyPageLeftLayout>
 				<MyPageRightLayout>
-					<MyBoard></MyBoard>
+					<MyPageUI menuChoice={menuChoice}></MyPageUI>
 				</MyPageRightLayout>
 			</MyPageWrapper>
 		</MyPageContainer>

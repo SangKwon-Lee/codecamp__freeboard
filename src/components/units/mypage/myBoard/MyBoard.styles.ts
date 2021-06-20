@@ -1,5 +1,9 @@
 import styled from "@emotion/styled"
 
+interface MyBoardProps {
+  isActive:boolean
+}
+
 export const MyBoardWrapper = styled.div`
   width:100%;
   display: flex;
@@ -21,8 +25,11 @@ align-items: center;
 `
 export const MyBoardMenu  = styled.div`
   font-size:16px;
-  font-weight: 700;
-  border-bottom: 2.5px solid #FFD600;
+  font-weight: ${(props:MyBoardProps) => props.isActive ?  '700' : '400'};
+  color:${(props:MyBoardProps) => props.isActive ?  'black' : '#BDBDBD'};
+  border-bottom:${(props: MyBoardProps) => props.isActive ? '2.5px solid #FFD600' : 'none'};
+  cursor: pointer;
+  
 `
 export const MyBoardMenuLine  = styled.div`
 border-right: 1px solid #BDBDBD;
@@ -33,7 +40,6 @@ export const MyBoardTableWrapper  = styled.div`
   border-top:1px solid #BDBDBD;
   border-bottom:1px solid #BDBDBD;
   width:100%;
-  height:584px;
 `
 
 export const MyBoardTableTitleWrapper = styled.div`
@@ -43,6 +49,7 @@ export const MyBoardTableTitleWrapper = styled.div`
  justify-content: space-between;
  padding-right: 40px;
  padding-top:13px;
+ padding-bottom: 10px;
 `
 
 export const MyBoardTableTitle  = styled.div`
@@ -57,7 +64,7 @@ justify-content: center;
 `
 
 export const MyBoardTitleWrapper = styled.div`
-width:530px;
+width:300px;
 display: flex;
 justify-content: center;
 `
@@ -78,4 +85,63 @@ display: flex;
 justify-content: center;
 `
 
+export const MyBoardContentsWrapper = styled.div`
+  width: 100%;
+  border-top: 1px solid #BDBDBD;
+  height: 54px;
+  width:100%;
+ display: flex;
+ padding-left: 20px;
+ justify-content: space-between;
+ padding-right: 40px;
+ align-items: center;
+`
 
+export const MyBoardContentsNumber = styled.div`
+width:40px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+export const MyBoardContentsTitle = styled.div`
+width:300px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+export const MyBoardContentsPrice = styled.div`
+width:80px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+export const MyBoardContentsWriter = styled.div`
+width:80px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+export const MyBoardContentsDate = styled.div`
+width:80px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+
+export const MyBoardContents = styled.div`
+  color:#4F4F4F;
+  font-size:16px;
+`
+
+export const MyBoardContentsSale = styled.div`
+width:80px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
+
+export const MyBoardContentsSaleText = styled.div`
+  color:#FFD600;
+  font-size: 16px;
+  font-weight: 700;
+`
