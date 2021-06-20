@@ -13,6 +13,6 @@ const userDataInit = {
 };
 export interface MyPageLayoutProps {
   handleMenu: (e: React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
-  menuColor: string;
+  menuChoice: string;
   userData: typeof userDataInit
 }
