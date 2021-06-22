@@ -20,4 +20,11 @@ export interface IBoardWriterProps {
 	}
 		handleComplete: (data: any) => void;
 	handlePostOpen: () => void;
+	input: {
+		name: string,
+		remarks: string,
+		contents: string,
+		price: number,
+		tags: any[],
+	}
 }

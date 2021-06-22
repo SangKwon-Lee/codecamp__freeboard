@@ -1,20 +1,16 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import MenuUI from './Menu.presenter';
 
 export default function Menu() {
 	const router = useRouter();
 
-	const handleMoveBoards = () => {
-		router.push(`/boards`);
+	const [move, setMove] = useState('boards')
+
+	const handleMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		setMove(e.target.id)
+		router.push(`/${e.target.id}`);
 	};
 
-	const handleMoveUsedItem = () => {
-		router.push(`/products`);
-	};
-	return (
-		<MenuUI
-			handleMoveBoards={handleMoveBoards}
-			handleMoveUsedItem={handleMoveUsedItem}
-		></MenuUI>
-	);
+	return <MenuUI move={move} handleMove={handleMove}></MenuUI>;
 }

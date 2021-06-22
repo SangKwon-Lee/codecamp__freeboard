@@ -4,11 +4,11 @@ import MyPageLayoutUI from './MyPageLayout.presenter';
 
 export default function MyPageLayout() {
 	const { userData } = useContext(GlobalContext);
-	const [menuHandle, setMenuHandle] = useState(false);
 
-	//* 클릭한 메뉴에 따라 CSS 변경 상태
+	//* 클릭한 메뉴에 따라 CSS 및 컴포넌트 변경 상태
 	const [menuChoice, setMenuChoice] = useState('Point');
 
+	//* 메뉴 변경 함수
 	const handleMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		setMenuChoice(e.target.id);
 	};

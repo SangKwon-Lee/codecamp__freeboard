@@ -1,4 +1,4 @@
 export interface MenuProps {
-  handleMoveBoards: () => void;
-  handleMoveUsedItem: () => void;
+  move: string;
+  handleMove: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }

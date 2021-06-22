@@ -16,11 +16,10 @@ import {
 	BestPickCount,
 } from './ProductsBest.style';
 
+import { memo } from 'react';
 import { IProductsBestProps } from './ProductsBest.tpes';
-export default function ProductsBestBestUI({
-	data,
-	handleMoveList,
-}: IProductsBestProps) {
+
+const ProductsBestBestUI = ({ data, handleMoveList }: IProductsBestProps) => {
 	return (
 		<Wrapper>
 			<Contents>
@@ -54,4 +53,5 @@ export default function ProductsBestBestUI({
 			</Contents>
 		</Wrapper>
 	);
-}
+};
+export default memo(ProductsBestBestUI);

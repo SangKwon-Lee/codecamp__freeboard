@@ -1,5 +1,8 @@
 import styled from "@emotion/styled"
 
+interface MenuProps{
+  isActive: boolean;
+}
 export const MenuWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -22,13 +25,15 @@ export const TitleWrapper = styled.div`
 export const MenuTitle = styled.div`
 font-size:18px;
 font-weight: 700;
-color: #AB9000;
+color: ${(props:MenuProps) => props.isActive ? "black " : '#AB9000'};
 cursor: pointer;
 :hover{
   color:black
 }:focus{
   color:black
 }
+
+
 `
 
 export const DivdieLine = styled.div`

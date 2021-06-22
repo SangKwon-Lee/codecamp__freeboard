@@ -39,6 +39,7 @@ import {
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import DaumPostcode from 'react-daum-postcode';
+import EditorComponent from '../../../../../pages/test';
 const ReactQuill = dynamic(() => import('react-quill'), {
 	ssr: false,
 });
@@ -60,6 +61,7 @@ function ProductWritePageUI({
 	pa,
 	handlePostOpen,
 	handleComplete,
+	input,
 }: IBoardWriterProps) {
 	return (
 		<>
@@ -96,7 +98,8 @@ function ProductWritePageUI({
 						<InputWrapper>
 							<Label>내용</Label>
 							<ReactQuill
-								defaultValue={data?.fetchUseditem.contents}
+								value={input.contents || ''}
+								defaultValue={input.contents || ''}
 								onChange={handleChangeEditor}
 								style={{ height: '320px', marginBottom: '40px' }}
 							></ReactQuill>
@@ -142,11 +145,13 @@ function ProductWritePageUI({
 									<LAT
 										placeholder="위도(LAT)"
 										value={String(pa.La).slice(0, 10)}
+										onChange={() => {}}
 									></LAT>
 									<GPSImg src="/smnav.png"></GPSImg>
 									<LAT
 										placeholder="경도(LNG)"
 										value={String(pa.Ma).slice(0, 10)}
+										onChange={() => {}}
 									></LAT>
 								</LATLNGWrapper>
 								<AddressWrapper>
