@@ -45,7 +45,6 @@ import {
 } from './Products.style';
 import { IProductsProps } from './Products.tpes';
 import InfiniteScroll from 'react-infinite-scroller';
-import { useRef } from 'react';
 
 export default function ProductsUI({
 	data,

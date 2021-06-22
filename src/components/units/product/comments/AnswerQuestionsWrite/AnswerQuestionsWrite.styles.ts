@@ -20,6 +20,10 @@ export const AnswerImg = styled.img`
   margin-right:25px;
 `
 
+export const AnswerName = styled.div`
+margin-bottom: 10px;
+`
+
 export const AsnwerTextArea = styled.textarea`
   resize: none;
   width:100%;

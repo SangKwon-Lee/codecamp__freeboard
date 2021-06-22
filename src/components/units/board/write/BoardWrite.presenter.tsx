@@ -137,8 +137,8 @@ export default function BoardWritePage({
 									</LazyLoad>
 								</div>
 							))}
-							{new Array(3 - imgArr.length).fill(1).map(() => (
-								<div>
+							{new Array(3 - imgArr.length).fill(1).map((__, index) => (
+								<div key={index}>
 									<UploadLabel htmlFor="asd">
 										<div>+</div>Upload
 									</UploadLabel>
