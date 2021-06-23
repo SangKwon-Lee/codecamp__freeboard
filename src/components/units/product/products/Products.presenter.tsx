@@ -8,6 +8,7 @@ import {
 	SearchBtn,
 	SearchImg,
 	ResgisterBtn,
+	ListWrapper,
 	RegisterImg,
 	RegisterBtnWrapper,
 	SearchBarBackGround,
@@ -79,10 +80,13 @@ export default function ProductsUI({
 							<SearchBtn onClick={handleSearchBtn}>검색하기</SearchBtn>
 						</SearchBarWrapper>
 					</SearchWrapper>
-					<InfiniteWrapper id="scrollableDiv">
+					<ListWrapper>
 						{data && (
-							<InfiniteScroll loadMore={LoadMore} hasMore={true}>
-								{/* <ListWrapper> */}
+							<InfiniteScroll
+								loadMore={LoadMore}
+								hasMore={true}
+								useWindow={false}
+							>
 								{data?.fetchUseditems.map((data, index) => (
 									<ListItemWrapper key={index}>
 										<ListSaleImg
@@ -111,10 +115,9 @@ export default function ProductsUI({
 										</ListBodyWrapper>
 									</ListItemWrapper>
 								))}
-								{/* </ListWrapper> */}
 							</InfiniteScroll>
 						)}
-					</InfiniteWrapper>
+					</ListWrapper>
 					<RegisterBtnWrapper>
 						<ResgisterBtn onClick={handleMoveRegister}>
 							<RegisterImg src="/register.png"></RegisterImg>게시물 등록하기
