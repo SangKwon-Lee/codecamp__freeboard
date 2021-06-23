@@ -1,19 +1,24 @@
-import { useQuery } from '@apollo/client';
-import { assertValidSDLExtension } from 'graphql/validation/validate';
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../../../pages/_app';
+import getAccessToken from '../../../commons/getAccessToken/getAccessToken';
 
 export default function withAuth(Component) {
-	return function test(props, asd) {
-		//* 토큰 체크
+	return function test(props) {
 		const router = useRouter();
-		const { accessToken } = useContext(GlobalContext);
+		const { accessToken, setAccessToken } = useContext(GlobalContext);
+
+		//* 토큰 체크
 		useEffect(() => {
-			if (!accessToken) {
-				alert('로그인이 필요한 페이지입니다.');
-				router.push('/login');
-			}
+			if (accessToken) return;
+
+			const restoreAccessToken = async () => {
+				const newAccessToken = await getAccessToken({ setAccessToken });
+
+				if (!newAccessToken) router.push('/login');
+			};
+
+			restoreAccessToken();
 		}, []);
 		if (!accessToken) return <></>;
 		return <Component {...props}></Component>;

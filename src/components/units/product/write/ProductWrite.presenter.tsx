@@ -129,15 +129,14 @@ function ProductWritePageUI({
 						<GPSAndMapWrapper>
 							<MapWrapper>
 								<Label>거래 위치</Label>
-								<div className="map_wrap">
+								{/* <div className="map_wrap">
 									<div
 										id="map"
 										style={{ width: '384px', height: '252px' }}
 									></div>
 									<div className="hAddr">
-										{/* <span id="centerAddr"></span> */}
 									</div>
-								</div>
+								</div> */}
 							</MapWrapper>
 							<GPSWrapper>
 								<Label>GPS</Label>
