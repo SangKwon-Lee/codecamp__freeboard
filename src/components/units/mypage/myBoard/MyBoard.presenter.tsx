@@ -68,9 +68,7 @@ export default function MyBoardUI({
 						<MyBoardPriceWrapper>
 							<MyBoardTableTitle>판매가격</MyBoardTableTitle>
 						</MyBoardPriceWrapper>
-						<MyBoardWriterWraper>
-							<MyBoardTableTitle>작성자</MyBoardTableTitle>
-						</MyBoardWriterWraper>
+
 						<MyBoardDateWrapper>
 							<MyBoardTableTitle>날짜</MyBoardTableTitle>
 						</MyBoardDateWrapper>
@@ -89,9 +87,7 @@ export default function MyBoardUI({
 							<MyBoardContentsPrice>
 								<MyBoardContents>₩ 10000</MyBoardContents>
 							</MyBoardContentsPrice>
-							<MyBoardContentsWriter>
-								<MyBoardContents>asd</MyBoardContents>
-							</MyBoardContentsWriter>
+
 							<MyBoardContentsDate>
 								<MyBoardContents>2021.06.20</MyBoardContents>
 							</MyBoardContentsDate>
