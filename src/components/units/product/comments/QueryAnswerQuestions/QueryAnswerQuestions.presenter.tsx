@@ -1,4 +1,3 @@
-import { from } from '@apollo/client';
 import {
 	AnswerWrapper,
 	AnswerImg,
