@@ -1,4 +1,5 @@
 import { Query } from "../../../../commons/types/generated/types";
+import { Dispatch, SetStateAction } from "react";
 
 export interface IBoardWriterProps {
 	data?: Query;
@@ -18,7 +19,7 @@ export interface IBoardWriterProps {
 		La: number,
 		Ma: number,
 	}
-		handleComplete: (data: any) => void;
+	handleComplete: (data: any) => void;
 	handlePostOpen: () => void;
 	input: {
 		name: string,
@@ -27,4 +28,8 @@ export interface IBoardWriterProps {
 		price: number,
 		tags: any[],
 	}
+	setPa: Dispatch<SetStateAction<{
+		La: number;
+		Ma: number;
+	}>>
 }

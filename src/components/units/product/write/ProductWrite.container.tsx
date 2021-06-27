@@ -1,7 +1,6 @@
 import ProductUI from './ProductWrite.presenter';
 import { useMutation, useQuery } from '@apollo/client';
 import { useEffect, useRef, useState } from 'react';
-import Head from 'next/head';
 import {
 	FETCH_USED_ITEM,
 	UPDATE_USED_ITEM,
@@ -42,6 +41,7 @@ function ProductWritePage() {
 		contents: '',
 		price: 0,
 		tags: [],
+		images: [],
 	});
 
 	//* 등록 / 수정
@@ -58,9 +58,9 @@ function ProductWritePage() {
 	});
 
 	//* 이미지 등록
-	// const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
-	// 	UPLOAD_FILE,
-	// );
+	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
+		UPLOAD_FILE,
+	);
 
 	//* 수정시 데이터 살리기
 	useEffect(() => {
@@ -69,11 +69,12 @@ function ProductWritePage() {
 			remarks: data?.fetchUseditem.remarks,
 			contents: data?.fetchUseditem.contents,
 			price: data?.fetchUseditem.price,
-			tags: data?.fetchUseditem.tags,
+			//@ts-ignore
+			tags: data?.fetchUseditem.tags.join(),
+			images: [],
 		});
 	}, [data]);
 
-	console.log(input);
 	//* 인풋 함수
 	const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newInput = {
@@ -87,76 +88,6 @@ function ProductWritePage() {
 			setIsTrue(true);
 		}
 	};
-
-	//* 카카오 지도 부분
-	useEffect(() => {
-		// const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-		// const options = {
-		// 	//지도를 생성할 때 필요한 기본 옵션
-		// 	//@ts-ignore
-		// 	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		// 	level: 3, //지도의 레벨(확대, 축소 정도)
-		// };
-		// //@ts-ignore
-		// const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-		// // 마커가 표시될 위치입니다
-		// //@ts-ignore
-		// var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-
-		// // 주소-좌표 변환 객체를 생성합니다
-		// //@ts-ignore
-		// var geocoder = new kakao.maps.services.Geocoder();
-
-		// // 마커를 생성합니다
-		// //@ts-ignore
-		// var marker = new kakao.maps.Marker({
-		// 	position: markerPosition,
-		// });
-		// //@ts-ignore
-		// var geocoder = new kakao.maps.services.Geocoder();
-
-		// // 주소로 좌표를 검색합니다
-		// geocoder.addressSearch(`${ZipCode}`, function (result, status) {
-		// 	// 정상적으로 검색이 완료됐으면
-		// 	//@ts-ignore
-		// 	if (status === kakao.maps.services.Status.OK) {
-		// 		//@ts-ignore
-		// 		var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-		// 		// 결과값으로 받은 위치를 마커로 표시합니다
-		// 		//@ts-ignore
-		// 		var marker = new kakao.maps.Marker({
-		// 			map: map,
-		// 			position: coords,
-		// 		});
-
-		// 		// 인포윈도우로 장소에 대한 설명을 표시합니다
-		// 		//@ts-ignore
-		// 		var infowindow = new kakao.maps.InfoWindow({
-		// 			content: `<div style="width:150px;text-align:center;padding:6px 0;">${ZipCode}</div>`,
-		// 		});
-		// 		infowindow.open(map, marker);
-
-		// 		// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		// 		map.setCenter(coords);
-		// 	}
-		// });
-
-		// // 마커가 지도 위에 표시되도록 설정합니다
-		// marker.setMap(map);
-
-		// // 지도에 클릭 이벤트를 등록합니다
-		// // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-		// //@ts-ignore
-		// kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-		// 	// 클릭한 위도, 경도 정보를 가져옵니다
-		// 	var latlng = mouseEvent.latLng;
-		// 	setPa({ ...latlng });
-		// 	// 마커 위치를 클릭한 위치로 옮깁니다
-		// 	marker.setPosition(latlng);
-		// });
-	}, [ZipCode, data]);
 
 	//* 카카오 지도 위도 경도 저장
 	const [pa, setPa] = useState({
@@ -176,14 +107,15 @@ function ProductWritePage() {
 
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
-		// const res = await Promise.all(
-		// 	input.images.map((file) => uploadFileMutation({ variables: { file } })),
-		// );
+		const res = await Promise.all(
+			input.images.map((file) => uploadFileMutation({ variables: { file } })),
+		);
 
-		// let images = [];
-		// for (let i = 0; i < res.length; i++) {
-		// 	images.push(res[i].data.uploadFile.url);
-		// }
+		let images = [];
+		for (let i = 0; i < res.length; i++) {
+			images.push(res[i].data.uploadFile.url);
+		}
+
 		//* Tags의 배열 데이터 변환
 		let newTags;
 		if (typeof input.tags === 'object') {
@@ -251,42 +183,42 @@ function ProductWritePage() {
 
 	//* 이미지 등록 함수
 	const onChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
-		// const fileArr = e.target.files;
-		// let fileURLs = [];
-		// let fileName = [];
-		// let file;
-		// for (let i = 0; i < fileArr.length; i++) {
-		// 	if (fileArr[i].size > 5 * 1024 * 1024) {
-		// 		alert('파일이 크다');
-		// 		return;
-		// 	}
-		// 	if (!fileArr[i].type.includes('png')) {
-		// 		alert('png 파일만 업로드 가능합니다!');
-		// 		return;
-		// 	}
-		// 	file = fileArr[i];
-		// 	fileName.push(fileArr[i]);
-		// 	let reader = new FileReader();
-		// 	reader.onload = () => {
-		// 		console.log(reader.result);
-		// 		fileURLs[i] = reader.result;
-		// 		setImgArr([...fileURLs]);
-		// 	};
-		// 	reader.readAsDataURL(file);
-		// }
-		// setInput({
-		// 	...input,
-		// 	images: fileName,
-		// });
+		const fileArr = e.target.files;
+		let fileURLs = [];
+		let fileName = [];
+		let file;
+		for (let i = 0; i < fileArr.length; i++) {
+			if (fileArr[i].size > 5 * 1024 * 1024) {
+				alert('파일이 크다');
+				return;
+			}
+			if (!fileArr[i].type.includes('png')) {
+				alert('png 파일만 업로드 가능합니다!');
+				return;
+			}
+			file = fileArr[i];
+			fileName.push(fileArr[i]);
+			let reader = new FileReader();
+			reader.onload = () => {
+				console.log(reader.result);
+				fileURLs[i] = reader.result;
+				setImgArr([...fileURLs]);
+			};
+			reader.readAsDataURL(file);
+		}
+		setInput({
+			...input,
+			images: fileName,
+		});
 	};
 
 	//* 이미지 삭제 함수
 	const UploadPhotoCancle = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
-		// let newArr = [...imgArr];
-		// newArr.splice(Number(e.target.id), 1);
-		// setImgArr(newArr);
+		let newArr = [...imgArr];
+		newArr.splice(Number(e.target.id), 1);
+		setImgArr(newArr);
 	};
 
 	//* 우편 모달 오픈함수
@@ -330,13 +262,14 @@ function ProductWritePage() {
 				UploadPhotoCancle={UploadPhotoCancle}
 				imgArr={imgArr}
 				postOpen={postOpen}
-				ZipCode={ZipCode}
 				handleZipCodeInput={handleZipCodeInput}
 				handleChangeEditor={handleChangeEditor}
 				pa={pa}
 				handlePostOpen={handlePostOpen}
 				handleComplete={handleComplete}
 				input={input}
+				ZipCode={ZipCode}
+				setPa={setPa}
 			></ProductUI>
 		</>
 	);
