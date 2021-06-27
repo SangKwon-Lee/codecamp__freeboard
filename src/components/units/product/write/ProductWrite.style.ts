@@ -191,7 +191,7 @@ padding-top: 35%;
 cursor: pointer;
 `
 export const UploadBtnWrapper = styled.div`
-width: 384px;
+width: 600px;
 display: flex;
 justify-content: space-between;
 `

@@ -7,9 +7,6 @@ import {
 	Label,
 	InputWrapper,
 	Subject,
-	ZipcodeWrapper,
-	Zipcode,
-	SearchButton,
 	Address,
 	ImageWrapper,
 	UploadButton,
@@ -25,7 +22,6 @@ import {
 	UploadBtnWrapper,
 	UploadImg,
 	UploadCancle,
-	MapImg,
 	GPSAndMapWrapper,
 	MapWrapper,
 	GPSWrapper,
@@ -39,7 +35,8 @@ import {
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import DaumPostcode from 'react-daum-postcode';
-import EditorComponent from '../../../../../pages/test';
+import KaKaoMap from '../../../../commons/kakaoMap/KakaoMap.container';
+
 const ReactQuill = dynamic(() => import('react-quill'), {
 	ssr: false,
 });
@@ -55,22 +52,17 @@ function ProductWritePageUI({
 	UploadPhotoCancle,
 	imgArr,
 	postOpen,
-	ZipCode,
 	handleZipCodeInput,
 	handleChangeEditor,
 	pa,
 	handlePostOpen,
 	handleComplete,
 	input,
+	ZipCode,
+	setPa,
 }: IBoardWriterProps) {
 	return (
 		<>
-			<Head>
-				<script
-					type="text/javascript"
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c9c818a0b024f377caf51fe6e31268db&libraries=services"
-				></script>
-			</Head>
 			<Wrapper>
 				<Shadow>
 					<Body>
@@ -98,8 +90,6 @@ function ProductWritePageUI({
 						<InputWrapper>
 							<Label>내용</Label>
 							<ReactQuill
-								value={input.contents || ''}
-								defaultValue={input.contents || ''}
 								onChange={handleChangeEditor}
 								style={{ height: '320px', marginBottom: '40px' }}
 							></ReactQuill>
@@ -129,14 +119,7 @@ function ProductWritePageUI({
 						<GPSAndMapWrapper>
 							<MapWrapper>
 								<Label>거래 위치</Label>
-								{/* <div className="map_wrap">
-									<div
-										id="map"
-										style={{ width: '384px', height: '252px' }}
-									></div>
-									<div className="hAddr">
-									</div>
-								</div> */}
+								<KaKaoMap ZipCode={ZipCode} setPa={setPa}></KaKaoMap>
 							</MapWrapper>
 							<GPSWrapper>
 								<Label>GPS</Label>
@@ -181,35 +164,33 @@ function ProductWritePageUI({
 						<ImageWrapper>
 							<Label>사진첨부</Label>
 							<UploadBtnWrapper>
-								{imgArr.map((data, index) =>
-									imgArr[index] === '0' ? (
-										<div key={index}>
-											<UploadLabel htmlFor={String(index)}>
-												<div>+</div>Upload
-											</UploadLabel>
-											<UploadButton
-												ref={fileRef}
-												type="file"
-												id={String(index)}
-												onChange={onChangeFile}
-											></UploadButton>
-										</div>
-									) : (
-										<div key={index}>
-											<UploadCancle
-												id={String(index)}
-												onClick={UploadPhotoCancle}
-											>
-												X
-											</UploadCancle>
-											<LazyLoad>
-												<UploadImg
-													src={`https://storage.cloud.google.com/${data}`}
-												></UploadImg>
-											</LazyLoad>
-										</div>
-									),
-								)}
+								{imgArr.map((data, index) => (
+									<div key={index}>
+										<UploadCancle
+											id={String(index)}
+											onClick={UploadPhotoCancle}
+										>
+											X
+										</UploadCancle>
+										<LazyLoad>
+											<UploadImg src={String(data)}></UploadImg>
+										</LazyLoad>
+									</div>
+								))}
+								{new Array(3 - imgArr.length).fill(1).map((__, index) => (
+									<div key={index}>
+										<UploadLabel htmlFor="asd">
+											<div>+</div>Upload
+										</UploadLabel>
+										<UploadButton
+											ref={fileRef}
+											multiple
+											type="file"
+											id="asd"
+											onChange={onChangeFile}
+										></UploadButton>
+									</div>
+								))}
 							</UploadBtnWrapper>
 						</ImageWrapper>
 						<OptionWrapper>
