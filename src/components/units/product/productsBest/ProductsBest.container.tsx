@@ -17,7 +17,8 @@ export default function ProductsBest() {
 
 	//* 베스트 게시글 이동
 	const handleMoveList = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		router.push(`/product/${e.target.id}`);
+		const target = e.target as HTMLTextAreaElement;
+		router.push(`/product/${target.id}`);
 	};
 
 	return (

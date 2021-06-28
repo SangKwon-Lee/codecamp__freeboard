@@ -51,7 +51,8 @@ export default function Product() {
 
 	//* 리스트에 있는 게시글로 이동
 	const handleMoveList = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		router.push(`/product/${e.target.id}`);
+		const target = e.target as HTMLTextAreaElement;
+		router.push(`/product/${target.id}`);
 	};
 
 	//* 등록페이지로 이동

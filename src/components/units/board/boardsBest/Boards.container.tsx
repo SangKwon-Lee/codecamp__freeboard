@@ -12,7 +12,8 @@ export default function BoardsBest() {
 
 	//* 베스트 게시글 이동
 	const handleMoveList = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		router.push(`/board/${e.target.id}`);
+		const target = e.target as HTMLTextAreaElement;
+		router.push(`/board/${target.id}`);
 	};
 
 	return (

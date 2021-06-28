@@ -57,8 +57,9 @@ export default function Boards() {
 	}, [count]);
 
 	//* 페이지네이션에서 숫자 클릭시
-	const onClickPage = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		setCurrentPage(Number(event.target.id));
+	const onClickPage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		const target = e.target as HTMLTextAreaElement;
+		setCurrentPage(Number(target.id));
 	};
 
 	//* 페이지네이션에서 오른쪽 화살표 이동시
@@ -146,7 +147,8 @@ export default function Boards() {
 
 	//* 리스트에 있는 게시글로 이동
 	const handleMoveList = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		router.push(`/board/${e.target.id}`);
+		const target = e.target as HTMLTextAreaElement;
+		router.push(`/board/${target.id}`);
 	};
 
 	//* 등록페이지로 이동

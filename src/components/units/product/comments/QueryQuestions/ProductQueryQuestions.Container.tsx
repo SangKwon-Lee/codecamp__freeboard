@@ -58,12 +58,13 @@ export default function ProductQueryQuestion({ data, refetch }) {
 	const handleClickDeleteComment = async (
 		e: React.MouseEvent<HTMLImageElement, MouseEvent>,
 	) => {
+		const target = e.target as HTMLTextAreaElement;
 		setName(false);
 		setTimeout(async () => {
 			try {
 				const result = await deleteProductUsedItemQuestion({
 					variables: {
-						useditemQuestionId: e.target.id,
+						useditemQuestionId: target.id,
 					},
 					refetchQueries: [
 						{
@@ -94,7 +95,8 @@ export default function ProductQueryQuestion({ data, refetch }) {
 	const handleUpdateInputChange = (
 		e: React.ChangeEvent<HTMLTextAreaElement>,
 	) => {
-		const newInput = e.target.value;
+		const target = e.target as HTMLTextAreaElement;
+		const newInput = target.value;
 		setContents(newInput);
 	};
 
@@ -102,13 +104,14 @@ export default function ProductQueryQuestion({ data, refetch }) {
 	const handleClickUpdateComment = async (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
+		const target = e.target as HTMLTextAreaElement;
 		try {
 			const result = await updateProductUsedItemQuestion({
 				variables: {
 					updateUseditemQuestionInput: {
 						contents,
 					},
-					useditemQuestionId: e.target.id,
+					useditemQuestionId: target.id,
 				},
 				refetchQueries: [
 					{

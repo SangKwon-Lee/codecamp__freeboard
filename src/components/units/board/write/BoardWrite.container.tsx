@@ -183,8 +183,10 @@ function BoardWritePage() {
 	const UploadPhotoCancle = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
+		const target = e.target as HTMLTextAreaElement;
+
 		let newArr = [...imgArr];
-		newArr.splice(Number(e.target.id), 1);
+		newArr.splice(Number(target.id), 1);
 		setImgArr(newArr);
 	};
 

@@ -25,8 +25,9 @@ export default function PaymentModal({ handleIsPaymentClose }) {
 
 	//* 포인트 클릭시 일어나는 함수들
 	const handlePoint = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		setPoint(e.target.id);
-		setPointText(e.target.id);
+		const target = e.target as HTMLTextAreaElement;
+		setPoint(Number(target.id));
+		setPointText(target.id);
 		setIsPoint((prev) => !prev);
 		setIsPointBtn(false);
 	};
