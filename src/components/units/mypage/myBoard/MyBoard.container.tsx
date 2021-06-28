@@ -12,7 +12,8 @@ export default function MyBoard() {
 	const handleChangeMyBoardMenu = (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 	) => {
-		setChangeMyBoardMenu(e.target.id);
+		const target = e.target as HTMLTextAreaElement;
+		setChangeMyBoardMenu(target.id);
 	};
 
 	return (

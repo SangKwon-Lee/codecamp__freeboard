@@ -1,8 +1,14 @@
 import ProductDetailPageUI from './ProductPage.presenter';
-import { useQuery } from '@apollo/client';
-import { FETCH_USED_ITEM, TOGGLES_USED_ITEM_PICK } from './ProductPage.queries';
+import { useMutation, useQuery } from '@apollo/client';
+import {
+	FETCH_USED_ITEM,
+	TOGGLES_USED_ITEM_PICK,
+	CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+} from './ProductPage.queries';
 import { useRouter } from 'next/router';
 import {
+	Mutation,
+	MutationCreatePointTransactionOfBuyingAndSellingArgs,
 	Query,
 	QueryFetchUseditemArgs,
 } from '../../../../commons/types/generated/types';
@@ -26,6 +32,12 @@ export default function ProductDetailPage() {
 	const [isActive, setIsActive] = useState(0);
 	//* 이미지 갯수가 몇개인가
 	const [dataLength, setDataLength] = useState(0);
+
+	//* 구매 뮤테이션
+	const [createPointTransactionOfBuyingAndSelling] = useMutation<
+		Mutation,
+		MutationCreatePointTransactionOfBuyingAndSellingArgs
+	>(CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING);
 
 	//* 본인 확인하는 내용
 	useEffect(() => {
@@ -91,6 +103,20 @@ export default function ProductDetailPage() {
 		}
 	}, [data]);
 
+	const handleOnClickBuy = async () => {
+		try {
+			const result = await createPointTransactionOfBuyingAndSelling({
+				variables: {
+					useritemId: String(router.query.id),
+				},
+			});
+
+			alert('구매 성공');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<ProductDetailPageUI
@@ -102,6 +128,7 @@ export default function ProductDetailPage() {
 				handeImgRight={handeImgRight}
 				handeImgLeft={handeImgLeft}
 				isActive={isActive}
+				handleOnClickBuy={handleOnClickBuy}
 			></ProductDetailPageUI>
 		</>
 	);

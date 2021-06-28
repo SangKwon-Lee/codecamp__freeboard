@@ -57,6 +57,7 @@ export default function ProductDetailPageUI({
 	handeImgRight,
 	handeImgLeft,
 	isActive,
+	handleOnClickBuy,
 }: IBoardPagePros) {
 	return (
 		<Wrapper>
@@ -146,7 +147,7 @@ export default function ProductDetailPageUI({
 									{isUser ? (
 										<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
 									) : (
-										<UpdateBtn onClick={handleUpdate}>구매하기</UpdateBtn>
+										<UpdateBtn onClick={handleOnClickBuy}>구매하기</UpdateBtn>
 									)}
 								</BottomBtnWrapper>
 							</ContentWrapper>

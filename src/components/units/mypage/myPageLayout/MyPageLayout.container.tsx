@@ -10,7 +10,8 @@ export default function MyPageLayout() {
 
 	//* 메뉴 변경 함수
 	const handleMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		setMenuChoice(e.target.id);
+		const target = e.target as HTMLTextAreaElement;
+		setMenuChoice(target.id);
 	};
 
 	return (

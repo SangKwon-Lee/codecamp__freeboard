@@ -9,4 +9,5 @@ export interface IBoardPagePros {
 	handeImgRight: () => void;
 	handeImgLeft: () => void;
 	isActive: number;
+	handleOnClickBuy: () => void;
 }
