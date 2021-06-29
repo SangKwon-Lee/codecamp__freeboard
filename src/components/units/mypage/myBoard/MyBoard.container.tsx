@@ -1,5 +1,12 @@
-import { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { useContext, useState } from 'react';
+import { GlobalContext } from '../../../../../pages/_app';
+import {
+	Query,
+	QueryFetchUseditemArgs,
+} from '../../../../commons/types/generated/types';
 import MyBoardUI from './MyBoard.presenter';
+import { FETCH_USEDITEM_ISOLD } from './MyBoard.queries';
 export default function MyBoard() {
 	//* 페이지네이션 상태
 	const [currentPage, setCurrentPage] = useState(1);
@@ -7,6 +14,10 @@ export default function MyBoard() {
 
 	//* 메뉴 변경 상태
 	const [changeMyBoardMenu, setChangeMyBoardMenu] = useState('product');
+
+	const { data } = useQuery<Query, QueryFetchUseditemArgs>(
+		FETCH_USEDITEM_ISOLD,
+	);
 
 	//* 메뉴 변경 함수
 	const handleChangeMyBoardMenu = (
@@ -22,6 +33,7 @@ export default function MyBoard() {
 			handleChangeMyBoardMenu={handleChangeMyBoardMenu}
 			pageArr={pageArr}
 			currentPage={currentPage}
+			data={data}
 		></MyBoardUI>
 	);
 }

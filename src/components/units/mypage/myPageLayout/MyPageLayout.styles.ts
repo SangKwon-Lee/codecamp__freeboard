@@ -3,8 +3,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import EuroIcon from '@material-ui/icons/Euro';
 
-interface MyPageStyleProps{
-  isActive :boolean
+interface MyPageStyleProps {
+  isActive: boolean
 }
 export const MyPageContainer = styled.div`
   width:100%;
@@ -79,13 +79,11 @@ export const MyPageIconMoney = styled(EuroIcon)`
   color:#FFD600;
 `
 export const MyPageIconCart = styled(ShoppingCartIcon)`
-color:${(props:MyPageStyleProps) => props.isActive ? "#FFD600" : "black"};
 `
 export const MyPageIconPoint = styled(EuroIcon)`
-color:${(props:MyPageStyleProps) => props.isActive ? "#FFD600" : "black"};`
+`
 
 export const MyPageIconProfle = styled(AccountCircleIcon)`
-color:${(props:MyPageStyleProps) => props.isActive ? "#FFD600" : "black"};
 `
 
 export const MyPageMenu = styled.div`

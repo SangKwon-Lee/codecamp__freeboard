@@ -26,7 +26,7 @@ function ProductWritePage() {
 	const [ZipCode, setZipCode] = useState('');
 
 	//* 이미지 관련 상태
-	const [imgArr, setImgArr] = useState(['0', '0']);
+	const [imgArr, setImgArr] = useState([]);
 
 	//*이미지 Ref
 	const fileRef = useRef<HTMLInputElement>(null);

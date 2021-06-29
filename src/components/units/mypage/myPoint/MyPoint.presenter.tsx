@@ -85,8 +85,8 @@ export default function MyPointUI({
 						<MyPointTitle>판매자</MyPointTitle>
 					</MyPointSellerWrapper>
 				</MyPointTopWrapper>
-				{new Array(10).fill(1).map(() => (
-					<MyPointContentsWrapper>
+				{new Array(10).fill(1).map((___, index) => (
+					<MyPointContentsWrapper key={index}>
 						<MyPointNumberWrapper>
 							<MyPointContents>날짜</MyPointContents>
 						</MyPointNumberWrapper>

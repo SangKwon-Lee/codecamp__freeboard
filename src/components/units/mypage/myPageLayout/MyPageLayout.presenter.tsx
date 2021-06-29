@@ -41,7 +41,7 @@ export default function MyPageLayoutUI({
 								<MyPageIconCart
 									id="Cart"
 									onClick={handleMenu}
-									isActive={menuChoice === 'Cart'}
+									// isActive={menuChoice === 'Cart'}
 								></MyPageIconCart>
 								<MyPageMenu
 									id="Cart"
@@ -55,7 +55,7 @@ export default function MyPageLayoutUI({
 								<MyPageIconPoint
 									id="Point"
 									onClick={handleMenu}
-									isActive={menuChoice === 'Point'}
+									// isActive={menuChoice === 'Point'}
 								></MyPageIconPoint>
 								<MyPageMenu
 									id="Point"
@@ -69,7 +69,7 @@ export default function MyPageLayoutUI({
 								<MyPageIconProfle
 									id="Profile"
 									onClick={handleMenu}
-									isActive={menuChoice === 'Profile'}
+									// isActive={menuChoice === 'Profile'}
 								></MyPageIconProfle>
 								<MyPageMenu
 									id="Profile"

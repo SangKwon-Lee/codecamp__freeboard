@@ -77,6 +77,7 @@ export type CreateUseditemInput = {
   contents: Scalars['String'];
   price: Scalars['Int'];
   tags?: Maybe<Array<Scalars['String']>>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type CreateUseditemQuestionAnswerInput = {
@@ -132,8 +133,9 @@ export type Mutation = {
   createUser: User;
   loginUser: Token;
   loginUserExample: Token;
+  logoutUser: Scalars['Boolean'];
   resetUserPassword: Scalars['Boolean'];
-  updateUser: Scalars['Boolean'];
+  updateUser: User;
 };
 
 
@@ -269,14 +271,25 @@ export type MutationLoginUserExampleArgs = {
   email: Scalars['String'];
 };
 
+
+export type MutationResetUserPasswordArgs = {
+  password: Scalars['String'];
+};
+
+
+export type MutationUpdateUserArgs = {
+  updateUserInput: UpdateUserInput;
+};
+
 export type PointTransaction = {
   __typename?: 'PointTransaction';
   _id: Scalars['ID'];
-  impUid: Scalars['ID'];
+  impUid?: Maybe<Scalars['ID']>;
   amount: Scalars['Int'];
   balance: Scalars['Int'];
   status: Scalars['String'];
   statusDetail: Scalars['String'];
+  useditem?: Maybe<Useditem>;
   user?: Maybe<User>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
@@ -292,13 +305,13 @@ export type Query = {
   fetchBoardsOfMine: Array<Board>;
   fetchBoardsOfTheBest: Array<Board>;
   fetchBoardComments: Array<BoardComment>;
-  fetchPointTransactions: PointTransaction;
-  fetchPointTransactionsCountOfBuying: PointTransaction;
-  fetchPointTransactionsCountOfLoading: PointTransaction;
-  fetchPointTransactionsCountOfSelling: PointTransaction;
-  fetchPointTransactionsOfBuying: PointTransaction;
-  fetchPointTransactionsOfLoading: PointTransaction;
-  fetchPointTransactionsOfSelling: PointTransaction;
+  fetchPointTransactions: Array<PointTransaction>;
+  fetchPointTransactionsCountOfBuying: Scalars['Int'];
+  fetchPointTransactionsCountOfLoading: Scalars['Int'];
+  fetchPointTransactionsCountOfSelling: Scalars['Int'];
+  fetchPointTransactionsOfBuying: Array<PointTransaction>;
+  fetchPointTransactionsOfLoading: Array<PointTransaction>;
+  fetchPointTransactionsOfSelling: Array<PointTransaction>;
   fetchUseditem: Useditem;
   fetchUseditems: Array<Useditem>;
   fetchUseditemsCountIBought: Scalars['Int'];
@@ -381,6 +394,7 @@ export type UpdateUseditemInput = {
   contents?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Int']>;
   tags?: Maybe<Array<Scalars['String']>>;
+  images?: Maybe<Array<Scalars['String']>>;
 };
 
 export type UpdateUseditemQuestionAnswerInput = {
@@ -389,6 +403,11 @@ export type UpdateUseditemQuestionAnswerInput = {
 
 export type UpdateUseditemQuestionInput = {
   contents: Scalars['String'];
+};
+
+export type UpdateUserInput = {
+  name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
 };
 
 
@@ -400,6 +419,7 @@ export type Useditem = {
   contents: Scalars['String'];
   price: Scalars['Int'];
   tags?: Maybe<Array<Scalars['String']>>;
+  images?: Maybe<Array<Scalars['String']>>;
   useditemAddress?: Maybe<UseditemAddress>;
   buyer?: Maybe<User>;
   seller: User;
@@ -446,6 +466,7 @@ export type User = {
   _id: Scalars['ID'];
   email: Scalars['String'];
   name: Scalars['String'];
+  picture?: Maybe<Scalars['String']>;
   userPoint?: Maybe<UserPoint>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
