@@ -6,7 +6,7 @@ export default function MyPageLayout() {
 	const { userData } = useContext(GlobalContext);
 
 	//* 클릭한 메뉴에 따라 CSS 및 컴포넌트 변경 상태
-	const [menuChoice, setMenuChoice] = useState('Point');
+	const [menuChoice, setMenuChoice] = useState('Cart');
 
 	//* 메뉴 변경 함수
 	const handleMenu = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

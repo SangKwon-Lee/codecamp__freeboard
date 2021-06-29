@@ -33,6 +33,7 @@ export default function MyBoardUI({
 	handleChangeMyBoardMenu,
 	pageArr,
 	currentPage,
+	data,
 }) {
 	return (
 		<MyBoardWrapper>
@@ -68,28 +69,28 @@ export default function MyBoardUI({
 						<MyBoardPriceWrapper>
 							<MyBoardTableTitle>판매가격</MyBoardTableTitle>
 						</MyBoardPriceWrapper>
-
 						<MyBoardDateWrapper>
 							<MyBoardTableTitle>날짜</MyBoardTableTitle>
 						</MyBoardDateWrapper>
 					</MyBoardTableTitleWrapper>
-					{new Array(10).fill(1).map(() => (
-						<MyBoardContentsWrapper>
+					{data?.fetchUseditemsISold.map((data, index) => (
+						<MyBoardContentsWrapper key={index}>
 							<MyBoardContentsNumber>
 								<MyBoardContents>1</MyBoardContents>
 							</MyBoardContentsNumber>
-							<MyBoardContentsTitle>
-								<MyBoardContents>게시글 제목입니다.</MyBoardContents>
+							<MyBoardContentsTitle id={data._id}>
+								<MyBoardContents>{data.name}</MyBoardContents>
 							</MyBoardContentsTitle>
 							<MyBoardContentsSale>
 								<MyBoardContentsSaleText>판매완료</MyBoardContentsSaleText>
 							</MyBoardContentsSale>
 							<MyBoardContentsPrice>
-								<MyBoardContents>₩ 10000</MyBoardContents>
+								<MyBoardContents>
+									{data.price.toLocaleString()}원
+								</MyBoardContents>
 							</MyBoardContentsPrice>
-
 							<MyBoardContentsDate>
-								<MyBoardContents>2021.06.20</MyBoardContents>
+								<MyBoardContents>{data.createdAt.slice(0, 10)}</MyBoardContents>
 							</MyBoardContentsDate>
 						</MyBoardContentsWrapper>
 					))}

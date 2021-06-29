@@ -1,7 +1,7 @@
 import styled from "@emotion/styled"
 
 interface MyBoardProps {
-  isActive:boolean
+  isActive: boolean
 }
 
 export const MyBoardWrapper = styled.div`
@@ -23,20 +23,20 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 `
-export const MyBoardMenu  = styled.div`
+export const MyBoardMenu = styled.div`
   font-size:16px;
-  font-weight: ${(props:MyBoardProps) => props.isActive ?  '700' : '400'};
-  color:${(props:MyBoardProps) => props.isActive ?  'black' : '#BDBDBD'};
+  font-weight: ${(props: MyBoardProps) => props.isActive ? '700' : '400'};
+  color:${(props: MyBoardProps) => props.isActive ? 'black' : '#BDBDBD'};
   border-bottom:${(props: MyBoardProps) => props.isActive ? '2.5px solid #FFD600' : 'none'};
   cursor: pointer;
   
 `
-export const MyBoardMenuLine  = styled.div`
+export const MyBoardMenuLine = styled.div`
 border-right: 1px solid #BDBDBD;
 height: 70%;
 `
 
-export const MyBoardTableWrapper  = styled.div`
+export const MyBoardTableWrapper = styled.div`
   border-top:1px solid #BDBDBD;
   border-bottom:1px solid #BDBDBD;
   width:100%;
@@ -52,7 +52,7 @@ export const MyBoardTableTitleWrapper = styled.div`
  padding-bottom: 10px;
 `
 
-export const MyBoardTableTitle  = styled.div`
+export const MyBoardTableTitle = styled.div`
 font-size:18px;
 font-weight: 400;
 `
@@ -64,12 +64,12 @@ justify-content: center;
 `
 
 export const MyBoardTitleWrapper = styled.div`
-width:300px;
+width:250px;
 display: flex;
 justify-content: center;
 `
 export const MyBoardPriceWrapper = styled.div`
-width:80px;
+width:100px;
 display: flex;
 justify-content: center;
 `
@@ -80,7 +80,7 @@ justify-content: center;
 `
 
 export const MyBoardDateWrapper = styled.div`
-width:80px;
+width:120px;
 display: flex;
 justify-content: center;
 `
@@ -104,13 +104,13 @@ justify-content: center;
 align-items: center;
 `
 export const MyBoardContentsTitle = styled.div`
-width:300px;
+width:250px;
 display: flex;
 justify-content: center;
 align-items: center;
 `
 export const MyBoardContentsPrice = styled.div`
-width:80px;
+width:100px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -122,7 +122,7 @@ justify-content: center;
 align-items: center;
 `
 export const MyBoardContentsDate = styled.div`
-width:80px;
+width:120px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -134,7 +134,7 @@ export const MyBoardContents = styled.div`
 `
 
 export const MyBoardContentsSale = styled.div`
-width:80px;
+width:70px;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -146,7 +146,7 @@ export const MyBoardContentsSaleText = styled.div`
   font-weight: 700;
 `
 interface IProps {
-	isActive: boolean;
+  isActive: boolean;
 }
 
 export const PageContainer = styled.div`
@@ -158,7 +158,7 @@ export const PageContainer = styled.div`
 export const Page = styled.span`
 cursor: pointer;
 color:${(props: IProps) => (props.isActive ? '#FFD600' : 'black')};
-border-bottom: ${(props: IProps) => (props.isActive ? "1px solid #FFD600" : "none") };
+border-bottom: ${(props: IProps) => (props.isActive ? "1px solid #FFD600" : "none")};
 margin:20px;
 
 `
