@@ -94,11 +94,13 @@ export default function Product() {
 			);
 		}
 	}, [data]);
+	//* 판매된 상품 함수
 	const handleSoldData = () => {
 		setIsSoldData(true);
 		setIsSellData(false);
 		setSoldOrData(data?.fetchUseditems.filter((data) => data.soldAt !== null));
 	};
+	//* 판매중 상품 함수
 	const handleSellData = () => {
 		setIsSoldData(false);
 		setIsSellData(true);

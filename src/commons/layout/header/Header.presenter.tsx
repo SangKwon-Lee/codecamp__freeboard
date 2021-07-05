@@ -33,6 +33,7 @@ const HeaderPresenter = ({
 	handleIsPayment,
 	isPayment,
 	handleIsPaymentClose,
+	handleLogout,
 }: HeaderProps) => (
 	<>
 		{isPayment && (
@@ -76,7 +77,9 @@ const HeaderPresenter = ({
 											<LogoutBottomHr></LogoutBottomHr>
 											<LoginModalBottomTextWrapper>
 												<LogoutImg src="/greylogout.png"></LogoutImg>
-												<LoginBottomText>로그아웃</LoginBottomText>
+												<LoginBottomText onClick={handleLogout}>
+													로그아웃
+												</LoginBottomText>
 											</LoginModalBottomTextWrapper>
 										</LoginModalBottom>
 									</LoginModalWrapper>

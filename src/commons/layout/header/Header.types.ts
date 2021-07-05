@@ -13,13 +13,14 @@ const userDataInit = {
 };
 
 export interface HeaderProps {
-  handleMoveLoginPage: () => void;
-  accessToken: String;
-  userData: typeof userDataInit
-  isModal: boolean;
-  handleIsModal: () => void;
-   handleIsPayment: () => void;
-  isPayment: boolean;
-  handleIsPaymentClose: () => void;
+	handleMoveLoginPage: () => void;
+	accessToken: String;
+	userData: typeof userDataInit
+	isModal: boolean;
+	handleIsModal: () => void;
+	handleIsPayment: () => void;
+	isPayment: boolean;
+	handleIsPaymentClose: () => void;
+	handleLogout: () => void;
 }
 

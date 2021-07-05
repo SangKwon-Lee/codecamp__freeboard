@@ -1,7 +1,10 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../../../../pages/_app';
 import HeaderUI from './Header.presenter';
 import { useRouter } from 'next/router';
+import { LOGOUT_USER } from './Header.queries';
+import { useMutation } from '@apollo/client';
+import { Mutation } from '../../types/generated/types';
 
 const HeaderContainer = () => {
 	//* 토큰 및 본인 정보 받아오기
@@ -33,6 +36,20 @@ const HeaderContainer = () => {
 		setIsPayment(false);
 	};
 
+	//* 로그아웃 뮤테이션
+	const [logoutUser] = useMutation<Mutation>(LOGOUT_USER);
+
+	//* 로그아웃 뮤테이션 함수
+
+	const handleLogout = async () => {
+		try {
+			const result = await logoutUser({});
+			router.reload();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<HeaderUI
 			accessToken={accessToken}
@@ -43,6 +60,7 @@ const HeaderContainer = () => {
 			handleIsPayment={handleIsPayment}
 			isPayment={isPayment}
 			handleIsPaymentClose={handleIsPaymentClose}
+			handleLogout={handleLogout}
 		/>
 	);
 };
