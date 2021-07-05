@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-interface MenuProps{
+interface MenuProps {
   isActive: boolean;
 }
 export const MenuWrapper = styled.div`
@@ -11,7 +11,7 @@ export const MenuWrapper = styled.div`
   margin-top:-5px;
   align-items: center;
   background-color: #FFD600;
-   box-shadow: 1px 5px 10px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 5px 10px 4px rgba(0, 0, 0, 0.1);
 `
 
 export const TitleWrapper = styled.div`
@@ -22,19 +22,42 @@ export const TitleWrapper = styled.div`
 
 `
 
-export const MenuTitle = styled.div`
+export const MenuMyPage = styled.div`
 font-size:18px;
 font-weight: 700;
-color: ${(props:MenuProps) => props.isActive ? "black " : '#AB9000'};
+color: ${(props: MenuProps) => props.isActive ? "black " : '#AB9000'};
 cursor: pointer;
 :hover{
   color:black
 }:focus{
   color:black
 }
-
-
 `
+
+export const MenuBoard = styled.div`
+font-size:18px;
+font-weight: 700;
+color: ${(props: MenuProps) => props.isActive ? "black " : '#AB9000'};
+cursor: pointer;
+:hover{
+  color:black
+}:focus{
+  color:black
+}`
+
+export const MenuProduct = styled.div`
+font-size:18px;
+font-weight: 700;
+color: ${(props: MenuProps) => props.isActive ? "black " : '#AB9000'};
+cursor: pointer;
+:hover{
+  color:black
+}:focus{
+  color:black
+}`
+
+
+
 
 export const DivdieLine = styled.div`
   border-left: 1px solid white;

@@ -13,7 +13,8 @@ import {
 	RegisterBtnWrapper,
 	SearchBarBackGround,
 	SaleWrapper,
-	Sale,
+	Sell,
+	Sold,
 	ListItemWrapper,
 	ListSaleImg,
 	ListLeftWrapper,
@@ -30,7 +31,6 @@ import {
 	ListPriceWrapper,
 	ListPriceImg,
 	FixWrapper,
-	InfiniteWrapper,
 	FixTitle,
 	FixCardWrapper,
 	FixHeartAndCount,
@@ -44,11 +44,16 @@ import {
 	FixImgWrapper,
 	DateInput,
 } from './Products.style';
-import { IProductsProps } from './Products.tpes';
+import { IProductsProps } from './Products.types';
 import InfiniteScroll from 'react-infinite-scroller';
 
 export default function ProductsUI({
 	data,
+	soldOrData,
+	isSoldData,
+	isSellData,
+	handleSoldData,
+	handleSellData,
 	handleMoveList,
 	handleMoveRegister,
 	hadleSearchInput,
@@ -56,14 +61,19 @@ export default function ProductsUI({
 	LoadMore,
 	todayList,
 }: IProductsProps) {
+	console.log(soldOrData);
 	return (
 		<>
 			<Wrapper>
 				<Contents>
 					<SearchWrapper>
 						<SaleWrapper>
-							<Sale>판매중상품</Sale>
-							<Sale>판매된상품</Sale>
+							<Sell onClick={handleSellData} isActive={isSellData}>
+								판매중상품
+							</Sell>
+							<Sold onClick={handleSoldData} isActive={isSoldData}>
+								판매된상품
+							</Sold>
 						</SaleWrapper>
 						<SearchBarWrapper>
 							<SearchBarBackGround>
@@ -87,7 +97,7 @@ export default function ProductsUI({
 								hasMore={true}
 								useWindow={false}
 							>
-								{data?.fetchUseditems.map((data, index) => (
+								{soldOrData?.map((data, index) => (
 									<ListItemWrapper key={index}>
 										<ListSaleImg
 											id={data._id}

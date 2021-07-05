@@ -34,10 +34,24 @@ export const SaleWrapper = styled.div`
 	align-items: center;
 `
 
-export const Sale = styled.div`
+interface ProductsProps {
+	isActive: boolean;
+}
+
+export const Sell = styled.div`
+	color: ${(props: ProductsProps) => props.isActive ? "black " : '#4F4F4F'};
 	font-size: 18px;
 	font-weight: 500;
-	border-bottom: 3px solid #FFD600;
+	border-bottom:  ${(props: ProductsProps) => props.isActive ? "3px solid #FFD600 " : 'none'};
+	cursor: pointer;
+`
+
+export const Sold = styled.div`
+	color: ${(props: ProductsProps) => props.isActive ? "black " : '#4F4F4F'};
+	font-size: 18px;
+	font-weight: 500;
+	border-bottom:  ${(props: ProductsProps) => props.isActive ? "3px solid #FFD600 " : 'none'};
+	cursor: pointer;
 `
 
 

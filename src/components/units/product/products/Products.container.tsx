@@ -22,6 +22,7 @@ export default function Product() {
 
 	//* 로컬스토리지를 이용하여 오늘 본 상품 로직
 	const [todayList, setTodayList] = useState([]);
+
 	useEffect(() => {
 		let data = [];
 		let jsonData = JSON.parse(window.localStorage.getItem('todayList'));
@@ -77,10 +78,43 @@ export default function Product() {
 		});
 	};
 
+	//* 판매중, 판매된 상품 구분
+	const [soldOrData, setSoldOrData] = useState({});
+	const [isSellData, setIsSellData] = useState(true);
+	const [isSoldData, setIsSoldData] = useState(false);
+
+	useEffect(() => {
+		if (isSellData) {
+			setSoldOrData(
+				data?.fetchUseditems.filter((data) => data.soldAt === null),
+			);
+		} else {
+			setSoldOrData(
+				data?.fetchUseditems.filter((data) => data.soldAt !== null),
+			);
+		}
+	}, [data]);
+	const handleSoldData = () => {
+		setIsSoldData(true);
+		setIsSellData(false);
+		setSoldOrData(data?.fetchUseditems.filter((data) => data.soldAt !== null));
+	};
+	const handleSellData = () => {
+		setIsSoldData(false);
+		setIsSellData(true);
+		setSoldOrData(data?.fetchUseditems.filter((data) => data.soldAt === null));
+	};
+
 	return (
 		<>
 			<ProductUI
 				data={data}
+				//@ts-ignore
+				soldOrData={soldOrData}
+				isSellData={isSellData}
+				isSoldData={isSoldData}
+				handleSoldData={handleSoldData}
+				handleSellData={handleSellData}
 				handleMoveList={handleMoveList}
 				handleMoveRegister={handleMoveRegister}
 				currentPage={currentPage}
