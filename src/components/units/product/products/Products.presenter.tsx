@@ -61,7 +61,6 @@ export default function ProductsUI({
 	LoadMore,
 	todayList,
 }: IProductsProps) {
-	console.log(soldOrData);
 	return (
 		<>
 			<Wrapper>

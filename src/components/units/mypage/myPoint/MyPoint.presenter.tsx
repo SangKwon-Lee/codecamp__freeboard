@@ -18,13 +18,21 @@ import {
 	MyPointSellerWrapper,
 	MyPointContentsWrapper,
 	MyPointContents,
+	MyPointCharge,
+	MyPointBalance,
+	MyPointBuying,
 } from './MyPoint.styles';
 
 import { MyPointProps } from './MyPoint.types';
 
 export default function MyPointUI({
+	allData,
 	handleMyPointChoice,
 	myPointChoice,
+	sellData,
+	pointData,
+	buyingData,
+	handleMovePage,
 }: MyPointProps) {
 	return (
 		<MyPointWrapper>
@@ -71,36 +79,176 @@ export default function MyPointUI({
 				</MyPointRightWrapper>
 			</MyPointMenuWrapper>
 			<MyPointTable>
-				<MyPointTopWrapper>
-					<MyPointNumberWrapper>
-						<MyPointTitle>날짜</MyPointTitle>
-					</MyPointNumberWrapper>
-					<MyPointTitleWrapper>
-						<MyPointTitle>제목</MyPointTitle>
-					</MyPointTitleWrapper>
-					<MyPointBreakDownWrapper>
-						<MyPointTitle>포인트내역</MyPointTitle>
-					</MyPointBreakDownWrapper>
-					<MyPointSellerWrapper>
-						<MyPointTitle>판매자</MyPointTitle>
-					</MyPointSellerWrapper>
-				</MyPointTopWrapper>
-				{new Array(10).fill(1).map((___, index) => (
-					<MyPointContentsWrapper key={index}>
-						<MyPointNumberWrapper>
-							<MyPointContents>날짜</MyPointContents>
-						</MyPointNumberWrapper>
-						<MyPointTitleWrapper>
-							<MyPointContents>제목</MyPointContents>
-						</MyPointTitleWrapper>
-						<MyPointBreakDownWrapper>
-							<MyPointContents>포인트내역</MyPointContents>
-						</MyPointBreakDownWrapper>
-						<MyPointSellerWrapper>
-							<MyPointContents>판매자</MyPointContents>
-						</MyPointSellerWrapper>
-					</MyPointContentsWrapper>
-				))}
+				{myPointChoice === 'all' && (
+					<>
+						<MyPointTopWrapper>
+							<MyPointNumberWrapper>
+								<MyPointTitle>날짜</MyPointTitle>
+							</MyPointNumberWrapper>
+							<MyPointTitleWrapper>
+								<MyPointTitle>내용</MyPointTitle>
+							</MyPointTitleWrapper>
+							<MyPointBreakDownWrapper>
+								<MyPointTitle>거래 및 충전 내역</MyPointTitle>
+							</MyPointBreakDownWrapper>
+							<MyPointSellerWrapper>
+								<MyPointTitle>잔액</MyPointTitle>
+							</MyPointSellerWrapper>
+						</MyPointTopWrapper>
+						{allData?.fetchPointTransactions.map((data, index) => (
+							<MyPointContentsWrapper key={index}>
+								<MyPointNumberWrapper>
+									<MyPointContents>
+										{data.createdAt.slice(0, 10)}
+									</MyPointContents>
+								</MyPointNumberWrapper>
+								<MyPointTitleWrapper>
+									{data.status === '충전' || data.status === '판매' ? (
+										<MyPointCharge>{data.status}</MyPointCharge>
+									) : (
+										<MyPointBuying>{data.status}</MyPointBuying>
+									)}
+								</MyPointTitleWrapper>
+								<MyPointBreakDownWrapper>
+									{data.status === '충전' || data.status === '판매' ? (
+										<MyPointCharge>
+											+ {data.amount.toLocaleString()}
+										</MyPointCharge>
+									) : (
+										<MyPointBuying>
+											{data.amount.toLocaleString()}
+										</MyPointBuying>
+									)}
+								</MyPointBreakDownWrapper>
+								<MyPointSellerWrapper>
+									<MyPointBalance>
+										₩ {data.balance.toLocaleString()}
+									</MyPointBalance>
+								</MyPointSellerWrapper>
+							</MyPointContentsWrapper>
+						))}
+					</>
+				)}
+				{myPointChoice === 'charge' && (
+					<>
+						<MyPointTopWrapper>
+							<MyPointNumberWrapper>
+								<MyPointTitle>날짜</MyPointTitle>
+							</MyPointNumberWrapper>
+							<MyPointTitleWrapper>
+								<MyPointTitle>결제 ID</MyPointTitle>
+							</MyPointTitleWrapper>
+							<MyPointBreakDownWrapper>
+								<MyPointTitle>충전내역</MyPointTitle>
+							</MyPointBreakDownWrapper>
+							<MyPointSellerWrapper>
+								<MyPointTitle>충전 후 잔액</MyPointTitle>
+							</MyPointSellerWrapper>
+						</MyPointTopWrapper>
+						{pointData?.fetchPointTransactionsOfLoading.map((data, index) => (
+							<MyPointContentsWrapper key={index}>
+								<MyPointNumberWrapper>
+									<MyPointContents>
+										{data.createdAt.slice(0, 10)}
+									</MyPointContents>
+								</MyPointNumberWrapper>
+								<MyPointTitleWrapper>
+									<MyPointContents>{data.impUid}</MyPointContents>
+								</MyPointTitleWrapper>
+								<MyPointBreakDownWrapper>
+									<MyPointCharge>+{data.amount.toLocaleString()}</MyPointCharge>
+								</MyPointBreakDownWrapper>
+								<MyPointSellerWrapper>
+									<MyPointBalance>
+										₩ {data.balance.toLocaleString()}
+									</MyPointBalance>
+								</MyPointSellerWrapper>
+							</MyPointContentsWrapper>
+						))}
+					</>
+				)}
+				{myPointChoice === 'buy' && (
+					<>
+						<MyPointTopWrapper>
+							<MyPointNumberWrapper>
+								<MyPointTitle>날짜</MyPointTitle>
+							</MyPointNumberWrapper>
+							<MyPointTitleWrapper>
+								<MyPointTitle>제목</MyPointTitle>
+							</MyPointTitleWrapper>
+							<MyPointBreakDownWrapper>
+								<MyPointTitle>거래내역</MyPointTitle>
+							</MyPointBreakDownWrapper>
+							<MyPointSellerWrapper>
+								<MyPointTitle>거래 후 잔액</MyPointTitle>
+							</MyPointSellerWrapper>
+						</MyPointTopWrapper>
+						{buyingData?.fetchPointTransactionsOfBuying.map((data, index) => (
+							<MyPointContentsWrapper key={index}>
+								<MyPointNumberWrapper>
+									<MyPointContents>
+										{data.createdAt.slice(0, 10)}
+									</MyPointContents>
+								</MyPointNumberWrapper>
+								<MyPointTitleWrapper>
+									<MyPointContents onClick={handleMovePage} id={data._id}>
+										{data.useditem.name}
+									</MyPointContents>
+								</MyPointTitleWrapper>
+								<MyPointBreakDownWrapper>
+									<MyPointBuying>{data.amount.toLocaleString()}</MyPointBuying>
+								</MyPointBreakDownWrapper>
+								<MyPointSellerWrapper>
+									<MyPointBalance>
+										₩ {data.balance.toLocaleString()}
+									</MyPointBalance>
+								</MyPointSellerWrapper>
+							</MyPointContentsWrapper>
+						))}
+					</>
+				)}
+				{myPointChoice === 'sell' && (
+					<>
+						<MyPointTopWrapper>
+							<MyPointNumberWrapper>
+								<MyPointTitle>날짜</MyPointTitle>
+							</MyPointNumberWrapper>
+							<MyPointTitleWrapper>
+								<MyPointTitle>제목</MyPointTitle>
+							</MyPointTitleWrapper>
+							<MyPointBreakDownWrapper>
+								<MyPointTitle>거래내역</MyPointTitle>
+							</MyPointBreakDownWrapper>
+							<MyPointSellerWrapper>
+								<MyPointTitle>거래 후 잔액</MyPointTitle>
+							</MyPointSellerWrapper>
+						</MyPointTopWrapper>
+						{sellData?.fetchPointTransactionsOfSelling.map((data, index) => (
+							<MyPointContentsWrapper key={index}>
+								<MyPointNumberWrapper>
+									<MyPointContents>
+										{data.createdAt.slice(0, 10)}
+									</MyPointContents>
+								</MyPointNumberWrapper>
+								<MyPointTitleWrapper>
+									<MyPointContents onClick={handleMovePage} id={data._id}>
+										{data.useditem.name}
+									</MyPointContents>
+								</MyPointTitleWrapper>
+								<MyPointBreakDownWrapper>
+									<MyPointCharge>
+										+ {data.amount.toLocaleString()}
+									</MyPointCharge>
+								</MyPointBreakDownWrapper>
+								<MyPointSellerWrapper>
+									<MyPointBalance>
+										₩ {data.balance.toLocaleString()}
+									</MyPointBalance>
+								</MyPointSellerWrapper>
+							</MyPointContentsWrapper>
+						))}
+					</>
+				)}
 			</MyPointTable>
 		</MyPointWrapper>
 	);

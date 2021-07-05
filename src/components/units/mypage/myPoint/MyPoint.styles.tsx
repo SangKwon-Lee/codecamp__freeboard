@@ -89,7 +89,7 @@ export const MyPointTopWrapper = styled.div`
 	border-bottom: 1px solid black;
 `;
 export const MyPointNumberWrapper = styled.div`
-	width: 80px;
+	width: 100px;
 	text-align: center;
 `;
 
@@ -124,6 +124,24 @@ export const MyPointContentsWrapper = styled.div`
 export const MyPointContents = styled.div`
 	color: #4f4f4f;
 	font-size: 16px;
+	cursor: pointer;
+`;
+
+export const MyPointCharge = styled.div`
+	color: #ffd600;
+	font-size: 16px;
+	font-weight: 700;
+`;
+
+export const MyPointBalance = styled.div`
+	color: #4f4f4f;
+	font-size: 16px;
+	font-weight: 700;
+`;
+export const MyPointBuying = styled.div`
+	color: #0031e0;
+	font-size: 16px;
+	font-weight: 700;
 `;
 
 export const MyPointChargeBreakDown = styled.div`

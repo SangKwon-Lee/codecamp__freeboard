@@ -34,6 +34,7 @@ export default function MyBoardUI({
 	pageArr,
 	currentPage,
 	data,
+	handleMovePage,
 }) {
 	return (
 		<MyBoardWrapper>
@@ -79,10 +80,14 @@ export default function MyBoardUI({
 								<MyBoardContents>1</MyBoardContents>
 							</MyBoardContentsNumber>
 							<MyBoardContentsTitle id={data._id}>
-								<MyBoardContents>{data.name}</MyBoardContents>
+								<MyBoardContents onClick={handleMovePage} id={data._id}>
+									{data.name}
+								</MyBoardContents>
 							</MyBoardContentsTitle>
 							<MyBoardContentsSale>
-								<MyBoardContentsSaleText>판매완료</MyBoardContentsSaleText>
+								{data.soldAt !== null && (
+									<MyBoardContentsSaleText>판매완료</MyBoardContentsSaleText>
+								)}
 							</MyBoardContentsSale>
 							<MyBoardContentsPrice>
 								<MyBoardContents>

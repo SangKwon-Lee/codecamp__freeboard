@@ -32,7 +32,7 @@ export default function MyPageLayoutUI({
 						<MyPageTitle>MYPAGE</MyPageTitle>
 						<MyPageImg src="/mypageProfile.png"></MyPageImg>
 						<MyPageName>{userData.name}</MyPageName>
-						<MyPagePointAndPig id="Money" onClick={handleMenu}>
+						<MyPagePointAndPig id="Money">
 							<MyPageIconMoney></MyPageIconMoney>
 							<MyPagePoint>{userData.userPoint.amount}</MyPagePoint>
 						</MyPagePointAndPig>

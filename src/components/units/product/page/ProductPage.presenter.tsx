@@ -44,6 +44,7 @@ import {
 	ImgBottom,
 	ImgBottomWrapper,
 	ImgSlideBody,
+	SoldBtn,
 } from './ProductPage.style';
 
 import { IBoardPagePros } from './ProductPage.types';
@@ -147,7 +148,15 @@ export default function ProductDetailPageUI({
 									{isUser ? (
 										<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
 									) : (
-										<UpdateBtn onClick={handleOnClickBuy}>구매하기</UpdateBtn>
+										<>
+											{data?.fetchUseditem.soldAt === null ? (
+												<UpdateBtn onClick={handleOnClickBuy}>
+													구매하기
+												</UpdateBtn>
+											) : (
+												<SoldBtn disabled>판매완료</SoldBtn>
+											)}
+										</>
 									)}
 								</BottomBtnWrapper>
 							</ContentWrapper>
