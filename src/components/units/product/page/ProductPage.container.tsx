@@ -103,6 +103,7 @@ export default function ProductDetailPage() {
 		}
 	}, [data]);
 
+	//* 구매하기 함수
 	const handleOnClickBuy = async () => {
 		try {
 			const result = await createPointTransactionOfBuyingAndSelling({
@@ -113,7 +114,7 @@ export default function ProductDetailPage() {
 
 			alert('구매 성공');
 		} catch (error) {
-			console.log(error);
+			alert('이미 판매된 상품입니다.');
 		}
 	};
 

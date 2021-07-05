@@ -9,7 +9,10 @@ import {
 } from './myProfile.styles';
 import { MyProfileProps } from './myProfile.types';
 
-export default function MyProfileUI({ handlePassword }: MyProfileProps) {
+export default function MyProfileUI({
+	handlePassword,
+	handleResetUserPassword,
+}: MyProfileProps) {
 	return (
 		<MyProfileWrapper>
 			<MyProfileTitle>비밀번호 변경</MyProfileTitle>
@@ -38,7 +41,9 @@ export default function MyProfileUI({ handlePassword }: MyProfileProps) {
 				></MyProfilePWInput>
 			</MyProfilePWWrapper>
 			<MyProfileBtnWrapper>
-				<MyProfilePWBtn>비밀번호 변경</MyProfilePWBtn>
+				<MyProfilePWBtn onClick={handleResetUserPassword}>
+					비밀번호 변경
+				</MyProfilePWBtn>
 			</MyProfileBtnWrapper>
 		</MyProfileWrapper>
 	);

@@ -7,6 +7,7 @@ export const FETCH_USEDITEM_ISOLD = gql`
       name
       price
       createdAt
+      soldAt
     }
   }
 `

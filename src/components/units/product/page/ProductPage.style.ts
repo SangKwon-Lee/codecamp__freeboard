@@ -178,6 +178,23 @@ export const UpdateBtn = styled.button`
 	}
 `;
 
+
+export const SoldBtn = styled.button`
+	margin-top: 80px;
+	width: 179px;
+	height: 52px;
+	font-weight: 500;
+		background-color: #FFD600;
+	font-size: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	outline: none;
+	cursor: pointer;
+
+`;
+
+
+
+
 export const ContentTop = styled.div`
 width:100%;
 

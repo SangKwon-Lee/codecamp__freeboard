@@ -108,13 +108,16 @@ width:250px;
 display: flex;
 justify-content: center;
 align-items: center;
+cursor: pointer;
 `
+
 export const MyBoardContentsPrice = styled.div`
 width:100px;
 display: flex;
 justify-content: center;
 align-items: center;
 `
+
 export const MyBoardContentsWriter = styled.div`
 width:80px;
 display: flex;

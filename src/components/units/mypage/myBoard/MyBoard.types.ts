@@ -6,4 +6,5 @@ export interface MyBoardProps {
   pageArr: [];
   currentPage: number;
   data?: Query
+  handleMovePage: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }

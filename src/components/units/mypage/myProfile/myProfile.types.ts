@@ -1,3 +1,4 @@
-export interface MyProfileProps{
+export interface MyProfileProps {
   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleResetUserPassword: () => void;
 }

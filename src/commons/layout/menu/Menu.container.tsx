@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MenuUI from './Menu.presenter';
 
 export default function Menu() {
@@ -12,6 +12,10 @@ export default function Menu() {
 		router.push(`/${target.id}`);
 		setMove(target.id);
 	};
+
+	useEffect(() => {
+		setMove(router.pathname.slice(1, router.pathname.length));
+	}, []);
 
 	return <MenuUI move={move} handleMove={handleMove}></MenuUI>;
 }
