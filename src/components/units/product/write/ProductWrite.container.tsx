@@ -160,7 +160,6 @@ function ProductWritePage() {
 			.split('#')
 			.filter((data) => data !== '')
 			.map((data) => '#' + data);
-
 		try {
 			const result = await updateUsedItem({
 				variables: {

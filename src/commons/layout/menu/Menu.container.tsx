@@ -10,6 +10,7 @@ export default function Menu() {
 	const handleMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		const target = e.target as HTMLTextAreaElement;
 		router.push(`/${target.id}`);
+		setMove(target.id);
 	};
 
 	return <MenuUI move={move} handleMove={handleMove}></MenuUI>;
