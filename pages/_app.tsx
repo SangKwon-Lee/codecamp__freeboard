@@ -35,7 +35,6 @@ export const GlobalContext = createContext({
 	setUserData: (__: typeof userDataInit) => {},
 });
 
-
 function MyApp({ Component, pageProps }) {
 	const [accessToken, setAccessToken] = useState('');
 	const [userData, setUserData] = useState(userDataInit);
@@ -47,7 +46,7 @@ function MyApp({ Component, pageProps }) {
 		},
 		credentials: 'include',
 	});
-	console.log(accessToken)
+	console.log(accessToken);
 
 	// @ts-ignore
 	const errorLink = onError(({ graphQLErrors, operation, forward }) => {
