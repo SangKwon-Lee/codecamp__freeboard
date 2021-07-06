@@ -26,7 +26,7 @@ const HeaderContainer = () => {
 		setIsModal((prev) => !prev);
 	};
 
-	//* 충전 모달 열고 닫는 함수
+	//* 충전 모달 열고 닫는 함수.
 	const handleIsPayment = () => {
 		setIsPayment(true);
 		setIsModal((prev) => !prev);
