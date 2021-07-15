@@ -1,12 +1,8 @@
-import { useApolloClient, useMutation, useQuery } from '@apollo/client';
+import { useApolloClient, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { GlobalContext } from '../../../pages/_app';
-import {
-	Mutation,
-	MutationLoginUserArgs,
-	Query,
-} from '../types/generated/types';
+import { Mutation, MutationLoginUserArgs } from '../types/generated/types';
 import LoginUI from './Login.presenter';
 import { LOGIN_USER, FETCH_USER_LOGGEDIN } from './Login.queries';
 export default function LoginPage() {
