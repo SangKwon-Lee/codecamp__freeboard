@@ -10,7 +10,6 @@ export default function Quill() {
 	const [edit, setEdit] = useState('');
 	const handleOnChangeEditor = (content) => {
 		setEdit(content);
-		console.log(edit);
 	};
 	return <ReactQuill onChange={handleOnChangeEditor}></ReactQuill>;
 }

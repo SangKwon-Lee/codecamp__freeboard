@@ -47,11 +47,11 @@ function BoardWritePage() {
 
 	//* 등록 / 수정
 	const [createBoard] = useMutation<Mutation, MutationCreateBoardArgs>(
-		CREATE_BOARD,
+		CREATE_BOARD
 	);
 
 	const [updateBoard] = useMutation<Mutation, MutationUpdateBoardArgs>(
-		UPDATE_BOARD,
+		UPDATE_BOARD
 	);
 
 	const { data } = useQuery<Query, QueryFetchBoardArgs>(FETCH_BOARD, {
@@ -60,7 +60,7 @@ function BoardWritePage() {
 
 	//* 이미지 등록
 	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
-		UPLOAD_FILE,
+		UPLOAD_FILE
 	);
 
 	//* 수정시 데이터 살리기
@@ -97,7 +97,7 @@ function BoardWritePage() {
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
 		const res = await Promise.all(
-			input.images.map((file) => uploadFileMutation({ variables: { file } })),
+			input.images.map((file) => uploadFileMutation({ variables: { file } }))
 		);
 
 		let images = [];
@@ -181,7 +181,7 @@ function BoardWritePage() {
 
 	//* 이미지 삭제 함수
 	const UploadPhotoCancle = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
 	) => {
 		const target = e.target as HTMLTextAreaElement;
 
@@ -215,7 +215,6 @@ function BoardWritePage() {
 		}
 
 		setZipCode(fullAddress);
-		console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
 		setPostOpen(false);
 	};
 

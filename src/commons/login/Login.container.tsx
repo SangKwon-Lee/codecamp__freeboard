@@ -20,8 +20,8 @@ export default function LoginPage() {
 
 	//* 로그인 데이터 관리
 	const [loginData, setLoginData] = useState({
-		email: '',
-		password: '',
+		email: 'asd@asd.com',
+		password: '1234',
 	});
 
 	//* 아폴로를 엑시오스처럼 우리가 원하는 곳에서 요청을 하게 된다.

@@ -46,7 +46,6 @@ function MyApp({ Component, pageProps }) {
 		},
 		credentials: 'include',
 	});
-	console.log(accessToken);
 
 	// @ts-ignore
 	const errorLink = onError(({ graphQLErrors, operation, forward }) => {

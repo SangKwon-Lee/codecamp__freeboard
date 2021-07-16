@@ -33,7 +33,7 @@ export default function Boards() {
 			clearTimeout(timer);
 		}
 		timer = setTimeout(() => {
-			console.log('asd', setSearch(e.target.value));
+			setSearch(e.target.value);
 		}, 1000);
 	};
 

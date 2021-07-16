@@ -16,7 +16,6 @@ export default function SignUpUI({
 	signUpIsTrue,
 	signUpOK,
 }) {
-	console.log(signUpOK);
 	return (
 		<>
 			<LoginBG src="/BG.png"></LoginBG>

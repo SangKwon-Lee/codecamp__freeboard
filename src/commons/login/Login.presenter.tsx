@@ -36,8 +36,10 @@ export default function LoginUI({
 					<LoginInputAndEroor>
 						<LoginInput
 							name="email"
+							defaultValue="asd@asd.com"
 							onChange={handleLoginData}
 							placeholder="이메일을 입력해주세요."
+							onKeyPress={onKeyPress}
 						></LoginInput>
 						{handleEmail && (
 							<LoginErrorMessage>이메일은 필수 입력입니다.</LoginErrorMessage>
@@ -46,6 +48,7 @@ export default function LoginUI({
 					<LoginInputAndEroor>
 						<LoginInput
 							name="password"
+							defaultValue="1234"
 							type="password"
 							onChange={handleLoginData}
 							placeholder="비밀번호를 입력해주세요."
@@ -61,9 +64,7 @@ export default function LoginUI({
 						></CheckCircleOutlineIcon>
 						<LoginMainTain>로그인 상태 유지</LoginMainTain>
 					</LoginMainTainWrapper>
-					<LoginBtn disabled={handleLoginBtn} onClick={loginBtn}>
-						로그인하기
-					</LoginBtn>
+					<LoginBtn onClick={loginBtn}>로그인하기</LoginBtn>
 					<LoginDivideLine></LoginDivideLine>
 					<LoginOptionWrapper>
 						<LoginOption>이메일 찾기</LoginOption>
