@@ -1,8 +1,8 @@
+import { useEffect, useState } from 'react';
 import BoardsUI from './Boards.presenter';
 import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from './Boards.queries';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 
 export default function Boards() {
 	const router = useRouter();
@@ -13,7 +13,7 @@ export default function Boards() {
 
 	//* 검색어 상태
 	const [search, setSearch] = useState('');
-	const [searchBtn, setSearchBtn] = useState('');
+	// const [searchBtn, setSearchBtn] = useState('');
 
 	//* 전체 게시글 불러오기
 	const { data } = useQuery(FETCH_BOARDS, {
@@ -27,6 +27,7 @@ export default function Boards() {
 
 	//* 검색어 관련 함수들
 	const hadleSearchInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		// eslint-disable-next-line prefer-const
 		let timer;
 		if (timer) {
 			clearTimeout(timer);
@@ -38,13 +39,13 @@ export default function Boards() {
 
 	//* 검색어 버튼을 눌렀을 시 search가 되도록
 	const handleSearchBtn = () => {
-		setSearch(searchBtn);
+		// setSearch(searchBtn);
 	};
 
 	//* Count에 따른 페이지네이션 값을 변경하기 위한 UesEffect
 	useEffect(() => {
 		if (count?.fetchBoardsCount / 10 <= 10) {
-			let newArr = new Array(10)
+			const newArr = new Array(10)
 				.fill(1)
 				.map((data, index) => data + index)
 				.filter((data) => data <= count.fetchBoardsCount / 10 + 1);
@@ -57,18 +58,18 @@ export default function Boards() {
 	}, [count]);
 
 	//* 페이지네이션에서 숫자 클릭시
-	const onClickPage = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+	const onClickPage = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
 		const target = e.target as HTMLTextAreaElement;
 		setCurrentPage(Number(target.id));
 	};
 
 	//* 페이지네이션에서 오른쪽 화살표 이동시
 	const RightArrowPage = () => {
-		//*먼저 pageArr에 있는 데이터에 10을 더한다.
+		//* 먼저 pageArr에 있는 데이터에 10을 더한다.
 		let newArr = pageArr.map((data) => data + 10);
 
 		//* 마지막 페이지가 몇인지 구한다.
-		let last = Math.floor(count.fetchBoardsCount / 10) + 1;
+		const last = Math.floor(count.fetchBoardsCount / 10) + 1;
 
 		//* 만약 현재 페이지가 마지막 페이지인 경우에서 한 번 더 화살표를 누르면
 		//* 마지막 페이지라고 알려준다.
@@ -104,11 +105,11 @@ export default function Boards() {
 	//* 페이지네이션에서 왼쪽 화살표 이동시
 	const LeftArrowPage = () => {
 		//* 마지막 페이지 수
-		let last = Math.floor(count.fetchBoardsCount / 10) + 1;
+		const last = Math.floor(count.fetchBoardsCount / 10) + 1;
 		//* 마지막 페이지는 넘버라서 스트링으로 변환
-		let lastString = String(last);
+		const lastString = String(last);
 		//* 마지막 페이지의 1의 자리를 구한다.
-		let WhenLastPage = Number(lastString[lastString.length - 1]);
+		const WhenLastPage = Number(lastString[lastString.length - 1]);
 		if (currentPage <= 1) {
 			return alert('처음 페이지 입니다.');
 		}
@@ -121,7 +122,7 @@ export default function Boards() {
 		}
 
 		if (pageArr[pageArr.length - 1] === last) {
-			let newArr = pageArr.map((data) => data - WhenLastPage);
+			const newArr = pageArr.map((data) => data - WhenLastPage);
 			setPageArr(newArr);
 			setCurrentPage(newArr[0]);
 			return;
@@ -153,7 +154,7 @@ export default function Boards() {
 
 	//* 등록페이지로 이동
 	const handleMoveRegister = () => {
-		router.push(`/board/`);
+		router.push('/board/');
 	};
 
 	return (

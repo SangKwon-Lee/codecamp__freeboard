@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -213,7 +213,7 @@ interface IProps {
 export const Page = styled.span`
 cursor: pointer;
 color:${(props: IProps) => (props.isActive ? '#FFD600' : 'black')};
-border-bottom: ${(props: IProps) => (props.isActive ? "1px solid #FFD600" : "none") };
+border-bottom: ${(props: IProps) => (props.isActive ? '1px solid #FFD600' : 'none')};
 `
 
 export const PageWrapper = styled.div`
