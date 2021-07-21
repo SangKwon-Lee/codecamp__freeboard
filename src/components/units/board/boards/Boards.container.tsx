@@ -16,6 +16,7 @@ export default function Boards() {
 	// const [searchBtn, setSearchBtn] = useState('');
 
 	//* 전체 게시글 불러오기
+
 	const { data } = useQuery(FETCH_BOARDS, {
 		variables: { page: currentPage, search },
 	});

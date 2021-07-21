@@ -25,23 +25,22 @@ export const Body = styled.div`
 	padding-left: 10px;
 	padding-right:10px;
 	flex-direction: column;
-	padding-top: 80px;
+	padding-top: 40px;
 	align-items: center;
 `;
 
 export const HeaderWrapper = styled.div`
 	width: 100%;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 `;
 
 export const HeaderLeftWrapper = styled.div`
-
 	display: flex;
 	height: 56px;
 	justify-content: space-between;
 	align-items: center;
-
 `;
 
 export const HeaderProfileImg = styled.img``;
@@ -62,13 +61,45 @@ export const HeaderDate = styled.div`
 	color: #828282;
 `;
 
-export const HeaderRightWrapper = styled.div`
+export const HeaderRightAddressWrapper = styled.div`
+	width:100%;
+	display: flex;
+	justify-content: flex-end;
+`
+
+
+export const HeaderRightAddress = styled.div`
+	width: 376px;
+	background-color: #C4C4C4;
+	height: 64px;
+	padding:8px 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+`
+
+export const HeaderRightAddressText = styled.div`
+	font-size:16px;
+	color:white;
+	font-weight: 400;
+`
+
+export const HeaderRightImgWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-	padding-top: 10px;
-	align-content: center;
 	width: 100px;
+	margin-top: 20px;
+`
+
+
+export const HeaderRightWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding-top: 10px;
 `;
+
+
 export const HeaderLinkImg = styled.img`
 	width: 40px;
 	height: 40px;
@@ -110,8 +141,8 @@ export const ContentWrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-between;
-width: 100%;
+	justify-content: space-between;
+	width: 100%;
 padding-top: 40px;
 padding-bottom: 160px;
 `
@@ -158,7 +189,6 @@ export const DisLikeCount = styled.div`
 `;
 
 export const BottomBtnWrapper = styled.div`
-width: 382px;
 	display: flex;
 	padding-bottom: 80px;
 	justify-content: space-between;
@@ -170,6 +200,7 @@ export const ListBtn = styled.button`
 	height: 52px;
 	font-weight: 500;
 	font-size: 16px;
+	margin-right: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	outline: none;
 	background-color: transparent;
@@ -185,6 +216,7 @@ export const UpdateBtn = styled.button`
 	height: 52px;
 	font-weight: 500;
 	font-size: 16px;
+		margin-right: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	outline: none;
 	background-color: transparent;
