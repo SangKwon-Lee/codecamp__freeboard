@@ -12,7 +12,7 @@ export const Shadow = styled.div`
 	max-width: 1200px;
 	margin-top:100px;
 	width: 100%;
-		padding-bottom: 50px;
+	padding-bottom: 50px;
 	display: flex;
 	box-shadow: 0px 0px 13px 0.1px rgba(0, 0, 0, 0.3);
 	justify-content: center;
@@ -48,6 +48,7 @@ export const Writer = styled.input`
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+	outline: none;
 `;
 
 export const Password = styled.input`
@@ -56,6 +57,7 @@ export const Password = styled.input`
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+		outline: none;
 `;
 
 export const Label = styled.div`
@@ -67,6 +69,7 @@ export const Label = styled.div`
 export const InputWrapper = styled.div`
 	width:100%;
 	padding-top: 40px;
+
 `;
 
 export const Subject = styled.input`
@@ -75,6 +78,7 @@ max-width:996px;
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+		outline: none;
 `;
 
 export const Contents = styled.textarea`
@@ -83,6 +87,7 @@ export const Contents = styled.textarea`
 	height: 480px;
 	padding-left: 16px;
 	padding: 14px;
+		outline: none;
 	border: 1px solid #bdbdbd;
 `;
 
@@ -96,6 +101,7 @@ export const Zipcode = styled.input`
 	height: 52px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+	outline: none;
 `;
 
 export const SearchButton = styled.button`
@@ -114,6 +120,7 @@ export const Address = styled.input`
 	margin-top: 16px;
 	padding-left: 16px;
 	border: 1px solid #bdbdbd;
+	outline: none;
 `;
 
 export const Youtube = styled.input`
@@ -137,7 +144,7 @@ height: 1px;
 padding: 0;
 margin: -1px;
 overflow: hidden;
-clip:rect(0,0,0,0);
+	clip:rect(0,0,0,0);
 border: 0;
 
 `;
