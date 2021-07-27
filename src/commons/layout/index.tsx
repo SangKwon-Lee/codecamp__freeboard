@@ -10,8 +10,10 @@ interface ILayout {
 export default function Layout({ children }: ILayout) {
 	const router = useRouter();
 	const pathName =
-		router.pathname !== '/signup' && router.pathname !== '/login';
-
+		router.pathname !== '/signup' &&
+		router.pathname !== '/login' &&
+		router.pathname.slice(0, 4) !== '/css' &&
+		router.pathname !== '/';
 	return (
 		<div>
 			{pathName && (
