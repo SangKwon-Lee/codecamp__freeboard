@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
 	const [userData, setUserData] = useState(userDataInit);
 	//* 모든 쿼리, 뮤테이션에 토큰이 들어가게 만들어 줌.
 	const uploadLink = createUploadLink({
-		uri: 'https://backend02.codebootcamp.co.kr/graphql',
+		uri: 'https://backend.codebootcamp.co.kr/graphql07',
 		headers: {
 			authorization: `Bearer ${accessToken}`,
 		},
