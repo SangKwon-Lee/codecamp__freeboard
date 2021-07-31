@@ -13,6 +13,18 @@ export interface IBoardWriterProps {
 	handleComplete: (data: any) => void;
 	handlePostOpen: () => void;
 	postOpen: boolean;
-	ZipCode: string;
+	input: {
+		writer: string,
+		password: string,
+		title: string,
+		contents: string,
+		youtubeUrl: string,
+		images: any[],
+		boardAddress: {
+			zipcode: string,
+			address: string,
+			addressDetail: string,
+		},
+	};
 	handleZipCodeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

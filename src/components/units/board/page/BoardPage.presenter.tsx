@@ -32,6 +32,10 @@ import {
 	ContentBottom,
 	ContentWrapper,
 	ContentImg,
+	HeaderRightAddressWrapper,
+	HeaderRightImgWrapper,
+	HeaderRightAddress,
+	HeaderRightAddressText,
 } from './BoardPage.style';
 
 import { IBoardPagePros } from './BoardPage.types';
@@ -42,11 +46,24 @@ export default function BoardPageUI({
 	handleLike,
 	handleDisLike,
 	handleMoveBoards,
+	handleDeleteBoard,
 }: IBoardPagePros) {
 	return (
 		<Wrapper>
 			<Shadow>
 				<Body>
+					<HeaderRightAddressWrapper>
+						{data?.fetchBoard.boardAddress?.address && (
+							<HeaderRightAddress>
+								<HeaderRightAddressText>
+									{data?.fetchBoard.boardAddress?.address}
+								</HeaderRightAddressText>
+								<HeaderRightAddressText>
+									상세주소 : {data?.fetchBoard.boardAddress?.addressDetail}
+								</HeaderRightAddressText>
+							</HeaderRightAddress>
+						)}
+					</HeaderRightAddressWrapper>
 					<HeaderWrapper>
 						<HeaderLeftWrapper>
 							<HeaderProfileImg src="/profileImg.png"></HeaderProfileImg>
@@ -60,8 +77,10 @@ export default function BoardPageUI({
 							</HeaderWriterWrapper>
 						</HeaderLeftWrapper>
 						<HeaderRightWrapper>
-							<HeaderLinkImg src="/link.png"></HeaderLinkImg>
-							<HeaderNavImg src="/nav.png"></HeaderNavImg>
+							<HeaderRightImgWrapper>
+								<HeaderLinkImg src="/link.png"></HeaderLinkImg>
+								<HeaderNavImg src="/nav.png"></HeaderNavImg>
+							</HeaderRightImgWrapper>
 						</HeaderRightWrapper>
 					</HeaderWrapper>
 					<DivideLine></DivideLine>
@@ -104,6 +123,7 @@ export default function BoardPageUI({
 			<BottomBtnWrapper>
 				<ListBtn onClick={handleMoveBoards}>목록으로</ListBtn>
 				<UpdateBtn onClick={handleUpdate}>수정하기</UpdateBtn>
+				<UpdateBtn onClick={handleDeleteBoard}>삭제하기</UpdateBtn>
 			</BottomBtnWrapper>
 		</Wrapper>
 	);
