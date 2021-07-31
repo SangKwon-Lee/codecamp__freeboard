@@ -46,6 +46,7 @@ import {
 	ImgSlideBody,
 	SoldBtn,
 } from './ProductPage.style';
+import KaKaoMap from '../../../../commons/kakaoMap/KakaoMap.container';
 
 import { IBoardPagePros } from './ProductPage.types';
 
@@ -59,6 +60,7 @@ export default function ProductDetailPageUI({
 	handeImgLeft,
 	isActive,
 	handleOnClickBuy,
+	setPa,
 }: IBoardPagePros) {
 	return (
 		<Wrapper>
@@ -141,7 +143,7 @@ export default function ProductDetailPageUI({
 									<Tags>{data?.fetchUseditem.tags}</Tags>
 								</TagsWrapper>
 								<DivideLine></DivideLine>
-								<MapImg src="/map.png"></MapImg>
+								<KaKaoMap ZipCode={data?.fetchUseditem.useditemAddress} setPa={setPa}></KaKaoMap>
 								<DivideLine></DivideLine>
 								<BottomBtnWrapper>
 									<ListBtn onClick={handleMoveBoards}>목록으로</ListBtn>

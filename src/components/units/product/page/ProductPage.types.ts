@@ -1,4 +1,5 @@
 import { Query } from "../../../../commons/types/generated/types";
+import { Dispatch, SetStateAction } from "react";
 
 export interface IBoardPagePros {
 	data?: Query;
@@ -10,4 +11,8 @@ export interface IBoardPagePros {
 	handeImgLeft: () => void;
 	isActive: number;
 	handleOnClickBuy: () => void;
+	setPa: Dispatch<SetStateAction<{
+		La: number;
+		Ma: number;
+	}>>
 }
