@@ -9,6 +9,14 @@ export const FETCH_USED_ITEM = gql`
 			contents
 			price
 			tags
+			useditemAddress{
+				id
+				zipcode
+				address
+				addressDetail
+				lat
+				lng
+			}
 			soldAt
 			seller{
 				email
@@ -39,7 +47,6 @@ mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!){
 			_id
 			email
 			name
-
 		}
 	}
 }
