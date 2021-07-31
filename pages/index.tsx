@@ -25,18 +25,18 @@ export default function MenuHover() {
 			<Title>Kogong FrontEnd Life</Title>
 			<MenuWrapper>
 				<Menu
-					id="Github"
+					id="github"
 					//@ts-ignore
-					isTrue={isTrue === 'Github'}
+					isTrue={isTrue === 'github'}
 					onMouseOver={handleIsTrue}
 					onMouseLeave={handleIsFalse}
 				>
 					Github
 				</Menu>
 				<Menu1
-					id="home"
+					id="github"
 					//@ts-ignore
-					isTrue={isTrue === 'home'}
+					isTrue={isTrue === 'github'}
 					rel="noreferrer"
 					onMouseOver={handleIsTrue}
 					onMouseLeave={handleIsFalse}
@@ -47,9 +47,9 @@ export default function MenuHover() {
 					<Menu2
 						href="https://github.com/SangKwon-Lee"
 						target="_blank"
-						id="home"
+						id="github"
 						//@ts-ignore
-						isTrue={isTrue === 'home'}
+						isTrue={isTrue === 'github'}
 						onMouseOver={handleIsTrue}
 						onMouseLeave={handleIsFalse}
 					>

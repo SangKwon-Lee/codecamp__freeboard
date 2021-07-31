@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
 	width: 100vw;
-	height: 100vh;
+	height: 1100px;
 	background: black;
 	padding-top: 60px;
 	display: flex;
