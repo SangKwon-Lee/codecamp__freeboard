@@ -143,7 +143,10 @@ export default function ProductDetailPageUI({
 									<Tags>{data?.fetchUseditem.tags}</Tags>
 								</TagsWrapper>
 								<DivideLine></DivideLine>
-								<KaKaoMap ZipCode={data?.fetchUseditem.useditemAddress} setPa={setPa}></KaKaoMap>
+								<KaKaoMap
+									ZipCode={data?.fetchUseditem.useditemAddress.address}
+									setPa={setPa}
+								></KaKaoMap>
 								<DivideLine></DivideLine>
 								<BottomBtnWrapper>
 									<ListBtn onClick={handleMoveBoards}>목록으로</ListBtn>
