@@ -12,9 +12,20 @@ export const FETCH_BOARD = gql`
 			dislikeCount
 			updatedAt
 			images
+			boardAddress{
+				zipcode
+				address
+				addressDetail
+			}
 		}
 	}
 `;
+
+export const DELETE_BOARD = gql`
+	mutation deleteBoard($boardId: ID!){
+		deleteBoard(boardId: $boardId)
+	}
+`
 
 
 export const LIKE_BOARD = gql`

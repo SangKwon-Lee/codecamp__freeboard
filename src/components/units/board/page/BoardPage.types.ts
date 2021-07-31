@@ -6,4 +6,5 @@ export interface IBoardPagePros {
 	handleLike: () => void;
 	handleDisLike: () => void;
 	handleMoveBoards: () => void;
+	handleDeleteBoard: () => void;
 }

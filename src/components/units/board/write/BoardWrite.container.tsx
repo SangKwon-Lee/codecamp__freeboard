@@ -23,9 +23,6 @@ function BoardWritePage() {
 	//* 우편 주소 상태
 	const [postOpen, setPostOpen] = useState(false);
 
-	//* 우편 주소 인풋
-	const [ZipCode, setZipCode] = useState('');
-
 	//* 이미지 관련 상태
 	const [imgArr, setImgArr] = useState([]);
 
@@ -43,15 +40,20 @@ function BoardWritePage() {
 		contents: '',
 		youtubeUrl: '',
 		images: [],
+		boardAddress: {
+			zipcode: '',
+			address: '',
+			addressDetail: '',
+		},
 	});
 
 	//* 등록 / 수정
 	const [createBoard] = useMutation<Mutation, MutationCreateBoardArgs>(
-		CREATE_BOARD
+		CREATE_BOARD,
 	);
 
 	const [updateBoard] = useMutation<Mutation, MutationUpdateBoardArgs>(
-		UPDATE_BOARD
+		UPDATE_BOARD,
 	);
 
 	const { data } = useQuery<Query, QueryFetchBoardArgs>(FETCH_BOARD, {
@@ -60,7 +62,7 @@ function BoardWritePage() {
 
 	//* 이미지 등록
 	const [uploadFileMutation] = useMutation<Mutation, MutationUploadFileArgs>(
-		UPLOAD_FILE
+		UPLOAD_FILE,
 	);
 
 	//* 수정시 데이터 살리기
@@ -72,6 +74,11 @@ function BoardWritePage() {
 			contents: data?.fetchBoard.contents,
 			youtubeUrl: data?.fetchBoard.youtubeUrl,
 			images: [],
+			boardAddress: {
+				zipcode: data?.fetchBoard.boardAddress?.zipcode,
+				address: data?.fetchBoard.boardAddress?.address,
+				addressDetail: data?.fetchBoard.boardAddress?.addressDetail,
+			},
 		});
 	}, [data]);
 
@@ -97,7 +104,7 @@ function BoardWritePage() {
 	//* 등록함수
 	const handleClickCreateBoard = async () => {
 		const res = await Promise.all(
-			input.images.map((file) => uploadFileMutation({ variables: { file } }))
+			input.images.map((file) => uploadFileMutation({ variables: { file } })),
 		);
 
 		let images = [];
@@ -115,7 +122,7 @@ function BoardWritePage() {
 				},
 			});
 			alert('게시글 등록 성공');
-			router.push(`/board/${result.data?.createBoard._id}`);
+			router.push(`board/${result.data.createBoard._id}`);
 		} catch (error) {
 			alert(error);
 		}
@@ -123,6 +130,15 @@ function BoardWritePage() {
 
 	//* 수정함수
 	const handleClickUpdateBoard = async () => {
+		const res = await Promise.all(
+			input.images.map((file) => uploadFileMutation({ variables: { file } })),
+		);
+
+		let images = [];
+		for (let i = 0; i < res.length; i++) {
+			images.push(res[i].data.uploadFile.url);
+		}
+
 		try {
 			const result = await updateBoard({
 				variables: {
@@ -131,6 +147,12 @@ function BoardWritePage() {
 						contents: input.contents,
 						youtubeUrl: input.youtubeUrl,
 						images: input.images,
+						//@ts-ignore
+						boardAddress: {
+							zipcode: input.boardAddress.zipcode,
+							address: input.boardAddress.address,
+							addressDetail: input.boardAddress.addressDetail,
+						},
 					},
 					password: input.password,
 					boardId: String(router.query.id),
@@ -138,7 +160,7 @@ function BoardWritePage() {
 			});
 
 			alert('게시글 수정 성공');
-			router.push(`/board/${result.data?.updateBoard._id}`);
+			router.push(`/board/${result.data.updateBoard._id}`);
 		} catch (error) {
 			alert(error.message);
 		}
@@ -181,10 +203,9 @@ function BoardWritePage() {
 
 	//* 이미지 삭제 함수
 	const UploadPhotoCancle = (
-		e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
 	) => {
 		const target = e.target as HTMLTextAreaElement;
-
 		let newArr = [...imgArr];
 		newArr.splice(Number(target.id), 1);
 		setImgArr(newArr);
@@ -194,14 +215,23 @@ function BoardWritePage() {
 	const handlePostOpen = () => {
 		setPostOpen((prev) => !prev);
 	};
+
+	//* 상세주소 넣기
 	const handleZipCodeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setZipCode(e.target.value);
+		setInput({
+			...input,
+			boardAddress: {
+				...input.boardAddress,
+				addressDetail: e.target.value,
+			},
+		});
 	};
 
 	//* 우편 함수
 	const handleComplete = (data) => {
 		let fullAddress = data.address;
 		let extraAddress = '';
+		let zipcode = data.zonecode;
 
 		if (data.addressType === 'R') {
 			if (data.bname !== '') {
@@ -214,7 +244,15 @@ function BoardWritePage() {
 			fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
 		}
 
-		setZipCode(fullAddress);
+		setInput({
+			...input,
+			boardAddress: {
+				zipcode,
+				address: fullAddress,
+				addressDetail: '',
+			},
+		});
+
 		setPostOpen(false);
 	};
 
@@ -232,7 +270,7 @@ function BoardWritePage() {
 			handleComplete={handleComplete}
 			handlePostOpen={handlePostOpen}
 			postOpen={postOpen}
-			ZipCode={ZipCode}
+			input={input}
 			handleZipCodeInput={handleZipCodeInput}
 		></BoardUI>
 	);
