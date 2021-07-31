@@ -23,15 +23,9 @@ export default function ProductDetailPage() {
 	});
 
 	//* 카카오 지도 위도 경도 저장
-	useEffect(() => {
-		setPa({
-			La: data?.fetchUseditem.useditemAddress.lat,
-			Ma: data?.fetchUseditem.useditemAddress.lng,
-		});
-	}, [data]);
 	const [pa, setPa] = useState({
-		La: data?.fetchUseditem.useditemAddress.lat,
-		Ma: data?.fetchUseditem.useditemAddress.lng,
+		La: 33.450701,
+		Ma: 126.57066,
 	});
 
 	//* 본인 확인을 위한 전역 관리 상태
