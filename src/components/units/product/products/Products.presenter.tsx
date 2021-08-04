@@ -61,6 +61,7 @@ export default function ProductsUI({
 	LoadMore,
 	todayList,
 }: IProductsProps) {
+	console.log(data);
 	return (
 		<>
 			<Wrapper>
@@ -112,7 +113,7 @@ export default function ProductsUI({
 												<ListTags>{data.tags}</ListTags>
 												<ListUserWrapper>
 													<ListUserImg src="/smsmprofile.png"></ListUserImg>
-													<ListUser>{data.seller.name}</ListUser>
+													<ListUser>{data.seller?.name}</ListUser>
 													<ListHeart src="/smheart.png"></ListHeart>
 													<ListHeartCount>20</ListHeartCount>
 												</ListUserWrapper>

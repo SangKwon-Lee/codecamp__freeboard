@@ -20,6 +20,7 @@ export default function Product() {
 		variables: { page: currentPage, search },
 	});
 
+	console.log(data);
 	//* 로컬스토리지를 이용하여 오늘 본 상품 로직
 	const [todayList, setTodayList] = useState([]);
 

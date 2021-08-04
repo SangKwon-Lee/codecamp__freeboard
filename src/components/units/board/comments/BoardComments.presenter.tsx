@@ -64,7 +64,8 @@ export default function BoardCommentsUI({
 									key={idx}
 									onClick={onSaveRating}
 									id={idx}
-									src={rating >= idx ? '/StarColor.png' : '/star.png'}
+									alt={'img'}
+									src={rating >= idx ? '/img/StarColor.png' : '/img/star.png'}
 								></StarImg>
 							))}
 						</StarWrapper>

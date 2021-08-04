@@ -35,6 +35,7 @@ import {
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import DaumPostcode from 'react-daum-postcode';
+
 import KaKaoMap from '../../../../commons/kakaoMap/KakaoMap.container';
 
 const ReactQuill = dynamic(() => import('react-quill'), {
