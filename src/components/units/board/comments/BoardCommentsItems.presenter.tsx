@@ -211,7 +211,9 @@ export default function BoardCommentItemUI({
 									onClick={onSaveUpdateRating}
 									id={idx}
 									src={
-										updataInput.rating >= idx ? '/StarColor.png' : '/star.png'
+										updataInput.rating >= idx
+											? '/img/StarColor.png'
+											: '/img/Star.png'
 									}
 								></StarImg>
 							))}
@@ -265,7 +267,9 @@ export default function BoardCommentItemUI({
 												onClick={onSaveRating}
 												id={idx}
 												src={
-													data.rating >= idx ? '/StarColor.png' : '/star.png'
+													data.rating >= idx
+														? '/img/StarColor.png'
+														: '/img/Star.png'
 												}
 											></StarImg>
 										))}
