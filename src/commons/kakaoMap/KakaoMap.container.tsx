@@ -8,7 +8,6 @@ export default function KaKaoMap({ ZipCode, setPa }) {
 		script.src =
 			'https://dapi.kakao.com/v2/maps/sdk.js?appkey=c9c818a0b024f377caf51fe6e31268db&libraries=services&autoload=false';
 		document.head.appendChild(script);
-
 		script.onload = () => {
 			//@ts-ignore
 			kakao.maps.load(() => {

@@ -144,7 +144,7 @@ export default function ProductDetailPageUI({
 								</TagsWrapper>
 								<DivideLine></DivideLine>
 								<KaKaoMap
-									ZipCode={data?.fetchUseditem.useditemAddress.address}
+									ZipCode={data?.fetchUseditem?.useditemAddress?.address}
 									setPa={setPa}
 								></KaKaoMap>
 								<DivideLine></DivideLine>
