@@ -19,6 +19,7 @@ import {
 
 function ProductWritePage() {
 	const router = useRouter();
+	
 	//* 우편 주소 상태
 	const [postOpen, setPostOpen] = useState(false);
 
@@ -96,7 +97,6 @@ function ProductWritePage() {
 	});
 
 	//*웹 에디터 체인지 함수
-
 	const handleChangeEditor = (contents) => {
 		const newInput = {
 			...input,
@@ -123,6 +123,7 @@ function ProductWritePage() {
 		} else {
 			newTags = input.tags;
 		}
+
 		newTags
 			.split('#')
 			.filter((data) => data !== '')

@@ -5,7 +5,7 @@ const getAccessToken = async ({ setAccessToken }) => {
 
 
   const response = await axios.post(
-    'https://backend.codebootcamp.co.kr/graphql07',
+    'https://backend.codebootcamp.co.kr/graphql',
     {
       query: `
 							mutation restoreAccessToken {

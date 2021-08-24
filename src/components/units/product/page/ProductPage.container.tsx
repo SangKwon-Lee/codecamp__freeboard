@@ -25,6 +25,7 @@ export default function ProductDetailPage() {
 	//* 본인 확인을 위한 전역 관리 상태
 	const { userData } = useContext(GlobalContext);
 	const [isUser, setIsUser] = useState(false);
+	
 	//* 이미지 배열
 	const [imgArr, setImgArr] = useState([1, 2, 3, 4]);
 
