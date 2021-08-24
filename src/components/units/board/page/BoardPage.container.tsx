@@ -16,7 +16,6 @@ import {
 	QueryFetchBoardArgs,
 } from '../../../../commons/types/generated/types';
 import BoardComments from '../comments/BoardComments.container';
-import { RouterOutlined } from '@material-ui/icons';
 
 export default function BoardPage() {
 	const router = useRouter();
@@ -81,7 +80,22 @@ export default function BoardPage() {
 				variables: {
 					boardId: String(router.query.id),
 				},
+				update(cache, { data }) {
+					cache.modify({
+						fields: {
+							fetchBoards: (prev) => {
+								const deletedData = data;
+								const newPrev = prev.filter(
+									(prevData) => prevData._id !== deletedData,
+								);
+
+								return [...newPrev];
+							},
+						},
+					});
+				},
 			});
+
 			alert('게시글 삭제');
 			router.push(`/boards`);
 		} catch (error) {

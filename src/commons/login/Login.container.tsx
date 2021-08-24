@@ -55,6 +55,7 @@ export default function LoginPage() {
 					...loginData,
 				},
 			});
+
 			setAccessToken(data?.loginUser.accessToken);
 			const { data: userData } = await client.query({
 				query: FETCH_USER_LOGGEDIN,
